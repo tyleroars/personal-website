@@ -27,7 +27,9 @@ The build is dependency-free. Wrangler handles local preview and deployment. Gen
 
 ## Publishing
 
-Changes to `main` run the build checks in GitHub Actions. For continuous deployment, connect this repository's `main` branch to the `itstyleryip` Worker in Cloudflare Builds. Set the build command to `npm run build && npm test` and deploy command to `npx wrangler deploy`. Until that connection is enabled, deploy manually with `npm run deploy`. Hosting credentials stay in Cloudflare, outside this repository.
+Changes to `main` run the build checks in GitHub Actions and automatically publish through Cloudflare Builds to [itstyleryip.com](https://itstyleryip.com). Cloudflare builds with `npm run build && npm test` and deploys with `npx wrangler deploy`. Preview builds are disabled. Hosting credentials stay in Cloudflare, outside this repository.
+
+For a manual deployment from an authorized Cloudflare account, use `npm run deploy`.
 
 The apex domain is canonical. `www` redirects to it. Old `/about` and `/ai` links redirect to `/` and `/projects`. Pages and text revalidate; content-hashed images use long-lived cache headers. Unknown paths return a real 404.
 
