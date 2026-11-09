@@ -27,7 +27,7 @@ The build is dependency-free. Wrangler handles local preview and deployment. Gen
 
 ## Publishing
 
-Changes to `main` run the build checks in GitHub Actions. Cloudflare's connected Git build runs `npm run build && npm test`, then deploys with `npx wrangler deploy`. Hosting credentials stay in Cloudflare, outside this repository.
+Changes to `main` run the build checks in GitHub Actions. For continuous deployment, connect this repository's `main` branch to the `itstyleryip` Worker in Cloudflare Builds. Set the build command to `npm run build && npm test` and deploy command to `npx wrangler deploy`. Until that connection is enabled, deploy manually with `npm run deploy`. Hosting credentials stay in Cloudflare, outside this repository.
 
 The apex domain is canonical. `www` redirects to it. Old `/about` and `/ai` links redirect to `/` and `/projects`. Pages and text revalidate; content-hashed images use long-lived cache headers. Unknown paths return a real 404.
 
