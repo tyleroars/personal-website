@@ -1,0 +1,5 @@
+Prompt launcher marks reused from the rendered AI Worth Trying interface, November 7, 2026.
+OpenAI mark: Tabler Icons (MIT), rendered through react-icons.
+Claude and Google Gemini marks: Simple Icons (CC0), rendered through react-icons.
+Copy mark: Feather Icons (MIT), rendered through react-icons; reused unchanged apart from size/color.
+Brand names and marks identify the linked products; no endorsement is implied.

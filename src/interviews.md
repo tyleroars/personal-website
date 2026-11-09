@@ -1,0 +1,89 @@
+# Tyler Yip: Interviews
+
+85 published conversations through GradSimple. Guest roles and organisations are those disclosed in the linked interviews.
+
+- [Mark Macdonald](https://gradsimple.com/gradsimple-industry-insiders-mark-macdonald/) — Product Lead · Yext. 2026-11-03
+- [Katie Tilson](https://gradsimple.com/gradsimple-industry-insiders-katie-tilson/) — Global Client Lead (Account Executive) · Google. 2026-09-29
+- [Hannah Koresky](https://gradsimple.com/gradsimple-industry-insiders-hannah-koresky/) — Project Manager · Peak Design. 2026-09-01
+- [Matt Eyre](https://gradsimple.com/gradsimple-industry-insiders-matt-eyre/) — Talent Brand and Marketing Manager · Avalara. 2026-08-04
+- [John Livengood](https://gradsimple.com/gradsimple-industry-insider-john-livengood/) — Senior Director of Global Brand Marketing · Avalara. 2026-07-07
+- [Brianna O.](https://gradsimple.com/humans-of-gradsimple-brianna-o/). 2026-06-23
+- [Gus Baxter](https://gradsimple.com/gradsimple-lndustry-insiders-gus-baxter/) — Assistant Director · Drew University. 2026-06-09
+- [Jordan M.](https://gradsimple.com/humans-of-gradsimple-jordan-m/). 2026-05-26
+- [Jackson Yip](https://gradsimple.com/industry-insiders-jackson-y/) — Director of Development · NUS Business School. 2026-05-12
+- [Hassan S.](https://gradsimple.com/humans-of-gradsimple-hassan-s/). 2026-04-28
+- [Owen L.](https://gradsimple.com/humans-of-gradsimple-owen-l/). 2026-04-14
+- [Michelle K.](https://gradsimple.com/humans-of-gradsimple-michelle-k/). 2026-03-31
+- [Sol D.](https://gradsimple.com/humans-of-gradsimple-sol-d/). 2026-03-17
+- [Joshua C.](https://gradsimple.com/humans-of-gradsimple-joshua-c/). 2026-03-03
+- [Rygel G.](https://gradsimple.com/humans-of-gradsimple-rygel-g/). 2026-02-17
+- [Angela H.](https://gradsimple.com/humans-of-gradsimple-angela-h/). 2026-02-03
+- [Josh O.](https://gradsimple.com/humans-of-gradsimple-josh-o/). 2026-01-20
+- [Rachel E.](https://gradsimple.com/humans-of-gradsimple-rachel-e/). 2026-01-06
+- [Vish J.](https://gradsimple.com/humans-of-gradsimple-vish-j-2025-flash-check-in/). 2025-11-25
+- [Tyler Y.](https://gradsimple.com/humans-of-gradsimple-tyler-y-the-2025-check-in/). 2025-11-18
+- [Faheem A.](https://gradsimple.com/humans-of-gradsimple-faheem-a/). 2025-11-11
+- [Grace L.](https://gradsimple.com/humans-of-gradsimple-grace-l-the-2025-check-in/). 2025-11-04
+- [Evan A.](https://gradsimple.com/humans-of-gradsimple-evan-a/). 2025-10-21
+- [Brandon H.](https://gradsimple.com/humans-of-gradsimple-brandon-h/). 2025-10-14
+- [Cheyenne B.](https://gradsimple.com/humans-of-gradsimple-cheyenne-b/). 2025-10-07
+- [Corey B.](https://gradsimple.com/humans-of-gradsimple-corey-b/). 2025-09-30
+- [Aliyah J.](https://gradsimple.com/humans-of-gradsimple-aliyah-j/). 2025-09-23
+- [Nicolas R.](https://gradsimple.com/humans-of-gradsimple-nicolas-r/). 2025-09-16
+- [Ben H.](https://gradsimple.com/humans-of-gradsimple-ben-h/). 2025-09-09
+- [Sabih S.](https://gradsimple.com/humans-of-gradsimple-sabih-s/). 2025-09-02
+- [Isabel K.](https://gradsimple.com/humans-of-gradsimple-isabel-k/). 2025-08-26
+- [Arva H.](https://gradsimple.com/humans-of-gradsimple-arva-h/). 2025-08-19
+- [Muiz Z.](https://gradsimple.com/humans-of-gradsimple-muiz-z/). 2025-08-12
+- [Evarist B.](https://gradsimple.com/humans-of-gradsimple-evarist-b/). 2025-08-05
+- [Cole M.](https://gradsimple.com/humans-of-gradsimple-cole-m/). 2025-07-29
+- [Vlad S.](https://gradsimple.com/human-of-the-week-vlad-s/). 2025-07-22
+- [Trinity A.](https://gradsimple.com/human-of-the-week-trinity-a/). 2025-07-15
+- [Emilee K.](https://gradsimple.com/human-of-the-week-emilee-k/). 2025-07-08
+- [Brandon S.](https://gradsimple.com/human-of-the-week-brandon-s/). 2025-07-01
+- [Greg A.](https://gradsimple.com/human-of-the-week-greg-a/). 2025-06-24
+- [Erika D.](https://gradsimple.com/human-of-the-week-erika-d/). 2025-06-17
+- [Eli D.](https://gradsimple.com/human-of-the-week-eli-d/). 2025-06-10
+- [Jaimasan S.](https://gradsimple.com/human-of-the-week-jaimasan-s/). 2025-06-03
+- [Lindsay M.](https://gradsimple.com/human-of-the-week-lindsay-m/). 2025-05-27
+- [Joe V.](https://gradsimple.com/human-of-the-week-joe-v/). 2025-05-20
+- [Emily H.](https://gradsimple.com/human-of-the-week-emily-h/). 2025-05-13
+- [Emma S.](https://gradsimple.com/human-of-the-week-emma-s/). 2025-05-06
+- [Francesco F.](https://gradsimple.com/human-of-the-week-francesco-f/). 2025-04-29
+- [Owen L.](https://gradsimple.com/human-of-the-week-owen-l/). 2025-04-15
+- [Mike W.](https://gradsimple.com/human-of-the-week-mike-w/). 2025-04-08
+- [Jenna B.](https://gradsimple.com/human-of-the-week-jenna-b/). 2025-04-01
+- [Athena B.](https://gradsimple.com/human-of-the-week-athena-b/). 2025-03-25
+- [Jessie L.](https://gradsimple.com/human-of-the-week-jessie-l/). 2025-03-11
+- [Sean K.](https://gradsimple.com/human-of-the-week-sean-k/). 2025-02-25
+- [Natalie G.](https://gradsimple.com/human-of-the-week-natalie-g/). 2025-02-18
+- [Gianna A.](https://gradsimple.com/human-of-the-week-gianna-a/). 2025-02-11
+- [Jacqueline B.](https://gradsimple.com/human-of-the-week-jacqueline-b/). 2025-02-04
+- [Nila M.](https://gradsimple.com/human-of-the-week-nila-m/). 2025-02-03
+- [Kate P.](https://gradsimple.com/human-of-the-week-kate-p/). 2025-01-21
+- [Bradley V.](https://gradsimple.com/human-of-the-week-bradley-v/). 2025-01-07
+- [Jed N.](https://gradsimple.com/human-of-the-week-jed-n/). 2024-12-10
+- [Sam B.](https://gradsimple.com/human-of-the-week-sam-b/). 2024-11-26
+- [Tolu A.](https://gradsimple.com/human-of-the-week-tolu-a/). 2024-11-12
+- [Annie Grace D.](https://gradsimple.com/human-of-the-week-annie-grace-d/). 2024-11-05
+- [Aleecia G.](https://gradsimple.com/human-of-the-week-aleecia-g/). 2024-10-29
+- [Mya M.](https://gradsimple.com/human-of-the-week-mya-m/). 2024-10-22
+- [Cecilia F.](https://gradsimple.com/human-of-the-week-cecilia-f/). 2024-10-15
+- [Yuria B.](https://gradsimple.com/human-of-the-week-yuria-b/). 2024-10-08
+- [Keaton B.](https://gradsimple.com/human-of-the-week-keaton-b/). 2024-10-01
+- [Bruce N.](https://gradsimple.com/human-of-the-week-bruce-n/). 2024-09-24
+- [Alexa R.](https://gradsimple.com/human-of-the-week-alexa-r/). 2024-09-17
+- [Ankit P.](https://gradsimple.com/human-of-the-week-ankit-p/) — Atlantic Health Systems. 2024-09-10
+- [Do-Hyung K.](https://gradsimple.com/human-of-the-week-do-hyung-k/). 2024-09-03
+- [Julia M.](https://gradsimple.com/human-of-the-week-julia-m/). 2024-08-27
+- [Raneel B.](https://gradsimple.com/human-of-the-week-raneel-b/). 2024-08-20
+- [Tess I.](https://gradsimple.com/human-of-the-week-tess-i/). 2024-08-13
+- [Jay D.](https://gradsimple.com/human-of-the-week-jay-d/). 2024-08-06
+- [Rebekah N.](https://gradsimple.com/human-of-the-week-rebekah-n/). 2024-07-30
+- [Jolie J.](https://gradsimple.com/human-of-the-week-jolie-j/). 2024-07-23
+- [Tyler Y.](https://gradsimple.com/human-of-the-week-tyler-y/). 2024-07-16
+- [Vish J.](https://gradsimple.com/human-of-the-week-vish-j/). 2024-07-09
+- [Madeleine J.](https://gradsimple.com/human-of-the-week-madeleine-j/). 2024-07-02
+- [Francesca D.](https://gradsimple.com/human-of-the-week-francesca-d/). 2024-06-25
+- [Nicola P.](https://gradsimple.com/human-of-the-week-nicola-p/). 2024-06-18
+- [Grace L.](https://gradsimple.com/human-of-the-week-grace-l/). 2024-06-11

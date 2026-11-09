@@ -1,0 +1,16 @@
+{
+  "name": "itstyleryip",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test scripts/launch.test.mjs",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.159.0"
+  }
+}

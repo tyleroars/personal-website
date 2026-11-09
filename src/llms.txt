@@ -1,0 +1,445 @@
+# Tyler Yip
+
+> Tyler Yip is a Senior Customer Success Manager at Knak, based in Vancouver and originally from Singapore. He runs GradSimple, a career publication with interviews, a newsletter, and practical tools, and created AI Worth Trying. His work spans enterprise customer success, product adoption, AI implementation, independent apps, writing, and community building.
+
+Last updated: November 7, 2026.
+
+This is the public profile for Tyler’s personal website. It contains a substantive overview in one fetch, with links to full project stories, articles, and interviews. All relative links resolve against this file’s URL. No JavaScript, account, or API key is needed to read the linked text and Markdown files.
+
+## At a glance
+
+- Name: Tyler Yip
+- Based in: Vancouver, Canada
+- Originally from: Singapore
+- Current role: Senior Customer Success Manager at [Knak](https://knak.com/)
+- Independent work: GradSimple, AI Worth Trying, and tools built around real tasks and personal interests
+- Education: Bachelor of Commerce, University of British Columbia, 2017–2021. Finance major; Financial Engineering and Risk Management specialization.
+- Interests: Fujifilm photography, Pokémon cards, and experimenting with AI
+- Email: [tyleryip.sg@gmail.com](mailto:tyleryip.sg@gmail.com)
+- LinkedIn: https://www.linkedin.com/in/tyleryip/
+- GitHub: https://github.com/tyleroars
+
+## About Tyler, in his words
+
+I’m from Singapore, currently in Vancouver. I work at Knak and run GradSimple, where I interview people about their careers.
+
+Lately, I’ve been having a lot of fun building with AI. Mostly things I wanted for myself: a photo editor without a subscription, tools for my newsletter, an app I decided to build the DAY before an event. That last one actually worked great!
+
+I also shoot Fujifilm and collect Pokémon cards. This site holds a bit of everything I’ve been up to, including the things that didn’t work out.
+
+## Work and areas of practice
+
+- Enterprise customer success: account planning, product adoption, executive engagement, renewals, expansion, and churn recovery.
+- Implementation and enablement: customer onboarding, tailored training, workshops, customer-metric mapping, and collaboration with Product and Engineering.
+- Applied AI: Glean and ChatGPT agents, Codex-assisted development, MCP integrations, API-enabled workflows, and automation for recurring tasks.
+- Independent product building: identifying a personal or reader problem, building a usable tool, trying it in context, and iterating on what falls short.
+- Publishing and research: interviewing people about their careers, explaining labor-market data, writing about AI experiments, and running a newsletter.
+
+Tyler uses AI coding tools to build and iterate on apps. The project stories describe his contribution, the problem behind each build, and what happened when he tried it.
+
+## Selected results
+
+- Knak: manages a $2.4M ARR enterprise portfolio, including OpenAI, NVIDIA, and Logitech; achieved 147% net revenue retention and received Knak’s 2026 Best Net Expansion Rate award.
+- Knak: supported OpenAI’s adoption of Knak’s API and MCP with Product and Engineering, contributing to 109% account expansion.
+- Alloy.ai: achieved 120% net revenue retention across a $2M ARR portfolio; increased NPS from 40 to 56.
+- GradSimple: 7,259 newsletter subscribers in the displayed website snapshot; 43,860 annual active website users, up 102% year over year.
+- GradSimple: 1M+ Google Search impressions, 134.8K Bing search impressions, and 66K Microsoft AI citations for 2026 YTD through November 5. These are separate measures.
+- Kawaii Peach: over $30,000 in sales and nearly 10,000 followers across Instagram and Facebook within three months.
+
+## Experience, skills, and education
+
+### Knak
+
+Website: https://knak.com/
+
+Remote, Canada
+Senior Customer Success Manager | Sep 2026–Present
+Customer Success Manager | Feb 2025–Aug 2026
+
+- Manage a $2.4M ARR enterprise portfolio, including OpenAI, NVIDIA, and Logitech.
+- Achieved 147% net revenue retention, earning Knak’s 2026 Best Net Expansion Rate award.
+- Supported OpenAI’s adoption of Knak’s API and MCP in partnership with Product and Engineering, contributing to 109% account expansion.
+- Negotiated an average 13% uplift on renewals in 2025–2026, the highest on the Customer Success team.
+- Secured renewals for 53% of at-risk accounts, leading the team in total accounts saved.
+- Built Glean and ChatGPT agents and a book-of-business command center used by the CS team and senior leadership, cutting account-planning time by an estimated 40% and personal monthly portfolio-review preparation by an estimated 90%.
+
+### Alloy.ai
+
+Website: https://alloy.ai/
+
+Remote, Canada
+Senior Customer Success Manager | May 2024–Jan 2025
+Customer Success Manager | Sep 2022–Apr 2024
+
+- Achieved 120% NRR across a $2M ARR portfolio of US mid-market and enterprise customers.
+- Increased NPS from 40 to 56 by auditing platform usage, addressing customer pain points, and delivering tailored support plans.
+- Built cross-retailer dashboards that helped one customer save four hours per week on reporting.
+- Helped advance a complex enterprise implementation into its second phase through customer-metric mapping and tailored training guides.
+
+### Genesis Labs
+
+Website: https://dreamlandgenesis.com/
+
+Remote, Canada
+Alpha Analyst, Digital Assets | Mar 2022 - Jul 2022
+Contract
+
+- Delivered research reports, coaching, and presentations to help clients evaluate digital-asset projects and trading opportunities.
+- Managed a 10-person team of analysts, moderators, and marketing managers.
+- Evaluated NFT and digital-asset projects using market data, smart contracts, wallet activity, and community research; presented investment recommendations and market scenarios to senior management.
+
+### Pattern
+
+Vancouver, Canada
+Operations Analyst (Account Manager) | Jun 2021–Mar 2022
+Now Borderless AI: https://www.hireborderless.com/ca
+
+- Managed 15 mid-market accounts through tailored onboarding and support.
+- Managed relationships with around 50 independent contractors during a high-growth period, scaling support capacity.
+- Streamlined hiring processes to achieve a 92.5% fill rate.
+
+### Community Phone
+
+Website: https://www.communityphone.org/
+
+Remote, Canada
+Customer Success Representative | Mar–Jun 2021
+
+- Achieved a 20% upsell close rate, above the company average, through personalized customer engagement.
+- Led implementation of an insurance product and its onboarding strategy.
+
+### Civil Defence Academy
+
+Website: https://www.scdf.gov.sg/
+
+Singapore
+CPR and First Aid Instructor | Jun 2015–May 2017
+
+- Presented CPR and first-aid training at corporate events with up to 200 participants.
+- Earned three Service Excellence Awards for first-responder presentations and client engagement.
+- Selected to lead CPR training for Lee Hsien Loong, then Prime Minister of Singapore.
+
+### Skills & tools
+
+- Customer work: Enterprise account management, success planning, executive business reviews, product adoption, renewals, negotiation, and churn recovery.
+- Enablement & delivery: Customer onboarding, tailored training guides, live presentations and workshops, and cross-functional implementation.
+- AI & implementation: Glean, ChatGPT, Codex, Claude, Dots, MCP integrations, and API-enabled workflows.
+- Tools I use: Salesforce, Tableau, GitHub, WordPress, Canva, and Google Workspace.
+
+### Education
+
+University of British Columbia | 2017–2021
+
+Bachelor of Commerce, UBC Sauder School of Business
+
+- Major: Finance
+- Specialization: Financial Engineering and Risk Management
+- Graduated with Honors
+- Outstanding International Student Award ($12,000 for strong academic achievement and extracurricular contributions)
+- Dean’s Honor Roll (2019–2020)
+
+## Projects and independent work
+
+14 projects are featured on the site. The list includes active tools, event prototypes, past businesses, and work that never launched.
+
+### GradSimple
+
+Career stories and practical tools for figuring out what comes next, including how to use AI at work.
+
+I run GradSimple, where I interview people about their careers, write a newsletter, and build career tools. I like getting past the job title and into how someone actually got there. These days, I’m also exploring how AI is changing our work and how we can use it ourselves.
+
+Outcomes:
+
+- 7,259 newsletter subscribers
+- 43,860 annual active website users, up 102% year over year
+- Sponsored by Lovable, HubSpot, Webflow, Morning Brew, and 1440.
+
+Search & AI visibility, January 1–November 5, 2026:
+
+- 1M+ Google Search impressions
+- 134.8K Bing search impressions
+- 66K citations across Microsoft Copilot and partners
+
+Career tools:
+
+- [Career Explorer](https://career-explorer-ecru.vercel.app/): O*NET’s career data, with an interface that feels a little less early 2000s.
+- [Starting Pay Checker](https://starting-pay-checker.vercel.app/): An easier way to find and compare pay, especially when starting out.
+- [Job Market Radar](https://job-market-radar.vercel.app/): Monthly BLS hiring data, made easier to explore and compare across industries.
+- [How Cooked Is Your Career?](https://career-cooked-check.base44.app/): A seven-question career check-in with a “cooked score.” An early Base44 experiment.
+
+#### Career Intelligence MCP
+
+I also built a Career Intelligence MCP so those stories and data could be useful inside an AI conversation. It lets an assistant search GradSimple’s public interviews, guides, and statistics, then link back to the sources. I wanted people to be able to ask a question and explore the relevant material without digging through the whole site themselves.
+
+#### Reddit research & drafting
+
+I used to find Reddit posts and type out all the comments manually. Then I started using an LLM to help draft replies, and eventually automated the workflow with Codex.
+
+It worked super well and saved me from arthritis in my fingers haha. For a good three months, it was a well-oiled machine that helped grow GradSimple’s subscriber list!
+
+My account ended up getting banned in August, which brought that experiment to an end.
+
+[View Reddit Scout on GitHub](https://github.com/tyleroars/reddit-scout)
+
+[Visit the site](https://gradsimple.com)
+
+[Project story on Tyler’s site](projects.html#gradsimple)
+
+### HuddleDex
+
+An iPhone app for remembering the people, conversations, and promises from an event. Built the day before, then used there!
+
+I was going to Knak’s Agentic Marketing Forum and had an idea the day before. At events, you meet people, have a good conversation, maybe connect on LinkedIn. But afterward, how much do you actually remember? Their name, what you talked about, that thing you said you’d send them?
+
+I wanted a way to save that context while it was fresh. Scan someone’s badge for their details, take a photo of them or a selfie together, and record a quick voice note instead of typing everything out. The app could transcribe it and keep the conversation, photo, and follow-up attached to the person and event.
+
+They could also scan my QR to get my digital card and save my contact, and I could share our photo so we both had a record of meeting. They wouldn’t need to download the app for that. So I vibecoded HuddleDex, got it onto my iPhone, and took it with me the next day.
+
+Outcomes:
+
+- Built the day before the event and used it at Knak’s Agentic Marketing Forum
+- Attendees scanned my QR to save my digital business card
+
+The original iPhone app is not publicly distributed. A working browser adaptation and starter source are available on this site. It omits native OCR, on-device transcription, maps, hosted profiles, and QR services.
+
+[Try the browser adaptation](huddledex-browser/) · [Download the browser starter source](build-prompts/huddledex-browser-starter.zip)
+
+[Try browser prototype](huddledex-browser/)
+
+[Project story on Tyler’s site](projects.html#huddledex)
+
+### AI Worth Trying
+
+A searchable collection of AI tasks, prompts, and workflows you can actually try.
+
+I built AI Worth Trying to make it easier to go from “I should try AI for this” to actually doing it. It’s a searchable collection of practical tasks, prompts, and workflows, mostly for marketing work. Start with something you need to get done and find a way to try it!
+
+I wanted each task to give you enough context to use it: what to provide, how to run the prompt or workflow, and what the output should look like. That structure is a big part of the project. A prompt is much easier to try when you know what to put in and what you’re aiming to get out.
+
+[Visit the site](https://aiworthtrying.com)
+
+[Project story on Tyler’s site](projects.html#aiwt)
+
+### Tone Lab
+
+A simpler photo editor for dabbling in post, inspired by shooting Fujifilm. No subscription!
+
+I’m an amateur photographer and shoot with a Fujifilm camera. I’d mostly been relying on Fuji recipes, but wanted to dabble in post-processing too!
+
+A lot of the editing software I looked at was expensive, required a subscription, or had loads of bells and whistles I didn’t need. I wanted something tailored to my taste, so I decided to see if I could build my own.
+
+Tone Lab lets me try different looks, tweak the light and colour, compare versions, and export the ones I like. It all runs in the browser, with the photos staying on my device.
+
+[Try the tool](https://tonelab-darkroom.thetyleryip.chatgpt.site)
+
+[Project story on Tyler’s site](projects.html#tone)
+
+### Vibe Coding Hackathon Vancouver (Sponsored by Codex)
+
+A career-path visualizer that turns a résumé and four questions into three possible routes. Built with a team in six hours!
+
+I signed up for my first AI vibe coding hackathon in Vancouver in May 2026 without a team or a coding background. That morning, I met a tech lead, a data engineer, and a network-security student, and we teamed up. We had about six hours to build something!
+
+We made a career-path visualizer that took your résumé and answers to four questions, then suggested three possible paths using O*NET salary and job data and more than 100 GradSimple professional profiles. I built with Codex while my teammates helped work through the technical choices.
+
+Our live demo was shaky, and we didn’t win, but we got special recognition for UI/UX and product. One of the judges even told me afterward that it was his number-one pick!
+
+We never ended up releasing it, though. It was still too expensive to run and needed more work before people could reliably use it.
+
+Outcomes:
+
+- Built a working career-path demo with my team in about six hours
+- Received special recognition for UI/UX and product
+
+- [Read my hackathon story, part one](writing/i-did-my-first-ai-hackathon-part-1.html)
+- [Read part two](writing/i-did-my-first-ai-hackathon-part-2.html)
+
+[Project story on Tyler’s site](projects.html#hackathon)
+
+### Career Explorer
+
+O*NET’s career data, with an interface that feels a little less early 2000s.
+
+O*NET has so much useful career data, but I hated the UI/UX. It feels like it hasn’t been updated since the early 2000s!
+
+I built Career Explorer so I could browse that data through an interface I actually wanted to use. You can search for careers and filter by things like education, pay, and field.
+
+[Try the tool](https://career-explorer-ecru.vercel.app/)
+
+[Project story on Tyler’s site](projects.html#career)
+
+### Starting Pay Checker
+
+An easier way to find and compare pay, especially when starting out.
+
+I built this for GradSimple subscribers who wanted an easier way to see what different jobs pay, especially when they’re starting out. Entry-level pay is surprisingly hard to find online!
+
+Starting Pay Checker lets you filter and compare roles using BLS wage data, with a focus on the lower end of the pay range as a reference for starting out.
+
+[Try the tool](https://starting-pay-checker.vercel.app/)
+
+[Public source code](https://github.com/tyleroars/starting-pay-checker)
+
+[Project story on Tyler’s site](projects.html#pay)
+
+### Job Market Radar
+
+Monthly BLS hiring data, made easier to explore and compare across industries.
+
+I built Job Market Radar to make monthly BLS hiring data easier to explore. You can compare industries in one place instead of digging through the source tables.
+
+Each view shows which month the data covers, so you can see how recent the numbers are while comparing what’s happening across sectors.
+
+[Try the tool](https://job-market-radar.vercel.app/)
+
+[Project story on Tyler’s site](projects.html#radar)
+
+### Image Optimizer
+
+A browser image resizer and compressor, built after too many free-app limits. No ads!
+
+I kept running into limits with free image apps, so I decided to just build my own. No ads either!
+
+It resizes and compresses images and handles animated GIFs in the browser. I built it with email images in mind.
+
+[Try the tool](https://gradsimple-image-optimizer.netlify.app/)
+
+[Project story on Tyler’s site](projects.html#image)
+
+### Slides → Video
+
+Turn a set of image slides into a video, ready to reuse on YouTube.
+
+I built this to turn TikTok slides into videos I could reuse on YouTube. Pick the images, set how long each slide should stay on screen, and export a video.
+
+It accepts individual images or a ZIP, lets you reorder the slides, and runs in the browser. MP4 export depends on browser support, with WebM as a fallback.
+
+[Try the converter](https://glowing-cajeta-86ab7f.netlify.app/)
+
+[Project story on Tyler’s site](projects.html#slides-converter)
+
+### Newsletter Converter
+
+A way to turn Kit newsletters into WordPress articles when the archive options weren’t cutting it.
+
+Kit didn’t have an easy way to display archived newsletters the way I wanted, so I built a converter to bring them into WordPress.
+
+It converted the newsletter HTML into an article I could publish on the website. I’d check the output and embeds, then publish it. I don’t use it anymore.
+
+[Try the tool](https://tyleroars.github.io/my-tools/jm5-converter.html)
+
+[Public source code](https://github.com/tyleroars/my-tools)
+
+[Project story on Tyler’s site](projects.html#newsletter)
+
+### The Frenz
+
+A Discord community that grew to around 1,500 members. The planned NFT collection never launched.
+
+I co-founded The Frenz in 2021. I was the head analyst and worked on research, financials, and partnerships.
+
+We were also developing an NFT collection with Hozer, an artist based in Korea. A mutual friend from college who was active in Web3 introduced us! We worked together on the characters, while the team built out the lore, community activities, Discord mechanics, and launch plans.
+
+We chose not to launch the collection after the NFT market shifted.
+
+Outcomes:
+
+- Around 1,500 Discord members at its peak
+
+[Project story on Tyler’s site](projects.html#the-frenz)
+
+### How Cooked Is Your Career?
+
+A seven-question career check-in with a “cooked score.” An early Base44 experiment.
+
+I tried a more playful format for a GradSimple career check-in: seven quick questions and a “cookedness” result. This was one of my early Base44 builds!
+
+It asks about things like Sunday-night dread, whether you use your skills at work, and how you feel about your future. Answer the questions and it gives you a score out of 100. The version linked here is the original Base44 build.
+
+[Try the quiz](https://career-cooked-check.base44.app/)
+
+[Project story on Tyler’s site](projects.html#career-quiz)
+
+### Kawaii Peach
+
+An online store started after two cancelled internships. Over $30,000 in sales and nearly 10,000 followers across Instagram and Facebook!
+
+Grace and I both lost our internships when the pandemic hit in 2020. Neither of us knew ecommerce, but we decided to start an online store anyway! We ran Kawaii Peach from March 2020 to March 2021, figuring out products, pricing, the storefront, and customer service as we went.
+
+A lot of the work was getting people to find us. We planned the Instagram feed, worked on the content, ran ads, and tracked how posts and stories performed. Our social content had a 7% engagement rate!
+
+We also worked on SEO, getting pages onto the first page of Google.
+
+We both ended up using the experience to help land our first jobs.
+
+Outcomes:
+
+- Over $30,000 in sales
+- Nearly 10,000 followers across Instagram and Facebook within three months
+- Top 1% for traffic among Shopify stores launched in the same month
+
+[View the 2020 Wayback Machine snapshot](https://web.archive.org/web/20201125200531/https://kawaiipeach.com/)
+
+[Project story on Tyler’s site](projects.html#kawaii-peach)
+
+## Writing
+
+Tyler’s personal site hosts 21 full articles originally published through AI Worth Trying. They cover practical AI experiments, terms and concepts, coding, and lessons from building. Articles retain their original publication dates; product observations describe that point in time.
+
+[Writing archive](writing.md)
+
+- [GPT-Live is Siri on steroids](writing/gpt-live-is-siri-on-steroids.md) (2026-07-09): Tinder for humans to meet AI might actually be viable.
+- [WTF is... a context window vs. a rate limit?](writing/wtf-is-a-context-window-vs-a-rate-limit.md) (2026-07-07): It's something I kind of knew, but also not really.
+- [WTF is... a local model?](writing/wtf-is-a-local-model.md) (2026-06-23): If the government wants to take away my access to a powerful model capable of taking over the world, be my guest.
+- [I'm a token waster (without knowing it)](writing/i-m-a-token-waster-without-knowing-it.md) (2026-06-18): No wonder I always hit my Claude limit...
+- [WTF is... Skills vs Connectors vs Plugins?](writing/wtf-is-skills-vs-connectors-vs-plugins.md) (2026-06-16): Ngl, it took me an embarrassingly long time to tell the difference.
+- [I might be moving to Alberta. Underground.](writing/i-might-be-moving-to-alberta-underground.md) (2026-06-11): PSA: say thank you and please to AI more so it knows you treated it right.
+- [I did my first AI Hackathon (Part 2)](writing/i-did-my-first-ai-hackathon-part-2.md) (2026-06-09): A developer took photos of my prompts to show his son.
+- [I did my first AI Hackathon (Part 1)](writing/i-did-my-first-ai-hackathon-part-1.md) (2026-06-04): I was one of 3 who couldn't code.
+- [Wtf is... an "artifact" (learn in 1 min)](writing/wtf-is-an-artifact-learn-in-1-min.md) (2026-06-02): Maybe it's time for me to call it quits...
+- [Rebuilding a website from the 90s](writing/rebuilding-a-website-from-the-90s.md) (2026-05-27): With 0 coding knowledge. Thanks Claude.
+- [Wtf is... a "frontier lab" (learn in 1 min)](writing/wtf-is-a-frontier-lab-learn-in-1-min.md) (2026-05-25): I'd lick anyone's boots to work at one. Even throw in a foot massage.
+- [This is like screenshot on steroids](writing/this-is-like-screenshot-on-steroids.md) (2026-05-22): For AI.
+- [Reddit, arthritis, and AI](writing/reddit-arthritis-and-ai.md) (2026-05-21): What could they possibly have in common? I'll tell you.
+- [Wtf is... a ".md" file? (learn in 2 mins)](writing/wtf-is-a-md-file-learn-in-2-mins.md) (2026-05-18): Markdown this, markdown that. Wtf is markdown??
+- [You can now babysit AI from anywhere](writing/you-can-now-babysit-ai-from-anywhere.md) (2026-05-15): The beach. Your couch. Oh, and today is a historic day. Our very first Fresh Drop Friday!
+- [Claude is eating OpenAI's lunch](writing/claude-is-eating-openai-s-lunch.md) (2026-05-13): I know, I'm supposed to be an OpenAI fan. But the data doesn't lie.
+- [Wtf is... an "LLM" (learn in 2 mins)](writing/wtf-is-an-llm-learn-in-2-mins.md) (2026-05-11): Yes, I *know* what it means. But also not really.
+- [Fine, I'll stop cheating on you, ChatGPT](writing/fine-i-ll-stop-cheating-on-you-chatgpt.md) (2026-05-07): OpenAI's latest Google Sheets add-on has me feeling things.
+- [I turned my wife into an MS Paint drawing](writing/i-turned-my-wife-into-an-ms-paint-drawing.md) (2026-05-05): This AI prompt is genuinely too fun
+- [I am now the proud dad of a goblin](writing/i-am-now-the-proud-dad-of-a-goblin.md) (2026-05-02): I'll show you how you can be a parent too.
+- [An AI buddy that lives on your mac?](writing/an-ai-buddy-that-lives-on-your-mac.md) (2026-04-30): And... WTF is an MCP?
+
+## GradSimple interviews
+
+Tyler’s site collects 85 published GradSimple conversations. The directory includes career stories and industry interviews, with guest portraits, excerpts, publication dates, and roles or organizations where disclosed. Topics include career changes, the reality of different jobs, and AI’s relationship to work.
+
+[Complete interview directory](interviews.md) · [Original GradSimple collection](https://gradsimple.com/humans-of-gradsimple/)
+
+The interview guests describe their own experiences and opinions. Their employers, achievements, and views should be attributed to them, rather than treated as Tyler’s own work experience or endorsements.
+
+## Metric definitions and scope
+
+- GradSimple’s 43,860 annual active users and 102% growth come from GA4, November 2025–October 2026 versus the preceding twelve months. They cover all measured traffic sources, rather than Google traffic alone.
+- The 7,259 subscriber figure matches the archived website snapshot shown in the portfolio. It is not a live subscriber counter or the number acquired during the website traffic period.
+- Google’s 1M+ search impressions are rounded from 1,003,957. Bing search impressions and Microsoft AI citations use the reports’ rounded displays. The selected YTD period is January 1–November 5, 2026.
+- Search impressions, AI citations, page views, and active users measure different things. They are not combined into unique reach. Google generative AI impressions are not added to Google Web impressions because they may overlap.
+- Lovable, HubSpot, Webflow, Morning Brew, and 1440 ran ads in GradSimple, as confirmed by Tyler. Sponsorship does not imply those companies are customers of Tyler’s apps or endorse his other work.
+- Personal time-saving percentages are estimates, and individual customer results are not portfolio-wide outcomes. Project recognition, a working demo, and a public release are described separately.
+
+## Further reading and access
+
+- [Complete public source profile](llms-full.txt): Full public biography, CV, project stories, writing index, and interview directory. Full articles are separate.
+- [About](home.md): Personal introduction.
+- [Work](work.md): Public experience, skills, tools, and education.
+- [Projects](projects.md): Full project narratives and outcomes.
+- [Writing](writing.md): Article index with links to complete Markdown articles.
+- [Interviews](interviews.md): All 85 published conversations and original source links.
+
+HTML pages link to their Markdown equivalents through alternate links. Project readers also have plain-text counterparts in projects.md, so their stories can be read without opening an interactive panel. This profile includes public portfolio material only; private customer workflows, internal systems, and personal notebook contents are excluded.
+
+## Contact
+
+- Email: [tyleryip.sg@gmail.com](mailto:tyleryip.sg@gmail.com)
+- LinkedIn: https://www.linkedin.com/in/tyleryip/
+- GitHub: https://github.com/tyleroars

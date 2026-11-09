@@ -1,0 +1,4 @@
+Sun and moon icons: Feather Icons, MIT license.
+https://github.com/feathericons/feather
+Original SVGs retained in this folder; footer embeds them with accessible button labels.
+License: feather-LICENSE.txt
