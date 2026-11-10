@@ -1,0 +1,191 @@
+{
+  "/": {
+    "file": "assets/social/tyler-yip-50f1d42ba768.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "Tyler Yip. Projects, writing, and experiments with AI. An illustrated Tyler sits in front of a colorful dotted rainbow. itstyleryip.com."
+  },
+  "/projects": {
+    "file": "assets/social/projects-0f0bff8d6826.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "Projects, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing": {
+    "file": "assets/social/writing-65fbfc0f0e6c.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "Writing, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/work": {
+    "file": "assets/social/work-424875d6e362.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "Work, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/interviews": {
+    "file": "assets/social/interviews-e284e59785bc.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "Interviews, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/huddledex-browser/": {
+    "file": "assets/social/huddledex-browser-71f29b3844fc.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "HuddleDex, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/gpt-live-is-siri-on-steroids": {
+    "file": "assets/social/gpt-live-is-siri-on-steroids-8b9c86a5454c.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "GPT-Live is Siri on steroids, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/wtf-is-a-context-window-vs-a-rate-limit": {
+    "file": "assets/social/wtf-is-a-context-window-vs-a-rate-limit-177a82fe4232.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "WTF is... a context window vs. a rate limit?, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/wtf-is-a-local-model": {
+    "file": "assets/social/wtf-is-a-local-model-6ff0e09e6699.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "WTF is... a local model?, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/i-m-a-token-waster-without-knowing-it": {
+    "file": "assets/social/i-m-a-token-waster-without-knowing-it-0cd5768bd3ca.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "I'm a token waster (without knowing it), by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/wtf-is-skills-vs-connectors-vs-plugins": {
+    "file": "assets/social/wtf-is-skills-vs-connectors-vs-plugins-32cca2422348.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "WTF is... Skills vs Connectors vs Plugins?, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/i-might-be-moving-to-alberta-underground": {
+    "file": "assets/social/i-might-be-moving-to-alberta-underground-7a43e768fbc2.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "I might be moving to Alberta. Underground., by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/i-did-my-first-ai-hackathon-part-2": {
+    "file": "assets/social/i-did-my-first-ai-hackathon-part-2-21ea502edc2b.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "I did my first AI Hackathon (Part 2), by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/i-did-my-first-ai-hackathon-part-1": {
+    "file": "assets/social/i-did-my-first-ai-hackathon-part-1-3ddaa67027ec.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "I did my first AI Hackathon (Part 1), by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/wtf-is-an-artifact-learn-in-1-min": {
+    "file": "assets/social/wtf-is-an-artifact-learn-in-1-min-3cb0c606ad94.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "Wtf is... an \"artifact\" (learn in 1 min), by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/rebuilding-a-website-from-the-90s": {
+    "file": "assets/social/rebuilding-a-website-from-the-90s-1288d4cdd606.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "Rebuilding a website from the 90s, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/wtf-is-a-frontier-lab-learn-in-1-min": {
+    "file": "assets/social/wtf-is-a-frontier-lab-learn-in-1-min-5d7c2c5219fe.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "Wtf is... a \"frontier lab\" (learn in 1 min), by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/this-is-like-screenshot-on-steroids": {
+    "file": "assets/social/this-is-like-screenshot-on-steroids-20b629462ac7.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "This is like screenshot on steroids, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/reddit-arthritis-and-ai": {
+    "file": "assets/social/reddit-arthritis-and-ai-7d238a535ebe.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "Reddit, arthritis, and AI, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/wtf-is-a-md-file-learn-in-2-mins": {
+    "file": "assets/social/wtf-is-a-md-file-learn-in-2-mins-48644d3c6a54.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "Wtf is... a \".md\" file? (learn in 2 mins), by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/you-can-now-babysit-ai-from-anywhere": {
+    "file": "assets/social/you-can-now-babysit-ai-from-anywhere-a89a31483944.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "You can now babysit AI from anywhere, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/claude-is-eating-openai-s-lunch": {
+    "file": "assets/social/claude-is-eating-openai-s-lunch-544727f9ad16.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "Claude is eating OpenAI's lunch, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/wtf-is-an-llm-learn-in-2-mins": {
+    "file": "assets/social/wtf-is-an-llm-learn-in-2-mins-4a428a583fa0.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "Wtf is... an \"LLM\" (learn in 2 mins), by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/fine-i-ll-stop-cheating-on-you-chatgpt": {
+    "file": "assets/social/fine-i-ll-stop-cheating-on-you-chatgpt-c546ad387287.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "Fine, I'll stop cheating on you, ChatGPT, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/i-turned-my-wife-into-an-ms-paint-drawing": {
+    "file": "assets/social/i-turned-my-wife-into-an-ms-paint-drawing-e5f5dd6ecc1d.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "I turned my wife into an MS Paint drawing, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/i-am-now-the-proud-dad-of-a-goblin": {
+    "file": "assets/social/i-am-now-the-proud-dad-of-a-goblin-84ac80c3ec4c.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "I am now the proud dad of a goblin, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
+  "/writing/an-ai-buddy-that-lives-on-your-mac": {
+    "file": "assets/social/an-ai-buddy-that-lives-on-your-mac-475b23e2065d.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "An AI buddy that lives on your mac?, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  }
+}

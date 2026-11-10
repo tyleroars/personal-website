@@ -1,0 +1,140 @@
+{
+  "/": {
+    "title": "Tyler Yip | Projects, Writing & AI Experiments",
+    "description": "I’m Tyler Yip, a customer success manager in Vancouver. Explore my projects, writing, GradSimple interviews, and experiments with AI.",
+    "cardTitle": "Tyler Yip",
+    "cardLines": [
+      "Projects, writing,",
+      "and experiments with AI."
+    ]
+  },
+  "/projects": {
+    "title": "Projects | Tyler Yip",
+    "description": "Apps, newsletters, and ventures I’ve built and run, from GradSimple and AI Worth Trying to photo tools, career apps, and a six-hour hackathon prototype.",
+    "cardTitle": "Projects",
+    "cardLines": [
+      "Apps, newsletters,",
+      "and other things I’ve built."
+    ]
+  },
+  "/writing": {
+    "title": "Writing on AI & Building Things | Tyler Yip",
+    "description": "Personal experiments and plain-English guides about AI, from building apps with Codex and Claude to understanding the terms everyone keeps using.",
+    "cardTitle": "Writing",
+    "cardLines": [
+      "AI experiments, practical guides,",
+      "and things I’m figuring out."
+    ]
+  },
+  "/work": {
+    "title": "Work & Experience | Tyler Yip",
+    "description": "My experience in enterprise customer success at Knak and Alloy.ai, with measurable results in product adoption, renewals, and practical AI implementation.",
+    "cardTitle": "Work",
+    "cardLines": [
+      "Experience, skills,",
+      "and the work behind the numbers."
+    ]
+  },
+  "/interviews": {
+    "title": "Career Interviews from GradSimple | Tyler Yip",
+    "description": "Career conversations I’ve published through GradSimple, with guest portraits, excerpts, and links to how each person found their way.",
+    "cardTitle": "Interviews",
+    "cardLines": [
+      "Career conversations",
+      "from GradSimple."
+    ]
+  },
+  "/huddledex-browser/": {
+    "title": "HuddleDex Browser Demo | Tyler Yip",
+    "description": "A local-first browser adaptation of HuddleDex for event contacts, conversation notes, and a digital business card. A working demo by Tyler Yip.",
+    "cardTitle": "HuddleDex",
+    "cardLines": [
+      "Event contacts, conversation notes,",
+      "and your digital business card."
+    ]
+  },
+  "/writing/gpt-live-is-siri-on-steroids": {
+    "title": "GPT-Live, Voice AI & Everyday Use | Tyler Yip",
+    "description": "My take on ChatGPT’s real-time voice features, where I’d use them, and why model costs and usage limits matter when AI is part of everyday work."
+  },
+  "/writing/wtf-is-a-context-window-vs-a-rate-limit": {
+    "title": "Context Windows vs. Rate Limits | Tyler Yip",
+    "description": "Context windows and rate limits kept tripping me up. Here’s how they differ, why long chats lose details, and why Claude can ask you to wait."
+  },
+  "/writing/wtf-is-a-local-model": {
+    "title": "What Is a Local AI Model? | Tyler Yip",
+    "description": "What it means to run an AI model on your own computer, how LM Studio and Ollama fit in, and why I’m curious about local AI but haven’t switched."
+  },
+  "/writing/i-m-a-token-waster-without-knowing-it": {
+    "title": "PDFs, Markdown & AI Token Usage | Tyler Yip",
+    "description": "What I learned about feeding PDFs to AI, and why I’m trying Microsoft’s MarkItDown to turn documents into Markdown before sharing them with Claude."
+  },
+  "/writing/wtf-is-skills-vs-connectors-vs-plugins": {
+    "title": "Skills vs. Connectors vs. Plugins | Tyler Yip",
+    "description": "Skills, connectors, and plugins confused me for longer than I’d like to admit. Here’s the difference, with everyday examples from Claude."
+  },
+  "/writing/i-might-be-moving-to-alberta-underground": {
+    "title": "Powerful AI Models, Security & Cost | Tyler Yip",
+    "description": "My reaction to Anthropic’s powerful models, their security risks, and the awkward question of whether more capability is worth the extra cost."
+  },
+  "/writing/i-did-my-first-ai-hackathon-part-2": {
+    "title": "Building with Codex at My First Hackathon, Part 2 | Tyler Yip",
+    "description": "Four strangers, six hours, and a career-path prototype built with Codex. What we made, how the demo went, and what I learned as the non-coder on the team."
+  },
+  "/writing/i-did-my-first-ai-hackathon-part-1": {
+    "title": "My First Vibe Coding Hackathon, Part 1 | Tyler Yip",
+    "description": "How I signed up for Vancouver’s Codex-sponsored vibe coding hackathon, picked a career problem to tackle, and found a team despite not knowing how to code."
+  },
+  "/writing/wtf-is-an-artifact-learn-in-1-min": {
+    "title": "What Is a Claude Artifact? | Tyler Yip",
+    "description": "What Claude artifacts are, how they turn a chat into something you can use, and the small apps I’ve built to solve my own annoyances."
+  },
+  "/writing/rebuilding-a-website-from-the-90s": {
+    "title": "Building a Better O*NET Career Explorer with Claude | Tyler Yip",
+    "description": "O*NET’s interface frustrated me, so I used Claude to build a cleaner Career Explorer for GradSimple. Here’s how a two-hour experiment came together."
+  },
+  "/writing/wtf-is-a-frontier-lab-learn-in-1-min": {
+    "title": "What Are Frontier Models & AI Labs? | Tyler Yip",
+    "description": "What people mean by a frontier model or frontier lab, explained through a conversation with my wife and a comparison to flagship phones."
+  },
+  "/writing/this-is-like-screenshot-on-steroids": {
+    "title": "Codex Appshots: More Than a Screenshot | Tyler Yip",
+    "description": "Why Codex Appshots felt like more than a screenshot to me: sharing an app window’s image, readable text, and interface context with AI."
+  },
+  "/writing/reddit-arthritis-and-ai": {
+    "title": "Using AI for Reddit Research & Drafting | Tyler Yip",
+    "description": "How I used AI to find relevant Reddit posts and draft replies for GradSimple, after years of doing the repetitive parts by hand."
+  },
+  "/writing/wtf-is-a-md-file-learn-in-2-mins": {
+    "title": "What Is a .md File? Markdown & AI Context | Tyler Yip",
+    "description": "What a .md file is, how Markdown works, and how I use structured notes to give Claude context without re-explaining myself in every conversation."
+  },
+  "/writing/you-can-now-babysit-ai-from-anywhere": {
+    "title": "Trying Codex from My Phone | Tyler Yip",
+    "description": "My first look at using Codex from a phone to check progress, answer questions, and keep a task moving after stepping away from my computer."
+  },
+  "/writing/claude-is-eating-openai-s-lunch": {
+    "title": "Exploring AI Adoption with Claude & Ramp Data | Tyler Yip",
+    "description": "I explored Ramp’s business-spending data through Claude to compare AI-tool adoption, then dug into what the dataset does and doesn’t capture."
+  },
+  "/writing/wtf-is-an-llm-learn-in-2-mins": {
+    "title": "What Is an LLM? A Simple Explanation | Tyler Yip",
+    "description": "A plain-English explanation of large language models, next-word prediction, and why tools like ChatGPT and Claude can feel surprisingly human."
+  },
+  "/writing/fine-i-ll-stop-cheating-on-you-chatgpt": {
+    "title": "Trying ChatGPT in Google Sheets | Tyler Yip",
+    "description": "I tried ChatGPT’s Google Sheets add-on on my nutrition tracker. Here’s the prompt, what it found, and why it made spreadsheets feel less painful."
+  },
+  "/writing/i-turned-my-wife-into-an-ms-paint-drawing": {
+    "title": "Turning Photos into MS Paint Drawings with AI | Tyler Yip",
+    "description": "The prompt I used to turn photos of my wife and me into deliberately terrible MS Paint drawings, with the original photos and AI results."
+  },
+  "/writing/i-am-now-the-proud-dad-of-a-goblin": {
+    "title": "Making a Digital Goblin Pet in Codex | Tyler Yip",
+    "description": "How a tiny digital goblin got me to open Codex, the prompt I used to make it, and why a playful feature made a coding tool feel more approachable."
+  },
+  "/writing/an-ai-buddy-that-lives-on-your-mac": {
+    "title": "MCP Explained & an AI Companion for Mac | Tyler Yip",
+    "description": "Why I started AI Worth Trying, a simple explanation of MCP, and my first impressions of Clicky, an AI companion that can see your Mac’s screen."
+  }
+}

@@ -1,6 +1,6 @@
 # Reddit, arthritis, and AI
 
-By Tyler Yip · 2026-05-21
+By Tyler Yip · 2026-05-20
 
 What could they possibly have in common? I'll tell you.
 

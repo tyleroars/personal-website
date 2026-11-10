@@ -1,0 +1,28 @@
+name: Archive website release
+on:
+  release:
+    types: [published]
+permissions:
+  contents: write
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+      - run: npm run package:release
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+      - name: Attach verified backup to release
+        run: gh release upload "$RELEASE_TAG" release-artifacts/website-*.tar.gz release-artifacts/manifest.json release-artifacts/SHA256SUMS --repo "$GITHUB_REPOSITORY"
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}

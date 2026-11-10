@@ -1,6 +1,6 @@
 # I am now the proud dad of a goblin
 
-By Tyler Yip · 2026-05-02
+By Tyler Yip · 2026-05-01
 
 I'll show you how you can be a parent too.
 

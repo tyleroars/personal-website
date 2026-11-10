@@ -3,8 +3,10 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import {pages, origin, publicationDate} from './page-metadata.mjs';
 const root=path.resolve(import.meta.dirname,'../dist');
 const config=JSON.parse(fs.readFileSync(path.resolve(root,'../launch-data.json'),'utf8'));
+const shareImages=JSON.parse(fs.readFileSync(path.resolve(root,'../share-images.json'),'utf8'));
 const physicalWalk=d=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?physicalWalk(path.join(d,e.name)):[path.join(d,e.name)]);
 const documents=JSON.parse(fs.readFileSync(path.resolve(root,'../generated-documents.json'),'utf8'));
 const walk=()=>Object.keys(documents).map(p=>path.join(root,p.slice(1))).concat(physicalWalk(path.join(root,'client')));
@@ -13,24 +15,108 @@ const exists=p=>{const rel=path.relative(root,p);return ('/'+rel) in documents||
 const context=vm.createContext({});
 for(const f of ['projects.js','interviews.js','writing.js'])vm.runInContext(read(f),context);
 const data=vm.runInContext('({projects,interviewArchive,writingArchive})',context);
+test('release identity is served as revalidating JSON and stays out of search',async()=>{
+  const release=JSON.parse(read('version.json'));
+  const pkg=JSON.parse(fs.readFileSync(path.resolve(root,'../package.json')));
+  assert.equal(release.version,pkg.version);
+  assert.match(release.commit,/^[a-f0-9]{40}$/);
+  assert.equal(typeof release.dirty,'boolean');
+  const worker=(await import('../dist/server/index.js')).default;
+  const response=await worker.fetch(new Request(origin+'/version.json'));
+  assert.equal(response.status,200);
+  assert.equal(response.headers.get('Content-Type'),'application/json; charset=utf-8');
+  assert.equal(response.headers.get('Cache-Control'),'public, max-age=0, must-revalidate');
+  assert.equal(response.headers.get('X-Robots-Tag'),'noindex');
+  assert.deepEqual(await response.json(),release);
+  assert.ok(!read('sitemap.xml').includes('version.json'));
+});
 function localFile(url) {
   let p=decodeURIComponent(url.pathname).replace(/^\//,'');
   if(!p)p='index.html';
   const possibilities=[p,p+'.html',path.join(p,'index.html')];
   return possibilities.map(p=>path.join(root,p)).find(p=>exists(p));
 }
-test('all 26 public routes have production canonicals, descriptions and indexing',()=>{
-  const pages=walk(root).filter(p=>p.endsWith('.html')&&!p.includes('huddledex-browser')&&!p.endsWith('/404.html'));
-  assert.equal(pages.length,27);
-  for(const file of pages){
+test('theme starts dark and respects a saved choice, including when storage is unavailable',()=>{
+  const init=read('theme-init.js');
+  for(const systemDark of [false,true]){
+    for(const saved of [null,'light','dark','invalid','blocked']){
+      const document={documentElement:{dataset:{}}};
+      const localStorage={getItem(){if(saved==='blocked')throw new Error('Storage unavailable');return saved;}};
+      vm.runInNewContext(init,{document,localStorage,matchMedia:()=>({matches:systemDark})});
+      assert.equal(document.documentElement.dataset.theme,saved==='light'?'light':'dark');
+    }
+  }
+  for(const file of walk(root).filter(p=>p.endsWith('.html'))){
     const html=read(path.relative(root,file).replace(/^client\//,''));
-    assert.ok(html.includes('<link rel="canonical" href="'+config.origin+'/'));
-    assert.doesNotMatch(html,/noindex|localhost|127\.0\.0\.1/);
-    assert.match(html,/name="description"/);
-    assert.match(html,/property="og:image"/);
-    assert.equal((html.match(/<h1\b/g)||[]).length,1);
+    if(html.includes('theme-init.js'))assert.match(html,/<html\b[^>]*data-theme="dark"/);
+  }
+});
+test('every page has accurate metadata, structured data and its own valid sharing image',()=>{
+  const htmlPages=walk(root).filter(p=>p.endsWith('.html')&&!p.endsWith('/404.html'));
+  assert.equal(htmlPages.length,28);
+  const descriptions=new Set(),images=new Set();
+  for(const page of pages){
+    assert.ok(!descriptions.has(page.description),'Duplicate description: '+page.route);
+    descriptions.add(page.description);
+    assert.ok(page.description.length>=80 && page.description.length<=170,'Description needs a clear summary: '+page.route);
+    assert.doesNotMatch(page.description,/—/);
+    const shareImage=shareImages[page.route];
+    assert.ok(shareImage,'Missing image: '+page.route);
+    assert.ok(!images.has(shareImage.file),'Shared image reused: '+page.route);
+    images.add(shareImage.file);
+    for(const file of page.files){
+    const html=read(file);
+    const escaped=value=>value.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+    assert.ok(html.includes(`<title>${escaped(page.title)}</title>`));
+    assert.equal((html.match(/rel="canonical"/g)||[]).length,1);
+    assert.ok(html.includes(`<link rel="canonical" href="${origin+page.route}">`));
+    assert.ok(html.includes(`<meta property="og:url" content="${origin+page.route}">`));
+    assert.equal((html.match(/name="description"/g)||[]).length,1);
+    assert.ok(html.includes(`<meta name="description" content="${escaped(page.description)}">`));
+    assert.ok(html.includes(`<meta property="og:description" content="${escaped(page.description)}">`));
+    assert.ok(html.includes(`<meta name="twitter:description" content="${escaped(page.description)}">`));
+    assert.match(html,/name="robots" content="(?:noindex,follow|index,follow,max-image-preview:large)"/);
+    if(!page.noindex)assert.doesNotMatch(html,/noindex|localhost|127\.0\.0\.1/);
+    assert.equal((html.match(/property="og:image"/g)||[]).length,1);
+    assert.ok(html.includes(`<meta property="og:image" content="${config.origin}/${shareImage.file}">`));
+    assert.ok(html.includes(`<meta property="og:image:width" content="${shareImage.width}">`));
+    assert.ok(html.includes(`<meta property="og:image:height" content="${shareImage.height}">`));
+    assert.match(html,/<meta property="og:image:type" content="image\/png">/);
+    assert.match(html,/<meta property="og:image:alt" content="[^"]+">/);
+    assert.equal((html.match(/name="twitter:card"/g)||[]).length,1);
+    assert.match(html,/<meta name="twitter:card" content="summary_large_image">/);
+    assert.ok(html.includes(`<meta name="twitter:image" content="${config.origin}/${shareImage.file}">`));
+    assert.match(html,/<meta name="twitter:image:alt" content="[^"]+">/);
+    if(!page.noindex)assert.equal((html.match(/<h1\b/g)||[]).length,1);
+    const graph=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]+?)<\/script>/)[1])['@graph'];
+    assert.equal(new Set(graph.map(node=>node['@id'])).size,graph.length);
+    const webpage=graph.find(node=>node.url===origin+page.route && ['ProfilePage','CollectionPage','WebPage'].includes(node['@type']));
+    assert.equal(webpage.description,page.description);
+    assert.equal(graph.find(node=>node['@type']==='Person').name,'Tyler Yip');
+    if(page.article){
+      const article=graph.find(node=>node['@type']==='BlogPosting');
+      assert.equal(article.headline,page.article.title);
+      assert.equal(article.datePublished,page.article.date);
+      assert.equal(article.description,page.description);
+      assert.ok(html.includes(`<time datetime="${page.article.date}">`));
+      const dateLabel=new Date(page.article.date).toLocaleDateString('en-US',{timeZone:'America/Vancouver',year:'numeric',month:'short',day:'numeric'});
+      assert.ok(html.includes(`<time datetime="${page.article.date}">${dateLabel}</time>`));
+      assert.ok(read(page.markdown).includes(`By Tyler Yip · ${publicationDate(page.article.date)}`));
+      assert.ok(html.includes('class="article-body"'));
+      for(const url of article.image||[])assert.ok(localFile(new URL(url)),'Missing article image: '+url);
+    }
+    for(const img of html.matchAll(/<img\b[^>]*>/g))assert.match(img[0],/\balt="[^"]*"/);
+    }
+    const image=fs.readFileSync(path.join(root,'client',shareImage.file));
+    assert.equal(image.subarray(0,8).toString('hex'),'89504e470d0a1a0a');
+    assert.equal(image.readUInt32BE(16),shareImage.width);
+    assert.equal(image.readUInt32BE(20),shareImage.height);
+    assert.ok(shareImage.width>=1200 && shareImage.height>=627);
+    assert.ok(Math.abs(shareImage.width/shareImage.height-1.91)<.01);
+    assert.ok(image.length<5*1024*1024);
   }
   assert.equal((read('sitemap.xml').match(/<loc>/g)||[]).length,26);
+  assert.ok(!read('sitemap.xml').includes('huddledex-browser'));
   assert.match(read('robots.txt'),/Allow: \//);
 });
 test('HTML and CSS local resource references stay within the published package',()=>{
@@ -51,7 +137,7 @@ test('HTML and CSS local resource references stay within the published package',
 });
 test('every project gallery and interview portrait is included; hidden projects are absent',()=>{
   for(const icon of ['chatgpt','claude','gemini','copy-prompt','menu','close'])assert.ok(exists(path.join(root,'assets/icons',icon+'.svg')),icon);
-  assert.equal(data.projects.length,14);
+  assert.equal(data.projects.length,15);
   assert.equal(data.interviewArchive.length,85);
   assert.equal(data.writingArchive.length,21);
   for(const p of data.projects){
@@ -66,6 +152,14 @@ test('every project gallery and interview portrait is included; hidden projects 
   for(const file of walk(root))assert.doesNotMatch(path.relative(root,file),/preview\.jpg|sources\.json|README|VERIFICATION|\.env|research-report/);
 });
 test('agent profile links resolve and remain absolute when fetched as plain text',()=>{
+  const normalize=text=>text.replace(/[^\p{L}\p{N}%$]+/gu,' ').trim().toLowerCase();
+  for(const file of ['projects.md','llms.txt','llms-full.txt']){
+    const content=normalize(read(file));
+    for(const project of data.projects){
+      const copy=[project.title,project.desc,...project.story,...(project.eventStory||[]),...(project.outcomes||[]),...(project.workflows||[]).flatMap(workflow=>[workflow.title,...workflow.paragraphs])];
+      for(const text of copy)assert.ok(content.includes(normalize(text)),`${file} is missing current ${project.id} content: ${text.slice(0,70)}`);
+    }
+  }
   for(const file of walk(root).filter(p=>/\.(md|txt)$/.test(p))){
     for(const match of read(path.relative(root,file).replace(/^client\//,'')).matchAll(/\]\(([^)\s]+)\)/g)){
       const link=match[1];
@@ -90,4 +184,19 @@ test('live Worker serves redirects, UTF-8 text, HEAD and genuine 404 responses',
   assert.equal((await worker.fetch(new Request('https://www.itstyleryip.com/projects'))).headers.get('Location'),'https://itstyleryip.com/projects');
   const asset=await worker.fetch(new Request(config.origin+'/assets/optimized/test.webp'),{ASSETS:{fetch:async()=>new Response('image',{status:200})}});
   assert.equal(asset.headers.get('Cache-Control'),'public, max-age=31536000, immutable');
+  for(const page of pages){
+    const response=await worker.fetch(new Request(origin+page.route));
+    assert.equal(response.status,200,page.route);
+    assert.match(response.headers.get('Link'),/llms\.txt/);
+    if(page.markdown){
+      assert.ok(response.headers.get('Link').includes(origin+'/'+page.markdown));
+      const markdown=await worker.fetch(new Request(origin+'/'+page.markdown));
+      assert.equal(markdown.status,200);
+      assert.match(markdown.headers.get('Content-Type'),/^text\/markdown; charset=utf-8/);
+      assert.equal(markdown.headers.get('X-Robots-Tag'),'noindex');
+      assert.ok(markdown.headers.get('Link').includes('<'+origin+page.route+'>; rel="canonical"'));
+    }
+  }
+  const sitemap=await worker.fetch(new Request(origin+'/sitemap.xml'));
+  for(const loc of (await sitemap.text()).matchAll(/<loc>(.*?)<\/loc>/g))assert.equal((await worker.fetch(new Request(loc[1]))).status,200,loc[1]);
 });

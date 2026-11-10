@@ -1,0 +1,25 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+
+const root=path.resolve(import.meta.dirname,'..');
+const documents=JSON.parse(fs.readFileSync(path.join(root,'generated-documents.json')));
+const release=JSON.parse(documents['/version.json']);
+const tag=process.env.RELEASE_TAG||`v${release.version}`;
+if(tag!==`v${release.version}`)throw new Error('Release tag and package version must match');
+if(release.dirty)throw new Error('Build from a clean checkout before packaging a release');
+const head=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
+if(head!==release.commit)throw new Error('Rebuild after changing commits');
+if(execFileSync('git',['status','--porcelain'],{cwd:root,encoding:'utf8'}).trim())throw new Error('Checkout changed after build');
+const out=path.join(root,'release-artifacts');
+fs.mkdirSync(out,{recursive:true});
+const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).sort((a,b)=>a.name.localeCompare(b.name)).flatMap(e=>e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)]);
+const files=[...walk(path.join(root,'dist')),...['wrangler.jsonc','package.json','package-lock.json'].map(f=>path.join(root,f))];
+const sha256=file=>crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const manifest={...release,tag,origin:'https://itstyleryip.com',files:files.map(file=>({path:path.relative(root,file).split(path.sep).join('/'),sha256:sha256(file)}))};
+fs.writeFileSync(path.join(out,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');
+const archive=`website-${tag}.tar.gz`;
+execFileSync('tar',['-czf',path.join(out,archive),'dist','wrangler.jsonc','package.json','package-lock.json','release-artifacts/manifest.json'],{cwd:root});
+fs.writeFileSync(path.join(out,'SHA256SUMS'),`${sha256(path.join(out,archive))}  ${archive}\n${sha256(path.join(out,'manifest.json'))}  manifest.json\n`);
+console.log(`Packaged ${tag} at ${release.commit}, including ${files.length} verified files.`);

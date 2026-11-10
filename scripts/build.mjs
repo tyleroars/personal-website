@@ -1,19 +1,23 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import {execFileSync} from 'node:child_process';
+import {pages, pageByFile, applyPageMetadata, encode} from './page-metadata.mjs';
+import {structuredData} from './structured-data.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
+const {version} = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
+const commit = execFileSync('git', ['rev-parse', 'HEAD'], {cwd:root,encoding:'utf8'}).trim();
+const dirty = !!execFileSync('git', ['status', '--porcelain', '--untracked-files=normal'], {cwd:root,encoding:'utf8'}).trim();
+const release = {version, commit, dirty};
 const {origin, articles} = JSON.parse(fs.readFileSync(path.join(root, 'launch-data.json'), 'utf8'));
+const shareImages = JSON.parse(fs.readFileSync(path.join(root, 'share-images.json'), 'utf8'));
 if (new URL(origin).protocol !== 'https:') throw new Error('Production origin must use HTTPS');
 const dist = path.join(root, 'dist');
 fs.rmSync(dist, {recursive:true, force:true});
 fs.cpSync(path.join(root, 'src'), dist, {recursive:true});
-const routes = new Map([
-  ['index.html','/'], ['home.html','/'], ['projects.html','/projects'],
-  ['writing.html','/writing'], ['work.html','/work'], ['interviews.html','/interviews'],
-  ...articles.map(a => [`writing/${a.slug}.html`, `/writing/${a.slug}`])
-]);
+fs.writeFileSync(path.join(dist, 'version.json'), JSON.stringify(release)+'\n');
+const routes = new Map(pages.filter(page=>!page.noindex).flatMap(page=>page.files.map(file=>[file,page.route])));
 const walk = dir => fs.readdirSync(dir, {withFileTypes:true}).flatMap(e => e.isDirectory() ? walk(path.join(dir,e.name)) : [path.join(dir,e.name)]);
-const encode = s => s.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;');
 // Change internal HTML route references in HTML, JS, and public agent documents.
 // Keep Markdown and external project URLs intact.
 function links(text) {
@@ -25,31 +29,37 @@ for (const file of walk(dist)) {
   let text = links(fs.readFileSync(file,'utf8'));
   if (file.endsWith('.html')) {
     const relative = path.relative(dist,file).split(path.sep).join('/');
+    const page=pageByFile.get(relative);
+    if (!page) throw new Error('HTML page needs metadata: '+relative);
+    const shareImage=shareImages[page.route];
+    if (!shareImage || !fs.existsSync(path.join(root,'src',shareImage.file))) throw new Error('Shared image is missing: '+page.route);
+    const shareImageUrl=new URL(shareImage.file,origin+'/').href;
+    text=applyPageMetadata(text,page);
     text = text.replace(/<base\s+href=["'][^"']*["']\s*\/?\s*>/gi, '<base href="/">');
     text = text.replace(/<meta\b(?=[^>]*\bname=["']robots["'])[^>]*>/gi, '');
+    // One intentional image and card type, available in the initial HTML for link crawlers.
+    text = text.replace(/<meta\b(?=[^>]*\b(?:name|property)=["'](?:og:image(?::[^"']+)?|twitter:image(?::[^"']+)?|twitter:card)["'])[^>]*>/gi, '');
     // The HuddleDex browser adaptation remains a usable demo, outside the search index.
-    const isDemo = relative.startsWith('huddledex-browser/');
-    const route = routes.get(relative) || '/huddledex-browser/';
-    const title = text.match(/<title>(.*?)<\/title>/s)?.[1] || 'HuddleDex';
+    const isDemo = page.noindex;
+    const route = page.route;
     const url = origin + route;
-    const article = articles.find(a => relative === `writing/${a.slug}.html`);
-    const schema = article ? {
-      '@context':'https://schema.org', '@type':'BlogPosting', headline:article.title,
-      description:article.subtitle, datePublished:article.date,
-      author:{'@type':'Person',name:'Tyler Yip',url:origin+'/'}, mainEntityOfPage:url
-    } : route === '/' ? {
-      '@context':'https://schema.org', '@type':'ProfilePage', url,
-      mainEntity:{'@type':'Person','@id':origin+'/#tyler-yip',name:'Tyler Yip',url,
-        sameAs:['https://github.com/tyleroars','https://www.linkedin.com/in/tyleryip/']}
-    } : null;
+    const schema=structuredData(page,text,shareImageUrl);
     const extra = [
       `<meta name="robots" content="${isDemo?'noindex,follow':'index,follow,max-image-preview:large'}">`,
       `<link rel="canonical" href="${encode(url)}">`,
       `<meta property="og:url" content="${encode(url)}">`,
       '<meta property="og:site_name" content="Tyler Yip">',
-      `<meta property="og:image" content="${origin}/assets/optimized/1372408ed4e1.webp">`,
-      '<meta property="og:image:alt" content="Tyler Yip beneath cherry blossoms">',
-      `<meta name="twitter:image" content="${origin}/assets/optimized/1372408ed4e1.webp">`,
+      '<link rel="author" href="'+origin+'/">',
+      ...(page.article ? [`<meta property="article:published_time" content="${page.article.date}">`,`<meta property="article:author" content="${origin}/">`,'<meta property="article:section" content="Writing">'] : []),
+      `<meta property="og:image" content="${encode(shareImageUrl)}">`,
+      `<meta property="og:image:secure_url" content="${encode(shareImageUrl)}">`,
+      `<meta property="og:image:type" content="${encode(shareImage.type)}">`,
+      `<meta property="og:image:width" content="${shareImage.width}">`,
+      `<meta property="og:image:height" content="${shareImage.height}">`,
+      `<meta property="og:image:alt" content="${encode(shareImage.alt)}">`,
+      '<meta name="twitter:card" content="summary_large_image">',
+      `<meta name="twitter:image" content="${encode(shareImageUrl)}">`,
+      `<meta name="twitter:image:alt" content="${encode(shareImage.alt)}">`,
       ...(schema ? [`<script type="application/ld+json">${JSON.stringify(schema).replaceAll('<','\\u003c')}</script>`] : [])
     ].join('');
     text = text.replace('</head>', extra+'</head>');
@@ -82,16 +92,20 @@ console.log(`Built ${unique.length} indexable routes; ${walk(dist).length} publi
 const documents={};
 for(const file of walk(dist)) {
   const relative=path.relative(dist,file).split(path.sep).join('/');
-  if(/\.(html|js|css|txt|md|xml|svg)$/.test(file) && !relative.startsWith('assets/')) {
+  if((relative==='version.json'||/\.(html|js|css|txt|md|xml|svg)$/.test(file)) && !relative.startsWith('assets/')) {
     documents['/'+relative]=fs.readFileSync(file,'utf8');
   }
 }
 const redirects=Object.fromEntries(readRedirects());
 function readRedirects(){return fs.readFileSync(path.join(dist,'_redirects'),'utf8').trim().split('\n').map(line=>line.split(' ').slice(0,2));}
+const alternateDocuments=Object.fromEntries(pages.filter(page=>page.markdown).flatMap(page=>page.files.map(file=>['/'+file,origin+'/'+page.markdown])));
+const markdownCanonicals=Object.fromEntries(pages.filter(page=>page.markdown).map(page=>['/'+page.markdown,origin+page.route]));
 const generated = `const documents=${JSON.stringify(documents)};
 const redirects=${JSON.stringify(redirects)};
+const alternateDocuments=${JSON.stringify(alternateDocuments)};
+const markdownCanonicals=${JSON.stringify(markdownCanonicals)};
 const canonicalOrigin=${JSON.stringify(origin)};
-const types={html:'text/html',js:'text/javascript',css:'text/css',txt:'text/plain',md:'text/markdown',xml:'application/xml'};
+const types={html:'text/html',js:'text/javascript',css:'text/css',txt:'text/plain',md:'text/markdown',xml:'application/xml',json:'application/json'};
 export default {async fetch(request,env){
   const url=new URL(request.url);
   if(url.hostname==='www.itstyleryip.com'||url.protocol==='http:')return Response.redirect(canonicalOrigin+url.pathname+url.search,301);
@@ -113,6 +127,13 @@ export default {async fetch(request,env){
   const body=exists?documents[file]:documents['/404.html'];
   const type=types[file.split('.').pop()]||'text/html';
   const headers=new Headers({'Content-Type':type+'; charset=utf-8','Cache-Control':'public, max-age=0, must-revalidate','X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin'});
+  if(exists){
+    const links=['<'+canonicalOrigin+'/llms.txt>; rel="describedby"; type="text/plain"'];
+    if(alternateDocuments[file])links.push('<'+alternateDocuments[file]+'>; rel="alternate"; type="text/markdown"');
+    if(markdownCanonicals[file])links.push('<'+markdownCanonicals[file]+'>; rel="canonical"');
+    if(type==='text/html'||type==='text/markdown'||file==='/llms.txt'||file==='/llms-full.txt')headers.set('Link',links.join(', '));
+    if(type==='text/markdown'||type==='application/json'||file==='/llms.txt'||file==='/llms-full.txt')headers.set('X-Robots-Tag','noindex');
+  }
   if(!exists)headers.set('X-Robots-Tag','noindex');
   return new Response(request.method==='HEAD'?null:body,{status:exists?200:404,headers});
 }};
