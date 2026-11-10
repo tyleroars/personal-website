@@ -2,7 +2,7 @@
 
 > Tyler Yip is a Senior Customer Success Manager at Knak, based in Vancouver and originally from Singapore. He runs GradSimple, a career publication with interviews, a newsletter, and practical tools, and created AI Worth Trying. His work spans enterprise customer success, product adoption, AI implementation, independent apps, writing, and community building.
 
-Last updated: November 7, 2026.
+Last updated: November 10, 2026.
 
 This is the public profile for Tyler’s personal website. It contains a substantive overview in one fetch, with links to full project stories, articles, and interviews. All relative links resolve against this file’s URL. No JavaScript, account, or API key is needed to read the linked text and Markdown files.
 
@@ -14,18 +14,18 @@ This is the public profile for Tyler’s personal website. It contains a substan
 - Current role: Senior Customer Success Manager at [Knak](https://knak.com/)
 - Independent work: GradSimple, AI Worth Trying, and tools built around real tasks and personal interests
 - Education: Bachelor of Commerce, University of British Columbia, 2017–2021. Finance major; Financial Engineering and Risk Management specialization.
-- Interests: Fujifilm photography, Pokémon cards, and experimenting with AI
+- Current focus: enterprise customer work, careers, and practical uses of AI
 - Email: [tyleryip.sg@gmail.com](mailto:tyleryip.sg@gmail.com)
 - LinkedIn: https://www.linkedin.com/in/tyleryip/
 - GitHub: https://github.com/tyleroars
 
 ## About Tyler, in his words
 
-I’m from Singapore, currently in Vancouver. I work at Knak and run GradSimple, where I interview people about their careers.
+I’m from Singapore, now in Vancouver. I work with customers at Knak and run GradSimple, where I get to be a little nosy about people’s careers.
 
-Lately, I’ve been having a lot of fun building with AI. Mostly things I wanted for myself: a photo editor without a subscription, tools for my newsletter, an app I decided to build the DAY before an event. That last one actually worked great!
+I love hearing the story behind a job title. How someone found their way there, what the work is actually like, and what they’re figuring out next. With AI changing so much of that, I’ve been doing a lot of experimenting myself.
 
-I also shoot Fujifilm and collect Pokémon cards. This site holds a bit of everything I’ve been up to, including the things that didn’t work out.
+I used to wish I could code. Now I’m building tools for our team and GradSimple, and sharing marketing prompts and workflows through AI Worth Trying. That still feels a little ridiculous. In a good way!
 
 ## Work and areas of practice
 
@@ -140,13 +140,15 @@ Bachelor of Commerce, UBC Sauder School of Business
 
 ## Projects and independent work
 
-14 projects are featured on the site. The list includes active tools, event prototypes, past businesses, and work that never launched.
+15 projects, including active tools, event prototypes, past businesses, and work that never launched.
 
 ### GradSimple
 
 Career stories and practical tools for figuring out what comes next, including how to use AI at work.
 
-I run GradSimple, where I interview people about their careers, write a newsletter, and build career tools. I like getting past the job title and into how someone actually got there. These days, I’m also exploring how AI is changing our work and how we can use it ourselves.
+I run GradSimple for people figuring out their next career move. I interview people about the work they do, how they got there, and the decisions they made along the way. I like getting past the job title and hearing the actual story.
+
+Those conversations become interviews and newsletters, alongside tools for exploring careers and pay. These days, I’m also digging into how AI is changing the work itself, and how readers can use it for themselves.
 
 Outcomes:
 
@@ -154,30 +156,41 @@ Outcomes:
 - 43,860 annual active website users, up 102% year over year
 - Sponsored by Lovable, HubSpot, Webflow, Morning Brew, and 1440.
 
-Search & AI visibility, January 1–November 5, 2026:
+#### Search & AI visibility (2026 YTD)
 
 - 1M+ Google Search impressions
 - 134.8K Bing search impressions
 - 66K citations across Microsoft Copilot and partners
 
-Career tools:
+These visibility figures cover January 1 to November 5, 2026. Google’s 1M+ is rounded from 1,003,957 impressions. Search impressions, Microsoft AI citations, and active users are different measures and are not added together as unique reach.
+
+The annual active-user figure comes from GA4, November 2025 to October 2026, with growth compared to the preceding twelve months. It covers all measured traffic sources. The 7,259-subscriber figure matches the archived site screenshot and is not a live counter.
+
+#### Related tools
 
 - [Career Explorer](https://career-explorer-ecru.vercel.app/): O*NET’s career data, with an interface that feels a little less early 2000s.
 - [Starting Pay Checker](https://starting-pay-checker.vercel.app/): An easier way to find and compare pay, especially when starting out.
 - [Job Market Radar](https://job-market-radar.vercel.app/): Monthly BLS hiring data, made easier to explore and compare across industries.
 - [How Cooked Is Your Career?](https://career-cooked-check.base44.app/): A seven-question career check-in with a “cooked score.” An early Base44 experiment.
+- [Career Intelligence Report](https://career-intelligence-report.vercel.app/): An early Claude-powered prototype for personalized career reports, from a target role to a 90-day plan.
 
 #### Career Intelligence MCP
 
 I also built a Career Intelligence MCP so those stories and data could be useful inside an AI conversation. It lets an assistant search GradSimple’s public interviews, guides, and statistics, then link back to the sources. I wanted people to be able to ask a question and explore the relevant material without digging through the whole site themselves.
 
+#### Career Coach GPT
+
+One of my earliest AI experiments was a custom Career Coach GPT for resume feedback, interview prep, and figuring out possible career paths.
+
+![GradSimple Career Coach in ChatGPT, showing prompts for resume feedback, interview preparation, cover letters, and career paths](assets/optimized/241fa5fa0c57.png)
+
 #### Reddit research & drafting
 
-I used to find Reddit posts and type out all the comments manually. Then I started using an LLM to help draft replies, and eventually automated the workflow with Codex.
+Finding relevant Reddit posts and writing replies used to take me two to three hours a day. AI-assisted drafting got that down to about half an hour, but I was still finding the posts myself.
 
-It worked super well and saved me from arthritis in my fingers haha. For a good three months, it was a well-oiled machine that helped grow GradSimple’s subscriber list!
+Then I used Codex to handle post discovery and drafting too. It could open relevant posts and prepare replies for me to review. Much less repetitive clicking and typing. My fingers were very grateful haha.
 
-My account ended up getting banned in August, which brought that experiment to an end.
+The later automation ran well for about three months and helped grow GradSimple’s subscriber list. My account was banned in August, which brought the experiment to an end.
 
 [View Reddit Scout on GitHub](https://github.com/tyleroars/reddit-scout)
 
@@ -195,26 +208,36 @@ I wanted a way to save that context while it was fresh. Scan someone’s badge f
 
 They could also scan my QR to get my digital card and save my contact, and I could share our photo so we both had a record of meeting. They wouldn’t need to download the app for that. So I vibecoded HuddleDex, got it onto my iPhone, and took it with me the next day.
 
+I also found things I’d missed pretty quickly. Someone asked for my phone number, but my digital card didn’t have it. I went to add it and realized I hadn’t even built a phone-number field. So I couldn’t update it lol.
+
 Outcomes:
 
 - Built the day before the event and used it at Knak’s Agentic Marketing Forum
 - Attendees scanned my QR to save my digital business card
 
-The original iPhone app is not publicly distributed. A working browser adaptation and starter source are available on this site. It omits native OCR, on-device transcription, maps, hosted profiles, and QR services.
-
-[Try the browser adaptation](huddledex-browser/) · [Download the browser starter source](build-prompts/huddledex-browser-starter.zip)
-
 [Try browser prototype](huddledex-browser/)
+
+[Browser build prompt](build-prompts/huddledex-browser.txt)
+
+[Download the browser starter source](build-prompts/huddledex-browser-starter.zip)
+
+The original app lives on my iPhone. Here’s a browser starter you can build on!
 
 [Project story on Tyler’s site](projects.html#huddledex)
 
 ### AI Worth Trying
 
-A searchable collection of AI tasks, prompts, and workflows you can actually try.
+Ready-made AI prompts, skills, and workflows for marketers figuring out what to use AI for.
 
-I built AI Worth Trying to make it easier to go from “I should try AI for this” to actually doing it. It’s a searchable collection of practical tasks, prompts, and workflows, mostly for marketing work. Start with something you need to get done and find a way to try it!
+AI Worth Trying grew out of my day job at Knak. I work with marketing operations people every day, and lots of them are being asked to use AI without much help on what to use it for.
 
-I wanted each task to give you enough context to use it: what to provide, how to run the prompt or workflow, and what the output should look like. That structure is a big part of the project. A prompt is much easier to try when you know what to put in and what you’re aiming to get out.
+I wanted to give them a starting point. The library is a mix of my own experience, recommendations, and useful prompts and workflows I’ve found other people sharing online.
+
+Pick a marketing task and you’ll find something to try, with the context to provide and the output to aim for. There are ready-made prompts, skills, and workflows, plus buttons to copy a prompt or open it in an AI tool.
+
+Outcomes:
+
+- 801 published marketing prompts across 12 marketing categories
 
 [Visit the site](https://aiworthtrying.com)
 
@@ -222,13 +245,13 @@ I wanted each task to give you enough context to use it: what to provide, how to
 
 ### Tone Lab
 
-A simpler photo editor for dabbling in post, inspired by shooting Fujifilm. No subscription!
+A simple photo editor for occasional tweaks, inspired by Fujifilm. No subscription!
 
-I’m an amateur photographer and shoot with a Fujifilm camera. I’d mostly been relying on Fuji recipes, but wanted to dabble in post-processing too!
+I shoot Fujifilm and usually let the camera recipes do the work. I don’t edit very often, so paying for Lightroom or a feature-heavy editor felt like overkill.
 
-A lot of the editing software I looked at was expensive, required a subscription, or had loads of bells and whistles I didn’t need. I wanted something tailored to my taste, so I decided to see if I could build my own.
+But I still wanted to make simple adjustments now and then. My needs were pretty modest, so I decided to build an editor around the looks and controls I wanted!
 
-Tone Lab lets me try different looks, tweak the light and colour, compare versions, and export the ones I like. It all runs in the browser, with the photos staying on my device.
+I’ve used Tone Lab on my own photos to tweak the light and colour, try different looks, compare versions, and export the ones I like. It runs in the browser, with the photos staying on my device. No extra editing subscription for something I only use occasionally.
 
 [Try the tool](https://tonelab-darkroom.thetyleryip.chatgpt.site)
 
@@ -238,21 +261,22 @@ Tone Lab lets me try different looks, tweak the light and colour, compare versio
 
 A career-path visualizer that turns a résumé and four questions into three possible routes. Built with a team in six hours!
 
-I signed up for my first AI vibe coding hackathon in Vancouver in May 2026 without a team or a coding background. That morning, I met a tech lead, a data engineer, and a network-security student, and we teamed up. We had about six hours to build something!
+GradSimple subscribers often told me they struggled to picture different career paths. Having lots of options wasn’t much help if you couldn’t see what any of them might look like. I wanted to make those possibilities easier to explore.
 
-We made a career-path visualizer that took your résumé and answers to four questions, then suggested three possible paths using O*NET salary and job data and more than 100 GradSimple professional profiles. I built with Codex while my teammates helped work through the technical choices.
+I took that idea to my first AI vibe coding hackathon in Vancouver. I arrived without a team or a coding background, teamed up with three people I met that morning, and we had about six hours to build something!
 
-Our live demo was shaky, and we didn’t win, but we got special recognition for UI/UX and product. One of the judges even told me afterward that it was his number-one pick!
+We made a visualizer that took a résumé and answers to four questions, then mapped out three possible routes. It drew on O*NET salary and job data and GradSimple career profiles. I worked on the product, interface, and presentation with Codex, while my teammates helped work through the technical choices.
 
-We never ended up releasing it, though. It was still too expensive to run and needed more work before people could reliably use it.
+Our live demo was shaky, and we didn’t win, but we got special recognition for UI/UX and product. One of the judges even told me afterward that it was his number-one pick! We didn’t release it publicly because the API costs and reliability still needed work.
 
 Outcomes:
 
 - Built a working career-path demo with my team in about six hours
 - Received special recognition for UI/UX and product
 
-- [Read my hackathon story, part one](writing/i-did-my-first-ai-hackathon-part-1.html)
-- [Read part two](writing/i-did-my-first-ai-hackathon-part-2.html)
+[Read my hackathon story, part one](writing/i-did-my-first-ai-hackathon-part-1.html)
+
+[Read part two](writing/i-did-my-first-ai-hackathon-part-2.html)
 
 [Project story on Tyler’s site](projects.html#hackathon)
 
@@ -262,7 +286,9 @@ O*NET’s career data, with an interface that feels a little less early 2000s.
 
 O*NET has so much useful career data, but I hated the UI/UX. It feels like it hasn’t been updated since the early 2000s!
 
-I built Career Explorer so I could browse that data through an interface I actually wanted to use. You can search for careers and filter by things like education, pay, and field.
+I wanted a version GradSimple readers could explore without wrestling with the interface. Career Explorer lets you search for roles, filter by education, pay, and field, then open an occupation to see its description and outlook.
+
+The first version took me about two hours with Claude. I deployed it and embedded it in GradSimple so readers could try it themselves.
 
 [Try the tool](https://career-explorer-ecru.vercel.app/)
 
@@ -272,9 +298,9 @@ I built Career Explorer so I could browse that data through an interface I actua
 
 An easier way to find and compare pay, especially when starting out.
 
-I built this for GradSimple subscribers who wanted an easier way to see what different jobs pay, especially when they’re starting out. Entry-level pay is surprisingly hard to find online!
+I built this for GradSimple subscribers who wanted to know what different jobs might pay when they were starting out. That’s surprisingly hard to find online! A headline salary doesn’t always tell you much about the lower end of the range.
 
-Starting Pay Checker lets you filter and compare roles using BLS wage data, with a focus on the lower end of the pay range as a reference for starting out.
+Starting Pay Checker turns BLS wage data into a searchable list of roles. You can filter by field and compare the lower end of each occupation’s pay range as a reference for starting out.
 
 [Try the tool](https://starting-pay-checker.vercel.app/)
 
@@ -286,9 +312,11 @@ Starting Pay Checker lets you filter and compare roles using BLS wage data, with
 
 Monthly BLS hiring data, made easier to explore and compare across industries.
 
-I built Job Market Radar to make monthly BLS hiring data easier to explore. You can compare industries in one place instead of digging through the source tables.
+BLS has lots of useful hiring data, but it’s hard to digest. I couldn’t find a clear way to see the trends together that made sense for GradSimple’s audience, so I built Job Market Radar.
 
-Each view shows which month the data covers, so you can see how recent the numbers are while comparing what’s happening across sectors.
+The industry cards bring openings, hires, and year-over-year changes into one view. Open a card for a 24-month chart, switch between openings, hires, and quits rate, or sort industries to see where things are growing or slowing down.
+
+I share it in the GradSimple newsletter so subscribers can explore the trends themselves. The reporting month stays visible, so they can see which data they’re looking at.
 
 [Try the tool](https://job-market-radar.vercel.app/)
 
@@ -298,9 +326,9 @@ Each view shows which month the data covers, so you can see how recent the numbe
 
 A browser image resizer and compressor, built after too many free-app limits. No ads!
 
-I kept running into limits with free image apps, so I decided to just build my own. No ads either!
+I kept running into limits with free image apps, so I decided to build my own. I wanted to get images ready for email without hitting another limit or wading through ads.
 
-It resizes and compresses images and handles animated GIFs in the browser. I built it with email images in mind.
+Drop in an image, choose the size and compression settings, and download the result. It also handles format conversion and animated GIFs. Everything runs in the browser, so the images stay on your device.
 
 [Try the tool](https://gradsimple-image-optimizer.netlify.app/)
 
@@ -308,11 +336,17 @@ It resizes and compresses images and handles animated GIFs in the browser. I bui
 
 ### Slides → Video
 
-Turn a set of image slides into a video, ready to reuse on YouTube.
+Turn existing TikTok slides into a video ready for YouTube.
 
-I built this to turn TikTok slides into videos I could reuse on YouTube. Pick the images, set how long each slide should stay on screen, and export a video.
+Grace and I wanted to reuse our TikTok slides on YouTube, which meant turning them into a video. We couldn’t find a tool that fit our workflow, and assembling each video manually would have been a pain.
 
-It accepts individual images or a ZIP, lets you reorder the slides, and runs in the browser. MP4 export depends on browser support, with WebM as a fallback.
+So I built this for Grace. She can upload her existing slides, choose how long each one stays on screen, and export a video ready for YouTube. The tool handles the video assembly for her.
+
+It accepts individual images or a ZIP, lets you drag slides into order, and runs in the browser. MP4 export depends on browser support, with WebM as a fallback.
+
+Outcomes:
+
+- 10 demo slides exported as a 30-second MP4 in under a minute, with the slides already loaded
 
 [Try the converter](https://glowing-cajeta-86ab7f.netlify.app/)
 
@@ -322,9 +356,11 @@ It accepts individual images or a ZIP, lets you reorder the slides, and runs in 
 
 A way to turn Kit newsletters into WordPress articles when the archive options weren’t cutting it.
 
-Kit didn’t have an easy way to display archived newsletters the way I wanted, so I built a converter to bring them into WordPress.
+Kit didn’t give me an easy way to display archived newsletters the way I wanted. I wanted those issues on the GradSimple website, so I built a converter to bring them into WordPress.
 
-It converted the newsletter HTML into an article I could publish on the website. I’d check the output and embeds, then publish it. I don’t use it anymore.
+The workflow was to paste in the newsletter HTML, convert it, then check the article preview. The tool cleaned up email footers and layout markup and gave me HTML I could copy into WordPress. I’d check the content and embeds before publishing.
+
+I don’t use it anymore.
 
 [Try the tool](https://tyleroars.github.io/my-tools/jm5-converter.html)
 
@@ -332,15 +368,31 @@ It converted the newsletter HTML into an article I could publish on the website.
 
 [Project story on Tyler’s site](projects.html#newsletter)
 
+### Career Intelligence Report
+
+An early Claude-powered prototype for personalized career reports, from a target role to a 90-day plan.
+
+I wanted to try giving GradSimple Insiders a career report built around their own situation. A target job title alone leaves a lot out, so the form also asked about their background, experience, and location.
+
+This was my first time connecting an app to the Claude API! The app sent that context and an optional résumé to Claude. The report covered how realistic the move was, skills to work on, AI’s effect on the role, and a 90-day plan.
+
+The screenshots are from an original management consulting report I saved. This stayed an early prototype; it isn’t a live report service.
+
+[View the prototype](https://career-intelligence-report.vercel.app/)
+
+An early prototype, not a live app. The report excerpts are from an original March 2026 export.
+
+[Project story on Tyler’s site](projects.html#career-report)
+
 ### The Frenz
 
-A Discord community that grew to around 1,500 members. The planned NFT collection never launched.
+A Discord community and a planned NFT collection, with artwork by Hozer in Korea. The collection never launched.
 
-I co-founded The Frenz in 2021. I was the head analyst and worked on research, financials, and partnerships.
+I co-founded The Frenz in 2021, a Discord community with plans for an NFT collection. My part was research, financials, and partnerships, as the team’s head analyst.
 
-We were also developing an NFT collection with Hozer, an artist based in Korea. A mutual friend from college who was active in Web3 introduced us! We worked together on the characters, while the team built out the lore, community activities, Discord mechanics, and launch plans.
+We worked on the collection with Hozer, an artist based in Korea. A mutual friend from college who was active in Web3 introduced us! We collaborated on the characters while the team developed the lore, community activities, Discord mechanics, and launch plans.
 
-We chose not to launch the collection after the NFT market shifted.
+The community reached around 1,500 members at its peak. After the NFT market shifted, we chose not to launch the collection.
 
 Outcomes:
 
@@ -352,9 +404,9 @@ Outcomes:
 
 A seven-question career check-in with a “cooked score.” An early Base44 experiment.
 
-I tried a more playful format for a GradSimple career check-in: seven quick questions and a “cookedness” result. This was one of my early Base44 builds!
+I wanted to try a lighter way to get someone thinking about their career. So I built a seven-question check-in that gives you a “cookedness” score out of 100. This was one of my early Base44 experiments!
 
-It asks about things like Sunday-night dread, whether you use your skills at work, and how you feel about your future. Answer the questions and it gives you a score out of 100. The version linked here is the original Base44 build.
+It asks about Sunday-night dread, whether you use your skills at work, and how you feel about your future. Answer all seven and it gives you a result to reflect on. The link goes to the original Base44 build.
 
 [Try the quiz](https://career-cooked-check.base44.app/)
 
@@ -362,7 +414,7 @@ It asks about things like Sunday-night dread, whether you use your skills at wor
 
 ### Kawaii Peach
 
-An online store started after two cancelled internships. Over $30,000 in sales and nearly 10,000 followers across Instagram and Facebook!
+An online store started after two cancelled internships, selling apparel and accessories.
 
 Grace and I both lost our internships when the pandemic hit in 2020. Neither of us knew ecommerce, but we decided to start an online store anyway! We ran Kawaii Peach from March 2020 to March 2021, figuring out products, pricing, the storefront, and customer service as we went.
 
@@ -384,31 +436,31 @@ Outcomes:
 
 ## Writing
 
-Tyler’s personal site hosts 21 full articles originally published through AI Worth Trying. They cover practical AI experiments, terms and concepts, coding, and lessons from building. Articles retain their original publication dates; product observations describe that point in time.
-
 [Writing archive](writing.md)
 
-- [GPT-Live is Siri on steroids](writing/gpt-live-is-siri-on-steroids.md) (2026-07-09): Tinder for humans to meet AI might actually be viable.
-- [WTF is... a context window vs. a rate limit?](writing/wtf-is-a-context-window-vs-a-rate-limit.md) (2026-07-07): It's something I kind of knew, but also not really.
-- [WTF is... a local model?](writing/wtf-is-a-local-model.md) (2026-06-23): If the government wants to take away my access to a powerful model capable of taking over the world, be my guest.
-- [I'm a token waster (without knowing it)](writing/i-m-a-token-waster-without-knowing-it.md) (2026-06-18): No wonder I always hit my Claude limit...
-- [WTF is... Skills vs Connectors vs Plugins?](writing/wtf-is-skills-vs-connectors-vs-plugins.md) (2026-06-16): Ngl, it took me an embarrassingly long time to tell the difference.
-- [I might be moving to Alberta. Underground.](writing/i-might-be-moving-to-alberta-underground.md) (2026-06-11): PSA: say thank you and please to AI more so it knows you treated it right.
-- [I did my first AI Hackathon (Part 2)](writing/i-did-my-first-ai-hackathon-part-2.md) (2026-06-09): A developer took photos of my prompts to show his son.
-- [I did my first AI Hackathon (Part 1)](writing/i-did-my-first-ai-hackathon-part-1.md) (2026-06-04): I was one of 3 who couldn't code.
-- [Wtf is... an "artifact" (learn in 1 min)](writing/wtf-is-an-artifact-learn-in-1-min.md) (2026-06-02): Maybe it's time for me to call it quits...
-- [Rebuilding a website from the 90s](writing/rebuilding-a-website-from-the-90s.md) (2026-05-27): With 0 coding knowledge. Thanks Claude.
-- [Wtf is... a "frontier lab" (learn in 1 min)](writing/wtf-is-a-frontier-lab-learn-in-1-min.md) (2026-05-25): I'd lick anyone's boots to work at one. Even throw in a foot massage.
-- [This is like screenshot on steroids](writing/this-is-like-screenshot-on-steroids.md) (2026-05-22): For AI.
-- [Reddit, arthritis, and AI](writing/reddit-arthritis-and-ai.md) (2026-05-21): What could they possibly have in common? I'll tell you.
-- [Wtf is... a ".md" file? (learn in 2 mins)](writing/wtf-is-a-md-file-learn-in-2-mins.md) (2026-05-18): Markdown this, markdown that. Wtf is markdown??
-- [You can now babysit AI from anywhere](writing/you-can-now-babysit-ai-from-anywhere.md) (2026-05-15): The beach. Your couch. Oh, and today is a historic day. Our very first Fresh Drop Friday!
-- [Claude is eating OpenAI's lunch](writing/claude-is-eating-openai-s-lunch.md) (2026-05-13): I know, I'm supposed to be an OpenAI fan. But the data doesn't lie.
-- [Wtf is... an "LLM" (learn in 2 mins)](writing/wtf-is-an-llm-learn-in-2-mins.md) (2026-05-11): Yes, I *know* what it means. But also not really.
-- [Fine, I'll stop cheating on you, ChatGPT](writing/fine-i-ll-stop-cheating-on-you-chatgpt.md) (2026-05-07): OpenAI's latest Google Sheets add-on has me feeling things.
-- [I turned my wife into an MS Paint drawing](writing/i-turned-my-wife-into-an-ms-paint-drawing.md) (2026-05-05): This AI prompt is genuinely too fun
-- [I am now the proud dad of a goblin](writing/i-am-now-the-proud-dad-of-a-goblin.md) (2026-05-02): I'll show you how you can be a parent too.
-- [An AI buddy that lives on your mac?](writing/an-ai-buddy-that-lives-on-your-mac.md) (2026-04-30): And... WTF is an MCP?
+21 articles, hosted in full on this site. Publication dates indicate when the views and product observations were written.
+
+- [GPT-Live is Siri on steroids](writing/gpt-live-is-siri-on-steroids.md) (2026-07-09): My take on ChatGPT’s real-time voice features, where I’d use them, and why model costs and usage limits matter when AI is part of everyday work.
+- [WTF is... a context window vs. a rate limit?](writing/wtf-is-a-context-window-vs-a-rate-limit.md) (2026-07-07): Context windows and rate limits kept tripping me up. Here’s how they differ, why long chats lose details, and why Claude can ask you to wait.
+- [WTF is... a local model?](writing/wtf-is-a-local-model.md) (2026-06-23): What it means to run an AI model on your own computer, how LM Studio and Ollama fit in, and why I’m curious about local AI but haven’t switched.
+- [I'm a token waster (without knowing it)](writing/i-m-a-token-waster-without-knowing-it.md) (2026-06-18): What I learned about feeding PDFs to AI, and why I’m trying Microsoft’s MarkItDown to turn documents into Markdown before sharing them with Claude.
+- [WTF is... Skills vs Connectors vs Plugins?](writing/wtf-is-skills-vs-connectors-vs-plugins.md) (2026-06-16): Skills, connectors, and plugins confused me for longer than I’d like to admit. Here’s the difference, with everyday examples from Claude.
+- [I might be moving to Alberta. Underground.](writing/i-might-be-moving-to-alberta-underground.md) (2026-06-11): My reaction to Anthropic’s powerful models, their security risks, and the awkward question of whether more capability is worth the extra cost.
+- [I did my first AI Hackathon (Part 2)](writing/i-did-my-first-ai-hackathon-part-2.md) (2026-06-09): Four strangers, six hours, and a career-path prototype built with Codex. What we made, how the demo went, and what I learned as the non-coder on the team.
+- [I did my first AI Hackathon (Part 1)](writing/i-did-my-first-ai-hackathon-part-1.md) (2026-06-04): How I signed up for Vancouver’s Codex-sponsored vibe coding hackathon, picked a career problem to tackle, and found a team despite not knowing how to code.
+- [Wtf is... an "artifact" (learn in 1 min)](writing/wtf-is-an-artifact-learn-in-1-min.md) (2026-06-02): What Claude artifacts are, how they turn a chat into something you can use, and the small apps I’ve built to solve my own annoyances.
+- [Rebuilding a website from the 90s](writing/rebuilding-a-website-from-the-90s.md) (2026-05-27): O*NET’s interface frustrated me, so I used Claude to build a cleaner Career Explorer for GradSimple. Here’s how a two-hour experiment came together.
+- [Wtf is... a "frontier lab" (learn in 1 min)](writing/wtf-is-a-frontier-lab-learn-in-1-min.md) (2026-05-25): What people mean by a frontier model or frontier lab, explained through a conversation with my wife and a comparison to flagship phones.
+- [This is like screenshot on steroids](writing/this-is-like-screenshot-on-steroids.md) (2026-05-22): Why Codex Appshots felt like more than a screenshot to me: sharing an app window’s image, readable text, and interface context with AI.
+- [Reddit, arthritis, and AI](writing/reddit-arthritis-and-ai.md) (2026-05-20): How I used AI to find relevant Reddit posts and draft replies for GradSimple, after years of doing the repetitive parts by hand.
+- [Wtf is... a ".md" file? (learn in 2 mins)](writing/wtf-is-a-md-file-learn-in-2-mins.md) (2026-05-18): What a .md file is, how Markdown works, and how I use structured notes to give Claude context without re-explaining myself in every conversation.
+- [You can now babysit AI from anywhere](writing/you-can-now-babysit-ai-from-anywhere.md) (2026-05-15): My first look at using Codex from a phone to check progress, answer questions, and keep a task moving after stepping away from my computer.
+- [Claude is eating OpenAI's lunch](writing/claude-is-eating-openai-s-lunch.md) (2026-05-13): I explored Ramp’s business-spending data through Claude to compare AI-tool adoption, then dug into what the dataset does and doesn’t capture.
+- [Wtf is... an "LLM" (learn in 2 mins)](writing/wtf-is-an-llm-learn-in-2-mins.md) (2026-05-11): A plain-English explanation of large language models, next-word prediction, and why tools like ChatGPT and Claude can feel surprisingly human.
+- [Fine, I'll stop cheating on you, ChatGPT](writing/fine-i-ll-stop-cheating-on-you-chatgpt.md) (2026-05-07): I tried ChatGPT’s Google Sheets add-on on my nutrition tracker. Here’s the prompt, what it found, and why it made spreadsheets feel less painful.
+- [I turned my wife into an MS Paint drawing](writing/i-turned-my-wife-into-an-ms-paint-drawing.md) (2026-05-05): The prompt I used to turn photos of my wife and me into deliberately terrible MS Paint drawings, with the original photos and AI results.
+- [I am now the proud dad of a goblin](writing/i-am-now-the-proud-dad-of-a-goblin.md) (2026-05-01): How a tiny digital goblin got me to open Codex, the prompt I used to make it, and why a playful feature made a coding tool feel more approachable.
+- [An AI buddy that lives on your mac?](writing/an-ai-buddy-that-lives-on-your-mac.md) (2026-04-30): Why I started AI Worth Trying, a simple explanation of MCP, and my first impressions of Clicky, an AI companion that can see your Mac’s screen.
 
 ## GradSimple interviews
 

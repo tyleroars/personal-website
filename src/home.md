@@ -1,7 +1,7 @@
 # Tyler Yip: About
 
-I’m from Singapore, currently in Vancouver. I work at Knak and run GradSimple, where I interview people about their careers.
+I’m from Singapore, now in Vancouver. I work with customers at Knak and run GradSimple, where I get to be a little nosy about people’s careers.
 
-Lately, I’ve been having a lot of fun building with AI. Mostly things I wanted for myself: a photo editor without a subscription, tools for my newsletter, an app I decided to build the DAY before an event. That last one actually worked great!
+I love hearing the story behind a job title. How someone found their way there, what the work is actually like, and what they’re figuring out next. With AI changing so much of that, I’ve been doing a lot of experimenting myself.
 
-I also shoot Fujifilm and collect Pokémon cards. This site holds a bit of everything I’ve been up to, including the things that didn’t work out.
+I used to wish I could code. Now I’m building tools for our team and GradSimple, and sharing marketing prompts and workflows through AI Worth Trying. That still feels a little ridiculous. In a good way!

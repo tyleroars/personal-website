@@ -5,3 +5,5 @@ generated-documents.json
 .wrangler/
 .env*
 .DS_Store
+outputs/
+release-artifacts/
