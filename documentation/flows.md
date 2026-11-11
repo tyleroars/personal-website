@@ -8,3 +8,7 @@
 | Notebook import/export | Visitor deliberately uses HuddleDex browser demo | UI reads selected file, parses local records, persists them in that browser's IndexedDB, or downloads an export. No data goes to Tyler's server. | Invalid imports must fail visibly. Storage failures do not imply a successful save. These cases need manual review; see tests.md. |
 | Outbound AI/email links | Visitor activates link or copy button | Public prompt is copied only on interaction; AI links open the chosen provider for the visitor to paste. Email uses `mailto:`. | The website does not send email or submit prompts automatically. Provider accounts and actions remain outside this site. |
 | Emergency rollback | Authorized Cloudflare operator | Restore a retained version or verified release archive, verify live, then reconcile GitHub through a rollback PR. | Do not claim a rollback succeeded based only on a command exit; verify the restored content. |
+
+## Project reader navigation
+
+Project title buttons open the native dialog and push a matching story hash into browser history. A direct story arrival seeds a Projects list entry behind it, so Back closes the reader before leaving Projects. Close and Escape return through that same history entry; Forward reopens the correct story. Category hashes are preserved when opening and closing from a jump link. Focus returns to the title button. HuddleDex keeps its canonical `#huddledex` URL; old `#huddle`, `#mcp` and `#reddit` links remain supported. The controller handles only navigation and makes no network writes.

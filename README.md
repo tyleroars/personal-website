@@ -19,15 +19,17 @@ npx wrangler dev
 
 - `src/`: public pages, articles, project data, photos, icons and agent-readable documents.
 - `scripts/build.mjs`: produces the Worker and static media, adds canonical/social metadata, structured data, sitemap and robots.txt.
+- `scripts/production-pages.mjs`: renders the page template at build time, generates responsive images, minifies scripts, combines CSS and fingerprints browser assets.
 - `page-metadata.json`: clear search titles and descriptions for every section, article and the demo.
 - `scripts/sync-metadata.mjs`: `npm run metadata` syncs that copy into the source pages and the article indexes in the agent documents.
 - `scripts/sync-project-text.mjs`: `npm run project-text` syncs project descriptions, stories, outcomes, workflows and public links from `projects.js` into `projects.md`, `llms.txt` and `llms-full.txt`.
 - `scripts/create-share-image.mjs`: `npm run share-image` regenerates 2400 × 1260 cards for every page. The checked-in PNGs and `share-images.json` let ordinary builds use them without rendering images. Arial is used for optional regeneration.
 - `scripts/launch.test.mjs`: checks routes, metadata, public resources, galleries, portraits, agent links and response headers.
+- `scripts/project-navigation.test.mjs` and `scripts/gallery-controls.test.mjs`: check project history, gallery boundaries, focus, thumbnail visibility and touch-gesture intent.
 - `launch-data.json`: canonical domain and article metadata.
 - `wrangler.jsonc`: Cloudflare deployment and custom domains.
 
-The build is dependency-free. Wrangler handles local preview and deployment. Generated files live in `dist/` and are not committed.
+Sharp generates responsive media and esbuild minifies browser assets during the build. Wrangler handles local preview and deployment. Generated files live in `dist/` and are not committed.
 
 ## Publishing
 
@@ -37,13 +39,15 @@ Changes to `main` run the build checks in GitHub Actions and automatically publi
 
 For a manual deployment from an authorized Cloudflare account, use `npm run deploy`.
 
-The apex domain is canonical. `www` redirects to it. Old `/about` and `/ai` links redirect to `/` and `/projects`. Pages and text revalidate; content-hashed images use long-lived cache headers. Unknown paths return a real 404.
+The apex domain is canonical. `www` redirects to it. Old `/about` and `/ai` links redirect to `/` and `/projects`. HTML and public text revalidate with ETags. Content-hashed images and matching fingerprinted CSS/JS use long-lived caching; unversioned or outdated text assets revalidate. Unknown paths return a real 404. Public noncanonical preview hosts send a noindex header.
 
 When adding a page, add its metadata, run `npm run metadata` and `npm run share-image`, then build and test. The build fails if a page lacks metadata or a sharing image. Each article keeps its original visible headline and publication timestamp; its search title may explain the subject more directly. Publication dates in cards and Markdown match the Vancouver date shown on the article.
 
 After changing project copy, run `npm run project-text` before building and testing. The checks compare the descriptions, stories, outcomes and workflows with all three agent documents so content drift is caught before publishing.
 
-All public HTML includes its metadata and content before JavaScript runs. Article structured data uses the original headline, author, publication timestamp, and images actually present in the article. HTTP `Link` headers expose Markdown alternatives and `llms.txt`. Markdown and agent files remain fetchable, with `noindex` headers to keep search results focused on the canonical HTML. The browser demo is also `noindex` and excluded from the sitemap.
+The [project writing guide](documentation/content.md) covers interview context, project priorities and honest measures of value.
+
+All personal pages include their metadata, lists and main copy before JavaScript runs. The browser preserves this HTML and adds interactions. Projects also has a complete no-JavaScript text fallback with working story anchors; interactive readers use the same project data. Article structured data uses the original headline, author, publication timestamp, and images actually present in the article. HTTP `Link` headers expose Markdown alternatives and `llms.txt`. Markdown and agent files remain fetchable, with `noindex` headers to keep search results focused on the canonical HTML. The browser demo is also `noindex` and excluded from the sitemap.
 
 ## Content and privacy
 

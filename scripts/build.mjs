@@ -1,8 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import {pages, pageByFile, applyPageMetadata, encode} from './page-metadata.mjs';
 import {structuredData} from './structured-data.mjs';
+import {pageRenderer, productionMedia, optimizeTextAssets, fingerprintHtmlAssets} from './production-pages.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 const {version} = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
@@ -15,6 +17,9 @@ if (new URL(origin).protocol !== 'https:') throw new Error('Production origin mu
 const dist = path.join(root, 'dist');
 fs.rmSync(dist, {recursive:true, force:true});
 fs.cpSync(path.join(root, 'src'), dist, {recursive:true});
+const renderPage=pageRenderer(root);
+const responsiveMedia=await productionMedia(root,dist);
+optimizeTextAssets(dist);
 fs.writeFileSync(path.join(dist, 'version.json'), JSON.stringify(release)+'\n');
 const routes = new Map(pages.filter(page=>!page.noindex).flatMap(page=>page.files.map(file=>[file,page.route])));
 const walk = dir => fs.readdirSync(dir, {withFileTypes:true}).flatMap(e => e.isDirectory() ? walk(path.join(dir,e.name)) : [path.join(dir,e.name)]);
@@ -31,6 +36,7 @@ for (const file of walk(dist)) {
     const relative = path.relative(dist,file).split(path.sep).join('/');
     const page=pageByFile.get(relative);
     if (!page) throw new Error('HTML page needs metadata: '+relative);
+    text=links(responsiveMedia(renderPage(text,page)));
     const shareImage=shareImages[page.route];
     if (!shareImage || !fs.existsSync(path.join(root,'src',shareImage.file))) throw new Error('Shared image is missing: '+page.route);
     const shareImageUrl=new URL(shareImage.file,origin+'/').href;
@@ -76,10 +82,12 @@ for (const file of walk(dist)) {
 }
 // No SPA fallback: unknown URLs must genuinely return 404.
 fs.writeFileSync(path.join(dist,'404.html'), '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Page not found | Tyler Yip</title><link rel="stylesheet" href="/personal.css"></head><body><main style="max-width:40rem;margin:15vh auto;padding:24px"><h1>This page isn’t here.</h1><p><a href="/">Back to Tyler’s site</a></p></main></body></html>');
+fingerprintHtmlAssets(dist);
 const unique = [...new Set(routes.values())];
 fs.writeFileSync(path.join(dist,'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+unique.map(route=>`  <url><loc>${origin}${route}</loc></url>`).join('\n')+'\n</urlset>\n');
 fs.writeFileSync(path.join(dist,'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap.xml\n`);
 fs.writeFileSync(path.join(dist,'_redirects'), [
+  '/favicon.ico /assets/favicon.ico 301',
   '/home.html / 301','/index.html / 301','/about / 301','/about/ / 301',
   '/ai /projects 301','/ai/ /projects 301',
   ...['projects','writing','work','interviews'].map(r=>`/${r}/ /${r} 301`),
@@ -97,10 +105,12 @@ for(const file of walk(dist)) {
   }
 }
 const redirects=Object.fromEntries(readRedirects());
+const documentHashes=Object.fromEntries(Object.entries(documents).map(([file,body])=>[file,createHash('sha256').update(body).digest('hex').slice(0,12)]));
 function readRedirects(){return fs.readFileSync(path.join(dist,'_redirects'),'utf8').trim().split('\n').map(line=>line.split(' ').slice(0,2));}
 const alternateDocuments=Object.fromEntries(pages.filter(page=>page.markdown).flatMap(page=>page.files.map(file=>['/'+file,origin+'/'+page.markdown])));
 const markdownCanonicals=Object.fromEntries(pages.filter(page=>page.markdown).map(page=>['/'+page.markdown,origin+page.route]));
 const generated = `const documents=${JSON.stringify(documents)};
+const documentHashes=${JSON.stringify(documentHashes)};
 const redirects=${JSON.stringify(redirects)};
 const alternateDocuments=${JSON.stringify(alternateDocuments)};
 const markdownCanonicals=${JSON.stringify(markdownCanonicals)};
@@ -128,6 +138,8 @@ export default {async fetch(request,env){
   const type=types[file.split('.').pop()]||'text/html';
   const headers=new Headers({'Content-Type':type+'; charset=utf-8','Cache-Control':'public, max-age=0, must-revalidate','X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin'});
   if(exists){
+    headers.set('ETag','W/"'+documentHashes[file]+'"');
+    if((type==='text/javascript'||type==='text/css')&&url.searchParams.get('v')===documentHashes[file])headers.set('Cache-Control','public, max-age=31536000, immutable');
     const links=['<'+canonicalOrigin+'/llms.txt>; rel="describedby"; type="text/plain"'];
     if(alternateDocuments[file])links.push('<'+alternateDocuments[file]+'>; rel="alternate"; type="text/markdown"');
     if(markdownCanonicals[file])links.push('<'+markdownCanonicals[file]+'>; rel="canonical"');
@@ -135,6 +147,10 @@ export default {async fetch(request,env){
     if(type==='text/markdown'||type==='application/json'||file==='/llms.txt'||file==='/llms-full.txt')headers.set('X-Robots-Tag','noindex');
   }
   if(!exists)headers.set('X-Robots-Tag','noindex');
+  if(![new URL(canonicalOrigin).hostname,'localhost','127.0.0.1','[::1]'].includes(url.hostname))headers.set('X-Robots-Tag','noindex, follow');
+  const validators=request.headers.get('If-None-Match')?.split(',').map(value=>value.trim());
+  const withoutWeak=value=>value.startsWith('W/')?value.slice(2):value;
+  if(exists&&validators?.some(value=>value==='*'||withoutWeak(value)===withoutWeak(headers.get('ETag'))))return new Response(null,{status:304,headers});
   return new Response(request.method==='HEAD'?null:body,{status:exists?200:404,headers});
 }};
 `;

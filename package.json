@@ -1,6 +1,6 @@
 {
   "name": "itstyleryip",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,7 +8,7 @@
     "share-image": "node scripts/create-share-image.mjs",
     "metadata": "node scripts/sync-metadata.mjs",
     "project-text": "node scripts/sync-project-text.mjs",
-    "test": "node --test scripts/launch.test.mjs",
+    "test": "node --test scripts/launch.test.mjs scripts/project-navigation.test.mjs scripts/gallery-controls.test.mjs",
     "package:release": "node scripts/package-release.mjs",
     "verify:live": "node scripts/verify-live.mjs",
     "deploy": "npm run build && npm test && wrangler deploy"
@@ -17,6 +17,7 @@
     "node": ">=22.13.0"
   },
   "devDependencies": {
+    "esbuild": "^0.28.2",
     "sharp": "0.35.5",
     "wrangler": "^4.159.0"
   }

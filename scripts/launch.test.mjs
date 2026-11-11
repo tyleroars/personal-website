@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import sharp from 'sharp';
 import {pages, origin, publicationDate} from './page-metadata.mjs';
 const root=path.resolve(import.meta.dirname,'../dist');
 const config=JSON.parse(fs.readFileSync(path.resolve(root,'../launch-data.json'),'utf8'));
@@ -44,12 +45,93 @@ test('theme starts dark and respects a saved choice, including when storage is u
       const localStorage={getItem(){if(saved==='blocked')throw new Error('Storage unavailable');return saved;}};
       vm.runInNewContext(init,{document,localStorage,matchMedia:()=>({matches:systemDark})});
       assert.equal(document.documentElement.dataset.theme,saved==='light'?'light':'dark');
+      assert.equal(document.documentElement.dataset.js,'');
     }
   }
   for(const file of walk(root).filter(p=>p.endsWith('.html'))){
     const html=read(path.relative(root,file).replace(/^client\//,''));
-    if(html.includes('theme-init.js'))assert.match(html,/<html\b[^>]*data-theme="dark"/);
+    if(html.includes('data-design="combined"')){
+      assert.match(html,/<html\b[^>]*data-theme="dark"/);
+      assert.doesNotMatch(html,/<script\b[^>]*src="[^"]*cursor\.js/);
+      assert.ok(html.includes('<script>'+init+'</script>'));
+      assert.doesNotMatch(html,/<script\b[^>]*src="[^"\n]*theme-init/);
+    }
   }
+});
+test('production HTML contains the collections and no-script project stories without rebuilding them',()=>{
+  for(const page of pages.filter(page=>!page.noindex))for(const file of page.files){
+    const html=read(file);
+    assert.match(html,/<body\b[^>]*data-prerendered/);
+    assert.equal((html.match(/class="combined-sidebar"/g)||[]).length,1);
+    if(page.route!=='/projects')assert.doesNotMatch(html,/<script\b[^>]*src="\/?(?:projects|interviews|writing)\.js/);
+  }
+  assert.equal((read('interviews.html').match(/class="interview-record"/g)||[]).length,85);
+  assert.equal((read('writing.html').match(/class="writing-entry"/g)||[]).length,21);
+  const html=read('projects.html'),fallback=[...html.matchAll(/<noscript>[\s\S]*?<\/noscript>/g)].map(m=>m[0]).find(block=>block.includes('class="project-text-fallback"'));
+  assert.ok(fallback);
+  const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  for(const project of data.projects){
+    assert.ok(html.includes(`href="#story-${project.id}"`));
+    assert.ok(fallback.includes(`id="story-${project.id}"`));
+    for(const paragraph of [...project.story,...(project.eventStory||[]),...(project.outcomes||[]),...(project.measurement?.notes||[]),...(project.workflows||[]).flatMap(w=>w.paragraphs)])assert.ok(fallback.includes(escape(paragraph)),project.id);
+  }
+  const schema=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]+?)<\/script>/)[1])['@graph'];
+  for(const item of schema.find(node=>node['@type']==='ItemList').itemListElement){
+    assert.ok(html.includes(`id="${new URL(item.url).hash.slice(1)}"`));
+  }
+});
+test('responsive previews are generated separately from full-size galleries',()=>{
+  const html=read('projects.html'),strips=[...html.matchAll(/<div class="(?:project-preview-strip|huddle-preview)">([\s\S]*?)<\/div>/g)];
+  assert.equal(strips.length,15);
+  for(const strip of strips)for(const img of strip[1].matchAll(/<img\b[^>]*>/g)){
+    assert.match(img[0],/srcset="[^"]+ \d+w, [^"]+ \d+w"/);
+    for(const src of img[0].matchAll(/(?:src="|, )([^" ]+\.webp)/g))assert.ok(localFile(new URL(src[1],origin+'/')));
+    assert.match(img[0],/sizes="[^"]+"/);
+  }
+  assert.match(strips[0][1],/loading="eager" fetchpriority="high"/);
+  assert.doesNotMatch(strips[0][1],/loading="lazy"/);
+  assert.match(read('index.html'),/srcset="[^"]+ 256w, [^"]+ 384w, assets\/tyler-mascot-v1.webp 585w"/);
+  for(const project of data.projects)for(const shot of [...(project.previewImages||[]),...(project.screenshots||[])])assert.doesNotMatch(shot.src,/preview-[a-f0-9]{12}-(?:320|640)\.webp/);
+});
+test('all responsive image candidates exist at their declared widths',async()=>{
+  const checked=new Set();
+  for(const page of pages)for(const file of page.files)for(const match of read(file).matchAll(/<img\b[^>]*srcset="([^"]+)"/g)){
+    for(const candidate of match[1].split(',').map(value=>value.trim())){
+      if(checked.has(candidate))continue;checked.add(candidate);
+      const [source,width]=candidate.split(/\s+/),imageFile=localFile(new URL(source,origin+'/'));
+      assert.ok(imageFile,candidate);
+      const relative=path.relative(root,imageFile),actual=await sharp(path.join(root,'client',relative)).metadata();
+      assert.equal(actual.width,Number(width.slice(0,-1)),candidate);
+    }
+  }
+  assert.ok(checked.size>200);
+});
+test('fingerprinted text assets cache safely, conditional requests revalidate, public previews stay out of search',async()=>{
+  const worker=(await import('../dist/server/index.js')).default;
+  for(const page of pages.filter(page=>!page.noindex))for(const file of page.files){
+    const html=read(file);
+    assert.equal((html.match(/rel="stylesheet"/g)||[]).length,1);
+    assert.match(html,/href="\/site\.css\?v=[a-f0-9]{12}"/);
+    const assets=[...html.matchAll(/(?:src|href)="(\/[^"?]+\.(?:js|css)\?v=[a-f0-9]{12})"/g)].map(m=>m[1]);
+    for(const asset of assets){
+      const response=await worker.fetch(new Request(origin+asset));
+      assert.equal(response.status,200);
+      assert.equal(response.headers.get('Cache-Control'),'public, max-age=31536000, immutable',asset);
+      const cached=await worker.fetch(new Request(origin+asset,{headers:{'If-None-Match':response.headers.get('ETag')}}));
+      assert.equal(cached.status,304);assert.equal(await cached.text(),'');
+      const changed=await worker.fetch(new Request(origin+asset,{headers:{'If-None-Match':'W/"old-version"'}}));
+      assert.equal(changed.status,200);
+    }
+  }
+  for(const url of ['/site.css','/site.css?v=outdated','/']){
+    const response=await worker.fetch(new Request(origin+url));
+    assert.equal(response.headers.get('Cache-Control'),'public, max-age=0, must-revalidate');
+  }
+  for(const host of ['preview.workers.dev','example-preview.pages.dev']){
+    const response=await worker.fetch(new Request('https://'+host+'/projects'));
+    assert.equal(response.headers.get('X-Robots-Tag'),'noindex, follow');
+  }
+  assert.equal((await worker.fetch(new Request(origin+'/projects'))).headers.get('X-Robots-Tag'),null);
 });
 test('every page has accurate metadata, structured data and its own valid sharing image',()=>{
   const htmlPages=walk(root).filter(p=>p.endsWith('.html')&&!p.endsWith('/404.html'));
@@ -119,6 +201,22 @@ test('every page has accurate metadata, structured data and its own valid sharin
   assert.ok(!read('sitemap.xml').includes('huddledex-browser'));
   assert.match(read('robots.txt'),/Allow: \//);
 });
+test('every compiled page uses the current TY favicon with real small-size assets',()=>{
+  for(const page of pages)for(const file of page.files){
+    const html=read(file);
+    for(const size of [16,32])assert.ok(html.includes(`sizes="${size}x${size}" href="/assets/tyler-mark-v7-${size}.png"`),file);
+    assert.ok(html.includes('href="/assets/tyler-mark-v7-180.png"'),file);
+    assert.ok(html.includes('href="/assets/favicon-v7.ico"'),file);
+    assert.doesNotMatch(html,/tyler-mark-v[12]-/);
+  }
+  for(const size of [16,32,48,180,192,512]){
+    const bytes=fs.readFileSync(path.join(root,'client/assets',`tyler-mark-v7-${size}.png`));
+    assert.equal(bytes.subarray(0,8).toString('hex'),'89504e470d0a1a0a');
+    assert.equal(bytes.readUInt32BE(16),size);assert.equal(bytes.readUInt32BE(20),size);
+  }
+  const ico=fs.readFileSync(path.join(root,'client/assets/favicon.ico'));
+  assert.equal(ico.readUInt16LE(2),1);assert.equal(ico.readUInt16LE(4),3);
+});
 test('HTML and CSS local resource references stay within the published package',()=>{
   for(const file of walk(root).filter(p=>/\.(html|css)$/.test(p))){
     const body=read(path.relative(root,file).replace(/^client\//,'')).replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,'');
@@ -156,10 +254,19 @@ test('agent profile links resolve and remain absolute when fetched as plain text
   for(const file of ['projects.md','llms.txt','llms-full.txt']){
     const content=normalize(read(file));
     for(const project of data.projects){
-      const copy=[project.title,project.desc,...project.story,...(project.eventStory||[]),...(project.outcomes||[]),...(project.workflows||[]).flatMap(workflow=>[workflow.title,...workflow.paragraphs])];
+      const copy=[project.title,project.desc,...(project.results||[]).map(result=>`${result.value} ${result.label}`),...project.story,...(project.eventStory||[]),...(project.outcomes||[]),...(project.measurement?.notes||[]),...(project.workflows||[]).flatMap(workflow=>[workflow.title,...workflow.paragraphs])];
       for(const text of copy)assert.ok(content.includes(normalize(text)),`${file} is missing current ${project.id} content: ${text.slice(0,70)}`);
     }
   }
+  const plain=text=>text.replace(/<[^>]*>/g,' ').replace(/&(amp|lt|gt|quot|apos|#39);/g,(_,name)=>({amp:'&',lt:'<',gt:'>',quot:'"',apos:"'",'#39':"'"}[name]));
+  const about=read('home.html').split('<section class="about-hero"')[1].split('<section class="about-links"')[0];
+  const aboutCopy=[...about.matchAll(/<p(?:\s[^>]*)?>([\s\S]*?)<\/p>/g)].map(match=>plain(match[1]));
+  assert.ok(aboutCopy.length>0);
+  for(const file of ['home.md','llms.txt','llms-full.txt'])for(const paragraph of aboutCopy)assert.ok(normalize(read(file)).includes(normalize(paragraph)),`${file} is missing current About copy`);
+  const work=read('work.html').split('<section class="cv-section"').slice(1).join('<section class="cv-section"');
+  const workCopy=[...work.matchAll(/<(?:li|dd|dt|h3)\b[^>]*>([\s\S]*?)<\/(?:li|dd|dt|h3)>/g),...work.matchAll(/<div class="role-line">([\s\S]*?)<\/div>/g)].map(match=>plain(match[1]));
+  assert.ok(workCopy.length>0);
+  for(const file of ['work.md','llms.txt','llms-full.txt'])for(const item of workCopy)assert.ok(normalize(read(file)).includes(normalize(item)),`${file} is missing current Work copy: ${item.slice(0,70)}`);
   for(const file of walk(root).filter(p=>/\.(md|txt)$/.test(p))){
     for(const match of read(path.relative(root,file).replace(/^client\//,'')).matchAll(/\]\(([^)\s]+)\)/g)){
       const link=match[1];
@@ -169,6 +276,23 @@ test('agent profile links resolve and remain absolute when fetched as plain text
       if(url.origin===config.origin)assert.ok(localFile(url),`${file}: ${link}`);
     }
   }
+});
+test('published workflow estimates reconcile with disclosed baselines and the cost comparator',()=>{
+  for(const [id,before,after,percent]of [['image',5,2,60],['newsletter',15,5,67],['slides-converter',10,2,80]]){
+    const project=data.projects.find(p=>p.id===id),measurement=project.measurement;
+    assert.equal(measurement.kind,'time');assert.equal(measurement.beforeMinutes,before);assert.equal(measurement.afterMinutes,after);
+    assert.equal(Math.round(100*(before-after)/before),percent);
+    assert.equal(project.results[0].value,`${percent}%`);
+    assert.ok(measurement.scope);assert.ok(measurement.notes.some(note=>/estimate/i.test(note)));
+    assert.ok(project.outcomes.some(text=>text.includes(`${percent}%`)));
+  }
+  const tone=data.projects.find(p=>p.id==='tone'),comparison=tone.measurement;
+  assert.equal(comparison.currency,'CAD');assert.equal(comparison.months,12);
+  assert.equal(Math.round(comparison.monthlyPrice*comparison.months*100),19188);
+  assert.equal(tone.results[0].value,'~C$192/year');
+  assert.equal(new URL(comparison.sourceUrl).hostname,'www.adobe.com');
+  assert.ok(comparison.notes.some(note=>note.includes('before tax')&&note.includes('billed monthly')));
+  assert.ok(comparison.notes.some(note=>note.includes('not a subscription I previously paid for')));
 });
 test('live Worker serves redirects, UTF-8 text, HEAD and genuine 404 responses',async()=>{
   const worker=(await import('../dist/server/index.js')).default;

@@ -17,14 +17,16 @@ assert.equal(live.commit,commit,'Live commit');
 assert.equal(live.dirty,false,'Production must use a clean checkout');
 const images=new Set();
 for(const page of pages){
- const html=await (await get(page.route)).text();
+ const response=await get(page.route);
+ if(!page.noindex)assert.equal(response.headers.get('X-Robots-Tag'),null,page.route+' must remain indexable');
+ const html=await response.text();
  assert.ok(html.includes(`<link rel="canonical" href="${origin+page.route}">`),page.route+' canonical');
  assert.ok(html.includes(`<meta name="description" content="${encode(page.description)}">`),page.route+' description');
  assert.ok(html.includes(`<meta name="robots" content="${page.noindex?'noindex,follow':'index,follow,max-image-preview:large'}">`),page.route+' robots');
  const image=html.match(/<meta property="og:image" content="([^"]+)"/)?.[1];
  assert.ok(image,page.route+' sharing image');images.add(image);
 }
-for(const file of ['personal.css','site.js','projects.js','theme-init.js','rainbow.js','llms.txt','llms-full.txt']){
+for(const file of ['site.css','site.js','projects.js','theme-init.js','rainbow.js','llms.txt','llms-full.txt']){
  const docs=JSON.parse(fs.readFileSync(path.join(root,'generated-documents.json')));
  assert.equal(await (await get('/'+file)).text(),docs['/'+file],file+' matches release');
 }

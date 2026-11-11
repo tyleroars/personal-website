@@ -2,11 +2,16 @@
 
 ### GradSimple
 
-Career stories and practical tools for figuring out what comes next, including how to use AI at work.
+A career newsletter with firsthand interviews, hiring data, and practical ways to use AI at work.
 
-I run GradSimple for people figuring out their next career move. I interview people about the work they do, how they got there, and the decisions they made along the way. I like getting past the job title and hearing the actual story.
+- 43,860 annual active website users
+- 7,259 newsletter subscribers
 
-Those conversations become interviews and newsletters, alongside tools for exploring careers and pay. These days, I’m also digging into how AI is changing the work itself, and how readers can use it for themselves.
+Polished LinkedIn updates made careers look a lot tidier than they felt. I wanted to hear how people actually found their jobs, whether they liked the work, and what they were still figuring out. So I started interviewing other grads.
+
+Those conversations became GradSimple. I publish their stories and a newsletter, and readers’ questions have given me plenty more to work on. I’ve built tools to help them explore roles, compare pay, and make sense of hiring trends alongside the interviews.
+
+The more people I interview, the more I see how many ways there are to build a career, and how much luck goes into the parts that look planned! With AI changing the work itself, I’m now asking how people are using it and what they think comes next.
 
 Outcomes:
 
@@ -26,15 +31,15 @@ The annual active-user figure comes from GA4, November 2025 to October 2026, wit
 
 #### Related tools
 
-- [Career Explorer](https://career-explorer-ecru.vercel.app/): O*NET’s career data, with an interface that feels a little less early 2000s.
-- [Starting Pay Checker](https://starting-pay-checker.vercel.app/): An easier way to find and compare pay, especially when starting out.
+- [Career Explorer](https://career-explorer-ecru.vercel.app/): A cleaner way to explore O*NET’s career data, without the early-2000s interface.
+- [Starting Pay Checker](https://starting-pay-checker.vercel.app/): An easier way to compare starting-pay estimates across 706 occupations.
 - [Job Market Radar](https://job-market-radar.vercel.app/): Monthly BLS hiring data, made easier to explore and compare across industries.
-- [How Cooked Is Your Career?](https://career-cooked-check.base44.app/): A seven-question career check-in with a “cooked score.” An early Base44 experiment.
-- [Career Intelligence Report](https://career-intelligence-report.vercel.app/): An early Claude-powered prototype for personalized career reports, from a target role to a 90-day plan.
+- [How Cooked Is Your Career?](https://career-cooked-check.base44.app/): A playful career quiz built to bring TikTok and YouTube viewers to GradSimple.
+- [Career Intelligence Report](https://career-intelligence-report.vercel.app/): A Claude-powered prototype that assesses a career move and builds a personalized 90-day plan.
 
 #### Career Intelligence MCP
 
-I also built a Career Intelligence MCP so those stories and data could be useful inside an AI conversation. It lets an assistant search GradSimple’s public interviews, guides, and statistics, then link back to the sources. I wanted people to be able to ask a question and explore the relevant material without digging through the whole site themselves.
+GradSimple has years of interviews and career material, and finding the relevant piece shouldn’t depend on knowing where I put it. I built a Career Intelligence MCP so an AI assistant can search the public interviews, guides, and statistics during a conversation, then link back to the sources. Ask a career question and follow the material behind the answer.
 
 #### Career Coach GPT
 
@@ -44,11 +49,11 @@ One of my earliest AI experiments was a custom Career Coach GPT for resume feedb
 
 #### Reddit research & drafting
 
-Finding relevant Reddit posts and writing replies used to take me two to three hours a day. AI-assisted drafting got that down to about half an hour, but I was still finding the posts myself.
+I used to spend two to three hours a day finding relevant Reddit posts and writing replies. Letting an LLM help with drafts got that down to about half an hour, but I was still doing the searching and clicking myself.
 
-Then I used Codex to handle post discovery and drafting too. It could open relevant posts and prepare replies for me to review. Much less repetitive clicking and typing. My fingers were very grateful haha.
+Then I used Codex to find the posts and prepare replies for me to review too. It ran well for about three months and helped bring subscribers to GradSimple. My fingers were very grateful haha.
 
-The later automation ran well for about three months and helped grow GradSimple’s subscriber list. My account was banned in August, which brought the experiment to an end.
+My account was banned in August, which ended that experiment.
 
 [View Reddit Scout on GitHub](https://github.com/tyleroars/reddit-scout)
 
@@ -58,15 +63,15 @@ The later automation ran well for about three months and helped grow GradSimple�
 
 ### HuddleDex
 
-An iPhone app for remembering the people, conversations, and promises from an event. Built the day before, then used there!
+An iPhone event notebook for badge scans, voice notes, and follow-ups, used at Knak’s Agentic Marketing Forum.
 
-I was going to Knak’s Agentic Marketing Forum and had an idea the day before. At events, you meet people, have a good conversation, maybe connect on LinkedIn. But afterward, how much do you actually remember? Their name, what you talked about, that thing you said you’d send them?
+I was going to Knak’s Agentic Marketing Forum and wanted a way to remember the conversations afterward. A LinkedIn connection wouldn’t tell me what we’d talked about or what I’d promised to send. With one day to go, I decided to build an app.
 
-I wanted a way to save that context while it was fresh. Scan someone’s badge for their details, take a photo of them or a selfie together, and record a quick voice note instead of typing everything out. The app could transcribe it and keep the conversation, photo, and follow-up attached to the person and event.
+HuddleDex lets me scan a badge, save a photo or selfie, and record a quick voice note while the conversation is still fresh. It transcribes the note and keeps it with the person, event, and follow-up. My digital card works the other way around. Someone can scan my QR and save my contact without downloading the app.
 
-They could also scan my QR to get my digital card and save my contact, and I could share our photo so we both had a record of meeting. They wouldn’t need to download the app for that. So I vibecoded HuddleDex, got it onto my iPhone, and took it with me the next day.
+I got it onto my iPhone in time and used it at the forum, including having people scan my card. Pretty satisfying to walk into an event with an app I’d built for it the day before!
 
-I also found things I’d missed pretty quickly. Someone asked for my phone number, but my digital card didn’t have it. I went to add it and realized I hadn’t even built a phone-number field. So I couldn’t update it lol.
+The event also exposed a fairly obvious omission. Someone asked for my phone number, but I hadn’t built a phone-number field on the card. I went to add it and realized I couldn’t. So much for thinking of everything lol.
 
 Outcomes:
 
@@ -85,17 +90,15 @@ The original app lives on my iPhone. Here’s a browser starter you can build on
 
 ### AI Worth Trying
 
-Ready-made AI prompts, skills, and workflows for marketers figuring out what to use AI for.
+A searchable library of 801 AI prompts and 40 marketing workflows, from email briefs to campaign analysis.
 
-AI Worth Trying grew out of my day job at Knak. I work with marketing operations people every day, and lots of them are being asked to use AI without much help on what to use it for.
+At Knak, I kept talking to marketers who wanted to use AI but weren’t sure what to use it FOR. Finding a useful task, choosing a tool, and knowing what to ask could be enough to stop them before they started.
 
-I wanted to give them a starting point. The library is a mix of my own experience, recommendations, and useful prompts and workflows I’ve found other people sharing online.
+I built AI Worth Trying around those everyday tasks. Say you have a webinar transcript and need a content package. You can find a prompt, see what context to provide and what the output should look like, then try it in your preferred AI tool. Longer jobs have step-by-step workflows and software suggestions.
 
-Pick a marketing task and you’ll find something to try, with the context to provide and the output to aim for. There are ready-made prompts, skills, and workflows, plus buttons to copy a prompt or open it in an AI tool.
+The library has 801 prompts and 40 workflows across 12 areas of marketing. Each prompt spells out the inputs, the job to do, and what to check in the result. The workflows connect those tasks into a process, from the first brief to the finished handoff.
 
-Outcomes:
-
-- 801 published marketing prompts across 12 marketing categories
+I draw from my own experience, recommendations, and useful work people share online. It’s now the resource I send marketers when they ask me where to start. The aim is to give them something concrete to try on the work already on their plate.
 
 [Visit the site](https://aiworthtrying.com)
 
@@ -103,13 +106,25 @@ Outcomes:
 
 ### Tone Lab
 
-A simple photo editor for occasional tweaks, inspired by Fujifilm. No subscription!
+A browser photo editor with light and colour controls, film-inspired looks, and before/after comparison.
 
-I shoot Fujifilm and usually let the camera recipes do the work. I don’t edit very often, so paying for Lightroom or a feature-heavy editor felt like overkill.
+- ~C$192/year in avoided photo-editing subscription costs compared with Adobe Lightroom
 
-But I still wanted to make simple adjustments now and then. My needs were pretty modest, so I decided to build an editor around the looks and controls I wanted!
+Most of the time, I’m happy with my Fujifilm photos straight out of the camera. I use film recipes and don’t do much editing afterward. Paying for Lightroom felt like a lot for the occasional tweak, so I wanted to see if I could build something around my own taste.
 
-I’ve used Tone Lab on my own photos to tweak the light and colour, try different looks, compare versions, and export the ones I like. It runs in the browser, with the photos staying on my device. No extra editing subscription for something I only use occasionally.
+Tone Lab is that little editor. I’ve used it on my photos to adjust light and colour, try different looks, compare versions, and export the ones I like. It runs in the browser and keeps the photos on my device. Enough room to dabble in post without another subscription!
+
+Outcomes:
+
+- About C$192 per year in avoided Lightroom subscription cost, using the Canadian annual plan billed monthly as a comparison.
+
+#### Cost comparison
+
+Adobe’s Canadian annual plan billed monthly costs C$15.99 × 12 = C$191.88 per year before tax, or about C$192. Other plans and promotions can differ.
+
+I use Tone Lab for occasional photo edits instead of taking on that subscription. This is an avoided cost, not a subscription I previously paid for. Lightroom offers more features than I need.
+
+[Adobe Canada pricing](https://www.adobe.com/ca/creativecloud/plans.html) · Checked 2026-11-10
 
 [Try the tool](https://tonelab-darkroom.thetyleryip.chatgpt.site)
 
@@ -117,19 +132,20 @@ I’ve used Tone Lab on my own photos to tweak the light and colour, try differe
 
 ### Vibe Coding Hackathon Vancouver (Sponsored by Codex)
 
-A career-path visualizer that turns a résumé and four questions into three possible routes. Built with a team in six hours!
+A prototype that maps a résumé and career preferences into three possible career paths.
 
-GradSimple subscribers often told me they struggled to picture different career paths. Having lots of options wasn’t much help if you couldn’t see what any of them might look like. I wanted to make those possibilities easier to explore.
+- Special recognition for the prototype’s user experience and product design
 
-I took that idea to my first AI vibe coding hackathon in Vancouver. I arrived without a team or a coding background, teamed up with three people I met that morning, and we had about six hours to build something!
+GradSimple subscribers told me they struggled to picture different career paths. A list of job titles only got them so far. I wanted to turn those possibilities into something they could actually see and explore.
 
-We made a visualizer that took a résumé and answers to four questions, then mapped out three possible routes. It drew on O*NET salary and job data and GradSimple career profiles. I worked on the product, interface, and presentation with Codex, while my teammates helped work through the technical choices.
+I brought that idea to my first AI vibe coding hackathon. I arrived without a team or a coding background, met three teammates that morning, and we had about six hours to build! I used Codex to work on the product, interface, and presentation while we worked through the technical choices together.
 
-Our live demo was shaky, and we didn’t win, but we got special recognition for UI/UX and product. One of the judges even told me afterward that it was his number-one pick! We didn’t release it publicly because the API costs and reliability still needed work.
+Our prototype took a résumé and answers to four questions, then mapped out three possible routes using O*NET salary and job data and GradSimple career profiles. The live demo was shaky and we didn’t win, but we received special recognition for UI/UX and product. One judge even told me afterward that it was his number-one pick.
+
+We left it as a hackathon prototype. The API costs and reliability still needed work before we could put it in people’s hands.
 
 Outcomes:
 
-- Built a working career-path demo with my team in about six hours
 - Received special recognition for UI/UX and product
 
 [Read my hackathon story, part one](writing/i-did-my-first-ai-hackathon-part-1.html)
@@ -140,13 +156,15 @@ Outcomes:
 
 ### Career Explorer
 
-O*NET’s career data, with an interface that feels a little less early 2000s.
+A career browser using the O*NET Web Services API to compare U.S. occupations by pay, education, skills, and job outlook.
 
-O*NET has so much useful career data, but I hated the UI/UX. It feels like it hasn’t been updated since the early 2000s!
+O*NET has so much useful career data. I just hated using the site. It felt stuck in the early 2000s, and I wanted GradSimple readers to be able to explore the information without fighting the interface.
 
-I wanted a version GradSimple readers could explore without wrestling with the interface. Career Explorer lets you search for roles, filter by education, pay, and field, then open an occupation to see its description and outlook.
+So I rebuilt the browsing experience. Career Explorer lets you search roles, narrow them down by education, pay, and field, then open an occupation to read about the work and its outlook. The first version took me about two hours with Claude. I deployed it and embedded it in GradSimple so readers could try it themselves.
 
-The first version took me about two hours with Claude. I deployed it and embedded it in GradSimple so readers could try it themselves.
+It uses O*NET Web Services occupation data for the profiles, including skills, knowledge, education, related careers, and job outlook. The pay estimates come from BLS data. The browsing interface reads a saved dataset, so searching and filtering happen without waiting for a fresh external request each time.
+
+[O*NET Web Services documentation](https://services.onetcenter.org/)
 
 [Try the tool](https://career-explorer-ecru.vercel.app/)
 
@@ -154,11 +172,17 @@ The first version took me about two hours with Claude. I deployed it and embedde
 
 ### Starting Pay Checker
 
-An easier way to find and compare pay, especially when starting out.
+Compare lower-end salaries across 706 U.S. occupations, using Bureau of Labor Statistics data served through a custom API.
 
-I built this for GradSimple subscribers who wanted to know what different jobs might pay when they were starting out. That’s surprisingly hard to find online! A headline salary doesn’t always tell you much about the lower end of the range.
+A GradSimple subscriber asked for salary resources for people just starting out. Median pay wasn’t answering their question. It describes the middle of a profession, which can look very different from the beginning of a career.
 
-Starting Pay Checker turns BLS wage data into a searchable list of roles. You can filter by field and compare the lower end of each occupation’s pay range as a reference for starting out.
+I built Starting Pay Checker to make the lower end easier to find and compare. You can search 706 occupations, filter by field or minimum pay, and open a role to see how its wage range changes from the low end through the median and beyond.
+
+I processed BLS Occupational Employment and Wage Statistics (OEWS) data into a searchable dataset, served through the app’s own API. The import workflow extracts the 10th-percentile, 25th-percentile, median, and 75th-percentile annual wages, so readers can compare the low end with the rest of the range.
+
+The starting-pay reference uses the 10th percentile. That’s lower-end pay across the U.S., rather than a measurement of what new graduates earn. The current dataset is the May 2024 release.
+
+[BLS Occupational Employment and Wage Statistics](https://www.bls.gov/oes/)
 
 [Try the tool](https://starting-pay-checker.vercel.app/)
 
@@ -168,13 +192,17 @@ Starting Pay Checker turns BLS wage data into a searchable list of roles. You ca
 
 ### Job Market Radar
 
-Monthly BLS hiring data, made easier to explore and compare across industries.
+Compare U.S. job openings, hiring, and resignation rates by industry, using the Bureau of Labor Statistics’ public API.
 
-BLS has lots of useful hiring data, but it’s hard to digest. I couldn’t find a clear way to see the trends together that made sense for GradSimple’s audience, so I built Job Market Radar.
+BLS publishes useful hiring data, but making sense of it takes some digging. I wanted GradSimple readers to be able to compare industries and spot the trends without having to piece the picture together themselves. That’s what I built Job Market Radar for.
 
-The industry cards bring openings, hires, and year-over-year changes into one view. Open a card for a 24-month chart, switch between openings, hires, and quits rate, or sort industries to see where things are growing or slowing down.
+The backend pulls 39 time series from the BLS Public Data API’s Job Openings and Labor Turnover Survey (JOLTS) data. That covers job-opening totals, hires, and quits rates across 13 views, including total nonfarm and industry groups. A scheduled fetch saves the data in Redis, and the frontend reads that cached copy through the app’s own API.
 
-I share it in the GradSimple newsletter so subscribers can explore the trends themselves. The reporting month stays visible, so they can see which data they’re looking at.
+The industry cards show openings, hires, and year-over-year changes. Open one for a 24-month chart, switch between openings, hires, and quits rate, or sort industries to see where things are growing or slowing down. I share it in the newsletter so subscribers can explore the numbers behind the trends we’re discussing.
+
+[BLS Public Data API documentation](https://www.bls.gov/developers/)
+
+[About the JOLTS data](https://www.bls.gov/jlt/)
 
 [Try the tool](https://job-market-radar.vercel.app/)
 
@@ -182,11 +210,25 @@ I share it in the GradSimple newsletter so subscribers can explore the trends th
 
 ### Image Optimizer
 
-A browser image resizer and compressor, built after too many free-app limits. No ads!
+Resize, compress, and convert images for blog posts and newsletters, without free-tool limits or ads.
 
-I kept running into limits with free image apps, so I decided to build my own. I wanted to get images ready for email without hitting another limit or wading through ads.
+- 60% less time resizing and compressing images for blog posts and newsletters
 
-Drop in an image, choose the size and compression settings, and download the result. It also handles format conversion and animated GIFs. Everything runs in the browser, so the images stay on your device.
+Getting images ready for GradSimple kept sending me back to free converters. I’d find one, then run into ads, image limits, or a paywall for the format I wanted. Getting an image ready shouldn’t have required this much browsing.
+
+So I made one that did the job. Drop in an image, choose the dimensions, compression, and format, then download it. Animated GIFs work too. Everything runs in the browser, with no ads or cap on how many images I could process.
+
+For a while, I used it for essentially every blog post and newsletter that needed images. Now I can ask Codex agents to do the image work as part of publishing.
+
+Outcomes:
+
+- 60% less time resizing and compressing an image for a blog post or newsletter.
+
+#### Time-saving estimate
+
+Estimate for one image: 5 minutes to find a usable free converter, adjust settings, and download, compared with 2 minutes in my saved Image Optimizer.
+
+That includes the searching and free-tool limits I used to deal with. These are estimates, not recorded averages. The saving would be smaller with an already-bookmarked converter.
 
 [Try the tool](https://gradsimple-image-optimizer.netlify.app/)
 
@@ -194,17 +236,23 @@ Drop in an image, choose the size and compression settings, and download the res
 
 ### Slides → Video
 
-Turn existing TikTok slides into a video ready for YouTube.
+Turns existing TikTok photo slides into a video that can be uploaded to YouTube.
 
-Grace and I wanted to reuse our TikTok slides on YouTube, which meant turning them into a video. We couldn’t find a tool that fit our workflow, and assembling each video manually would have been a pain.
+- 80% less time turning TikTok photo slides into videos ready to upload to YouTube
 
-So I built this for Grace. She can upload her existing slides, choose how long each one stays on screen, and export a video ready for YouTube. The tool handles the video assembly for her.
+My wife Grace was already making slides for TikTok. We wanted to reuse them on YouTube, but that meant assembling them into a video first. We couldn’t find a tool that fit what we needed, and doing it manually each time looked like a lot of avoidable work.
 
-It accepts individual images or a ZIP, lets you drag slides into order, and runs in the browser. MP4 export depends on browser support, with WebM as a fallback.
+I built Slides → Video so she could upload the slides she’d already made, drag them into order, set how long each stays on screen, and export a video ready to upload. It accepts individual images or a ZIP and does the assembly in the browser. MP4 is available where the browser supports it, with WebM as a fallback.
 
 Outcomes:
 
-- 10 demo slides exported as a 30-second MP4 in under a minute, with the slides already loaded
+- 80% less time turning ten existing TikTok photo slides into a video ready to upload to YouTube.
+
+#### Time-saving estimate
+
+Estimate for ten existing slides: 10 minutes to import and order them, set durations, preview, and export manually, compared with 2 minutes for setup and export in Slides → Video.
+
+A browser test exported ten preloaded slides to a 30-second MP4 in about 45 seconds. The manual baseline is still an estimate. Creating the slides, writing captions, and uploading to YouTube are excluded.
 
 [Try the converter](https://glowing-cajeta-86ab7f.netlify.app/)
 
@@ -212,13 +260,25 @@ Outcomes:
 
 ### Newsletter Converter
 
-A way to turn Kit newsletters into WordPress articles when the archive options weren’t cutting it.
+Turns email newsletters from Kit into articles for a WordPress website, without rebuilding the layout by hand.
 
-Kit didn’t give me an easy way to display archived newsletters the way I wanted. I wanted those issues on the GradSimple website, so I built a converter to bring them into WordPress.
+- 67% less time turning email newsletters into articles for a WordPress website
 
-The workflow was to paste in the newsletter HTML, convert it, then check the article preview. The tool cleaned up email footers and layout markup and gave me HTML I could copy into WordPress. I’d check the content and embeds before publishing.
+I’d already written the newsletter. Publishing it on our website shouldn’t have meant rebuilding the page too. But Kit’s archive didn’t look the way I wanted, so I was manually adjusting layouts, spacing, and email HTML to make the issues work in WordPress.
 
-I don’t use it anymore.
+Newsletter Converter turned that into a paste-and-preview job. Paste in the Kit email, check the converted layout, and copy the WordPress-ready HTML into the site. It saved me a lot of fiddling with something that was supposed to be finished already.
+
+I used it until Codex agents could handle the conversion directly. The archive pages still get published. I just have one less tool to open.
+
+Outcomes:
+
+- 67% less time turning a Kit email newsletter into a WordPress-ready article for the GradSimple website.
+
+#### Time-saving estimate
+
+Estimate per issue: 15 minutes adapting email HTML and fixing layout and spacing by hand, compared with 5 minutes to paste, convert, and check the result.
+
+This covers formatting during the period I used the converter. Writing and publishing are excluded. Codex agents now handle this work for me.
 
 [Try the tool](https://tyleroars.github.io/my-tools/jm5-converter.html)
 
@@ -228,29 +288,35 @@ I don’t use it anymore.
 
 ### Career Intelligence Report
 
-An early Claude-powered prototype for personalized career reports, from a target role to a 90-day plan.
+A tool that uses your background and career goals to generate a personalized assessment and 90-day plan through the Claude API.
 
-I wanted to try giving GradSimple Insiders a career report built around their own situation. A target job title alone leaves a lot out, so the form also asked about their background, experience, and location.
+After years of interviewing people for GradSimple and following the job market, I wanted to try applying that perspective to someone’s own situation. A personalized report felt like a useful format. They could weigh a career move and see what getting there might involve, without me writing every assessment by hand.
 
-This was my first time connecting an app to the Claude API! The app sent that context and an optional résumé to Claude. The report covered how realistic the move was, skills to work on, AI’s effect on the role, and a 90-day plan.
+I built a prototype that takes a target role, background, location, and optional résumé, then sends that context to the Claude API. Claude returns an assessment of the move, alternative paths, skills or credentials to work on, how AI might affect the work, and a 90-day plan.
 
-The screenshots are from an original management consulting report I saved. This stayed an early prototype; it isn’t a live report service.
+This was my first app connected to the Claude API! I tested it myself and got a working report, though I never shipped it as a product. The screenshots below show an original report I saved from that testing.
 
 [View the prototype](https://career-intelligence-report.vercel.app/)
 
-An early prototype, not a live app. The report excerpts are from an original March 2026 export.
+An early prototype, not a live app. The sample report comes from an original March 2026 export.
 
 [Project story on Tyler’s site](projects.html#career-report)
 
 ### The Frenz
 
-A Discord community and a planned NFT collection, with artwork by Hozer in Korea. The collection never launched.
+A private Discord community for NFT research, allowlist draws, and member events.
 
-I co-founded The Frenz in 2021, a Discord community with plans for an NFT collection. My part was research, financials, and partnerships, as the team’s head analyst.
+- ~1,500 members in the Discord community at its peak
 
-We worked on the collection with Hozer, an artist based in Korea. A mutual friend from college who was active in Web3 introduced us! We collaborated on the characters while the team developed the lore, community activities, Discord mechanics, and launch plans.
+In 2021, a twelve-year-old selling pixelated whales sent me down the NFT rabbit hole. I started trading and sharing research, and people asked for a group where they could follow my ideas. That became The Frenz, a private Discord community I co-founded.
 
-The community reached around 1,500 members at its peak. After the NFT market shifted, we chose not to launch the collection.
+My research meant digging through Twitter and Discord, checking who was behind a collection, their earlier projects, and how a launch worked. In The Frenz, I wrote reports with my thesis and whether I was considering a quick trade or a longer hold. I also negotiated allowlist spots with other projects and ran draws for members.
+
+We planned our own NFT collection as a membership pass, with character art by Hozer, an artist in Korea introduced by a mutual college friend. We developed the art, lore, and whitepaper, then chose not to launch after the market shifted.
+
+Running the Discord was a much bigger commitment than I’d expected. We held Friday-night games and movie sessions, managed moderators, and I spent a lot of time starting conversations. I’d assumed people would stay engaged once we gave them a place to gather. Quiet chats turned out to be hard to revive.
+
+That’s why I held off when GradSimple subscribers later asked for a Discord or Slack group. I knew it would need structure and someone actively bringing people together, and we weren’t ready to commit to that.
 
 Outcomes:
 
@@ -260,27 +326,32 @@ Outcomes:
 
 ### How Cooked Is Your Career?
 
-A seven-question career check-in with a “cooked score.” An early Base44 experiment.
+An interactive career quiz that turns answers about skills, direction, and AI into a playful “cooked score.”
 
-I wanted to try a lighter way to get someone thinking about their career. So I built a seven-question check-in that gives you a “cookedness” score out of 100. This was one of my early Base44 experiments!
+I wanted to give people watching GradSimple on TikTok and YouTube a fun reason to click through to the newsletter. A shareable career quiz seemed worth a try. This was our first quiz-style lead magnet for those audiences.
 
-It asks about Sunday-night dread, whether you use your skills at work, and how you feel about your future. Answer all seven and it gives you a result to reflect on. The link goes to the original Base44 build.
+I made a seven-question prototype in Base44, then a ten-question version for the GradSimple site with Claude Code. In the GradSimple version, questions about career direction, skills, the job market, and AI add up to a “cooked score” out of 100, a playful result, and an invitation to join GradSimple.
 
-[Try the quiz](https://career-cooked-check.base44.app/)
+It didn’t go viral, and it barely moved subscriber growth.
+
+[Try the original Base44 quiz](https://career-cooked-check.base44.app/)
 
 [Project story on Tyler’s site](projects.html#career-quiz)
 
 ### Kawaii Peach
 
-An online store started after two cancelled internships, selling apparel and accessories.
+An online store selling K-pop merch, clothing, and cute accessories.
 
-Grace and I both lost our internships when the pandemic hit in 2020. Neither of us knew ecommerce, but we decided to start an online store anyway! We ran Kawaii Peach from March 2020 to March 2021, figuring out products, pricing, the storefront, and customer service as we went.
+- $30,000+ in online-store sales
+- Nearly 10,000 Instagram and Facebook followers within three months
 
-A lot of the work was getting people to find us. We planned the Instagram feed, worked on the content, ran ads, and tracked how posts and stories performed. Our social content had a 7% engagement rate!
+After our internship plans fell through during the pandemic, my wife Grace and I wanted to create some work experience for ourselves. We read about dropshipping and tried running a Shopify store. Dog beds and toys didn’t sell (we didn’t even own a dog!), so we rebuilt the store around cute accessories. That became Kawaii Peach.
 
-We also worked on SEO, getting pages onto the first page of Google.
+We’d run across our apartment to show each other Shopify order notifications. Actual strangers buying our stuff! But our cute water bottles weren’t leaving us any profit after ads. So we tried related products for the same customer. Cheaper phone cases and K-pop merch brought multi-item orders, while clothing gave us better margins.
 
-We both ended up using the experience to help land our first jobs.
+We split the work and learned as we went. Grace led social media and customer service; I handled pricing and finances. I built a blog, started figuring out SEO and A/B testing, and filmed our ads. They were… a start.
+
+After about a year, sales slowed and we closed it. The store still helped us land our first jobs, and we carried the website, blog, and advertising experience into GradSimple. By then, getting a site running and starting to find an audience felt a lot less foreign.
 
 Outcomes:
 

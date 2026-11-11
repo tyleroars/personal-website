@@ -28,6 +28,8 @@ export const publicationDate = value => new Date(value).toLocaleDateString('en-C
 
 // Kept in source HTML too, so local previews and view-source remain consistent.
 export function applyPageMetadata(html, page) {
+  html = html.replace(/<link\b(?=[^>]*\brel=["'](?:icon|shortcut icon|apple-touch-icon)["'])[^>]*>/gi, '');
+  const icons = '<link rel="icon" type="image/x-icon" href="/assets/favicon-v7.ico"><link rel="icon" type="image/png" sizes="32x32" href="/assets/tyler-mark-v7-32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/tyler-mark-v7-16.png"><link rel="apple-touch-icon" sizes="180x180" href="/assets/tyler-mark-v7-180.png">';
   const values = new Map([
     ['description',page.description], ['og:title',page.article?.title || page.title],
     ['og:description',page.description], ['og:type',page.article?'article':'website'],
@@ -43,6 +45,6 @@ export function applyPageMetadata(html, page) {
     found.add(key);
     return `<meta ${key.startsWith('og:')?'property':'name'}="${key}" content="${encode(values.get(key))}">`;
   });
-  return html.replace('</head>', [...values].filter(([key]) => !found.has(key)).map(([key,value]) =>
+  return html.replace('</head>', icons+[...values].filter(([key]) => !found.has(key)).map(([key,value]) =>
     `<meta ${key.startsWith('og:')?'property':'name'}="${key}" content="${encode(value)}">`).join('')+'</head>');
 }
