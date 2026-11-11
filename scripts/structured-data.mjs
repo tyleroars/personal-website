@@ -29,7 +29,7 @@ export function structuredData(page, html, shareImageUrl) {
   if (collection) {
     let items=[];
     if (page.route==='/writing') items=pages.filter(p=>p.article).map(p=>({name:p.article.title,url:origin+p.route}));
-    if (page.route==='/projects') items=projects.map(p=>({name:p.title,url:origin+'/projects#'+p.id}));
+    if (page.route==='/projects') items=projects.map(p=>({name:p.title,url:origin+'/projects#'+(p.id==='huddle'?'huddledex':p.id)}));
     if (page.route==='/interviews') items=interviewArchive.map(p=>({name:p.title,url:p.url}));
     const list={'@type':'ItemList','@id':url+'#list',numberOfItems:items.length,itemListElement:items.map((item,index)=>({'@type':'ListItem',position:index+1,...item}))};
     webpage.mainEntity={'@id':list['@id']};graph.push(list);

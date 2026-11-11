@@ -11,9 +11,14 @@ const paragraph=value=>value ? value+'\n\n' : '';
 function projectText(project){
   const anchor=project.id==='huddle'?'huddledex':project.id;
   let text=`### ${project.title}\n\n${project.desc}\n\n`;
+  if(project.results?.length)text+=project.results.map(result=>`- ${result.value} ${result.label}`).join('\n')+'\n\n';
   text+=project.story.map(paragraph).join('');
   text+=(project.eventStory||[]).map(paragraph).join('');
   if(project.outcomes?.length) text+='Outcomes:\n\n'+project.outcomes.map(item=>'- '+item).join('\n')+'\n\n';
+  if(project.measurement){
+    text+=`#### ${project.measurement.kind==='cost'?'Cost comparison':'Time-saving estimate'}\n\n`+project.measurement.notes.map(paragraph).join('');
+    if(project.measurement.sourceUrl)text+=paragraph(link(project.measurement.sourceLabel,project.measurement.sourceUrl)+' · Checked '+project.measurement.checkedDate);
+  }
   if(project.visibility?.length){
     text+=`#### Search & AI visibility (${project.visibilityPeriod})\n\n`+project.visibility.map(item=>'- '+item).join('\n')+'\n\n';
     // Retain the scope notes already present in the public profile and project document.
