@@ -136,5 +136,14 @@
   "/writing/an-ai-buddy-that-lives-on-your-mac": {
     "title": "MCP Explained & an AI Companion for Mac | Tyler Yip",
     "description": "Why I started AI Worth Trying, a simple explanation of MCP, and my first impressions of Clicky, an AI companion that can see your Mac’s screen."
+  },
+  "/tokens": {
+    "title": "Token Usage | Tyler Yip",
+    "description": "Tyler Yip’s Codex profile activity, with matching daily, monthly, weekday, and running totals from the official account report. Work activity is excluded.",
+    "cardTitle": "Token Usage",
+    "cardLines": [
+      "My Codex usage,",
+      "in numbers."
+    ]
   }
 }

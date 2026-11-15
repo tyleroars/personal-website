@@ -19,6 +19,10 @@ This is the public profile for Tyler’s personal website. It contains a substan
 - LinkedIn: https://www.linkedin.com/in/tyleryip/
 - GitHub: https://github.com/tyleroars
 
+## AI usage records
+
+[Token Usage](https://itstyleryip.com/tokens) shows personal account activity from OpenAI’s documented account/usage/read endpoint. The headline and daily, monthly, weekday, and cumulative token charts all use the same official daily report and reconcile exactly. Work activity is excluded. The returned dates begin March 20, 2026; this does not establish coverage of ChatGPT use since 2023. The page does not infer unavailable hourly, model, or token-type breakdowns. [Source and text summary](https://itstyleryip.com/tokens.md). [Aggregate dataset](https://itstyleryip.com/data/token-usage.json).
+
 ## About Tyler, in his words
 
 I’m from Singapore, now in Vancouver. I work with customers at Knak and run GradSimple, where I get to be a little nosy about people’s careers.

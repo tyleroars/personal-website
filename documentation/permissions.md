@@ -3,6 +3,7 @@
 | Resource / operation | Public visitor or bot | GitHub read-only user | Repository maintainer | Cloudflare deploy identity |
 | --- | --- | --- | --- | --- |
 | Read published HTML, media, Markdown and agent files | Yes | Yes | Yes | Yes |
+| Refresh personal account aggregate | No | No | Authorized local operator through the existing Codex CLI login | No account access; deployment uses the saved public aggregate only |
 | Change public source or merge to main | No | No | GitHub write permission | No source access beyond installed app grants |
 | Create release / attach backup | No | No | GitHub release permission; Actions token for archival | No |
 | Deploy or roll back Worker | No | No | Only with separately authorized Cloudflare access | Existing scoped account permission |
