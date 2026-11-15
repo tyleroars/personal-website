@@ -34,6 +34,13 @@
     "type": "image/png",
     "alt": "Interviews, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
   },
+  "/tokens": {
+    "file": "assets/social/tokens-3b0afc5cefe8.png",
+    "width": 2400,
+    "height": 1260,
+    "type": "image/png",
+    "alt": "Token Usage, by Tyler Yip. An illustrated Tyler and a dotted rainbow on a charcoal background."
+  },
   "/huddledex-browser/": {
     "file": "assets/social/huddledex-browser-71f29b3844fc.png",
     "width": 2400,

@@ -15,12 +15,15 @@
 | Story history | Correct URL, direct arrival, close/Back/Forward, reload, category hash and legacy aliases | project-navigation.test.mjs | Automated with simulated browser history; real browser journey also checked |
 | Initial content | Page copy, 85 interview rows, 21 writing entries and all no-script project stories are present; unused collection datasets are not loaded | production-pages.mjs, launch.test.mjs | Automated |
 | Responsive images | Variants exist at declared widths; previews stay separate from gallery originals | production-pages.mjs, launch.test.mjs | Automated |
+| Token integrity and privacy | One whitelisted account aggregate supplies the headline and every chart; invalid dates, missing data and mismatches fail export/render | account-token-usage.test.mjs, launch.test.mjs; token-usage-updates.md | Existing automated |
+| Gallery delivery | Every display variant and thumbnail exists within size limits; only adjacent images warm after load, and stale load events cannot clear the new image's loading state | gallery-controls.test.mjs, launch.test.mjs; tokens-and-gallery.md | Existing automated |
+| Arch motion | Tiles preserve clearance and scene bounds at all tested rotations; cursor influence fades to zero and springs settle on the short axis | launch.test.mjs; about-project-refinement.md | Existing automated; visual behavior reviewed separately |
 | Browser cache | Matching fingerprints cache immutably; stale assets and HTML revalidate; ETag matches return empty 304 responses | build.mjs, launch.test.mjs | Automated |
 | Preview indexing | Public noncanonical hosts are noindex; canonical production pages remain indexable | build.mjs, launch.test.mjs | Automated |
 | Tool value estimates | Published percentages reconcile with stored before/after assumptions; Lightroom comparison includes CAD pricing, billing scope, source and avoided-cost wording; reader and agent documents contain the same methods | launch.test.mjs; projects.js; sync-project-text.mjs | Automated arithmetic and content synchronization; estimates are not measured user averages |
 | Routes | Canonical redirects, UTF-8, HEAD, 405 for document POST, noindex text and real 404 | generated Worker, launch.test.mjs; flows.md | Existing automated |
 | Archive | Clean tagged checkout, matching tag/version/commit, file checksums; refuses mismatch/dirty source | package-release.mjs, release.yml; releases.md | Existing release-job checks |
-| Deployment | Expected live version/commit; all 27 HTML routes, 27 PNG cards, current scripts/agent documents, redirect and 404 | verify-live.mjs; releases.md | Existing operator-run live check, not a PR gate |
+| Deployment | Expected live version/commit; all 28 HTML routes, 28 PNG cards, current scripts/agent documents, redirect and 404 | verify-live.mjs; releases.md | Existing operator-run live check, not a PR gate |
 
 ## Proposed tests
 
@@ -126,3 +129,7 @@ The suite proves code and packaged resources, not search ranking, audience claim
 - Navigation, theme persistence, reader disclosure/Escape focus and mailto target checked. No horizontal overflow, missing alt attributes, broken loaded images or browser console issues found in the review.
 - Agent-content checks now include About paragraphs and Work bullets, skills, headings and role/date lines. Existing project synchronization passes; both profiles’ review dates are November 11. All 20 checks pass.
 - Latest local page-type Lighthouse measurements: performance 98–100, automated accessibility 100, CLS 0. Earlier baseline performance ranged 96–100. Full scope, findings, per-page figures and limitations: [site-wide-qa.md](site-wide-qa.md). Preview only; no deployment.
+
+## Tokens and responsive galleries, November 11 preview
+
+28 automated checks cover the official account aggregate, static token HTML, JSON route, explicit source validation, rejected missing/mismatched values, real calendar dates, duplicate-date rejection, public-data privacy, and reconciliation of every chart to the headline. The former local parser tests have been replaced by tests for the current official endpoint contract. Local thread sums and partial local breakdowns are no longer public inputs. All 51 gallery shots retain verified responsive files and small thumbnails, with tests for adjacent warming, retained previews and stale load events. See [source and delivery notes](tokens-and-gallery.md).

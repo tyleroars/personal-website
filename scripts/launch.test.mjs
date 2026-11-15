@@ -135,7 +135,7 @@ test('fingerprinted text assets cache safely, conditional requests revalidate, p
 });
 test('every page has accurate metadata, structured data and its own valid sharing image',()=>{
   const htmlPages=walk(root).filter(p=>p.endsWith('.html')&&!p.endsWith('/404.html'));
-  assert.equal(htmlPages.length,28);
+  assert.equal(htmlPages.length,pages.flatMap(page=>page.files).length);
   const descriptions=new Set(),images=new Set();
   for(const page of pages){
     assert.ok(!descriptions.has(page.description),'Duplicate description: '+page.route);
@@ -197,7 +197,7 @@ test('every page has accurate metadata, structured data and its own valid sharin
     assert.ok(Math.abs(shareImage.width/shareImage.height-1.91)<.01);
     assert.ok(image.length<5*1024*1024);
   }
-  assert.equal((read('sitemap.xml').match(/<loc>/g)||[]).length,26);
+  assert.equal((read('sitemap.xml').match(/<loc>/g)||[]).length,pages.filter(page=>!page.noindex).length);
   assert.ok(!read('sitemap.xml').includes('huddledex-browser'));
   assert.match(read('robots.txt'),/Allow: \//);
 });
@@ -323,4 +323,76 @@ test('live Worker serves redirects, UTF-8 text, HEAD and genuine 404 responses',
   }
   const sitemap=await worker.fetch(new Request(origin+'/sitemap.xml'));
   for(const loc of (await sitemap.text()).matchAll(/<loc>(.*?)<\/loc>/g))assert.equal((await worker.fetch(new Request(loc[1]))).status,200,loc[1]);
+});
+
+test('project readers use real responsive assets and lightweight thumbnails throughout',async()=>{
+ const checked=new Set();let count=0;
+ for(const project of data.projects)for(const shot of [...(project.previewImages||[]),...(project.screenshots||[]),...(project.gallery||[])]){
+  assert.ok(shot.variants?.length);assert.ok(shot.displaySrc);count++;
+  for(const candidate of shot.variants){
+   if(checked.has(candidate.src))continue;checked.add(candidate.src);
+   const file=path.join(root,'client/assets',candidate.src),bytes=fs.readFileSync(file),meta=await sharp(bytes).metadata();
+   assert.equal(meta.width,candidate.width);assert.match(candidate.src,/gallery-[a-f0-9]{12}-\d+\.webp$/);
+   assert.ok(bytes.length<350000,'Oversized reader image: '+candidate.src);
+  }
+  assert.ok(fs.statSync(path.join(root,'client/assets',shot.thumb)).size<8000,'Oversized gallery thumbnail');
+ }
+ assert.equal(count,51);
+});
+
+test('the token page has static figures, a served aggregate dataset, and no extra scripts on other pages',async()=>{
+ const worker=(await import('../dist/server/index.js')).default,response=await worker.fetch(new Request(origin+'/data/token-usage.json'));
+ assert.equal(response.status,200);assert.equal(response.headers.get('Content-Type'),'application/json; charset=utf-8');assert.equal(response.headers.get('X-Robots-Tag'),'noindex');
+ const snapshot=await response.json(),total=snapshot.summary.lifetimeTokens,html=read('tokens.html');
+ assert.ok(html.includes('<h1>Token Usage</h1>'));assert.ok(html.includes('<title>Token Usage | Tyler Yip</title>'));
+ assert.ok(html.includes(new Intl.NumberFormat('en-CA').format(total)));assert.ok(html.includes('class="token-calendar"'));assert.ok(html.includes('class="token-cumulative"'));assert.ok(html.includes('class="token-month-chart"'));assert.ok(html.includes('By weekday'));assert.doesNotMatch(html,/<details\b|token-source-controls|Read the daily figures|token-method|recorded tokens|—/i);assert.ok(html.includes('I also use Codex, Claude, and Glean at work, which isn’t included here.'));assert.deepEqual(snapshot.scope,{account:'personal',excludesWork:true,historicalChatGPTCoverage:'not verified'});assert.ok(read('tokens.md').includes(new Intl.NumberFormat('en-CA').format(total)));
+ for(const file of ['index.html','projects.html','writing.html','work.html','interviews.html'])assert.doesNotMatch(read(file),/<script\b[^>]*src="[^"\n]*(?:token-view|token-usage-data|tokens)\.js/);
+});
+
+test('dense rainbow tiles retain clearance at every rotation and stay within the scene',()=>{
+ const context=vm.createContext({document:{querySelector:()=>null}});
+ vm.runInContext(fs.readFileSync(new URL('../src/rainbow.js',import.meta.url),'utf8'),context);
+ for(const [width,height] of [[400,225],[340,200],[300,175],[271,175]]){
+  context.width=width;context.height=height;
+  const tiles=vm.runInContext('createRainbowTiles(width,height)',context);
+  assert.equal(tiles.length,115);
+  for(const a of tiles){
+   const radius=(a.length+a.stroke)/2;
+   assert.ok(a.x-radius>=0&&a.x+radius<=width&&a.y-radius>=0&&a.y+radius<=height,'A rotating tile would clip at the scene edge');
+   context.piece=a;
+   for(let n=0;n<180;n++){
+    const angle=n*Math.PI/180;context.angle=angle;
+    const half=vm.runInContext('rainbowHalfLength(piece,angle)',context);
+    assert.ok(half>=0&&half<=a.length/2);
+    // Each complete capsule stays on its side of every shared cell boundary.
+    // Both adjacent capsules leave half the gap, even at different rotations.
+    for(const edge of a.neighbors){
+     const reach=half*Math.abs(Math.cos(angle)*edge.nx+Math.sin(angle)*edge.ny)+a.stroke/2;
+     assert.ok(reach<=(edge.distance-a.gap)/2+1e-9,'Rotating capsules can cross their clearance boundary');
+    }
+   }
+  }
+ }
+});
+
+test('cursor influence fades continuously and returns to zero away from the tile field',()=>{
+ const context=vm.createContext({document:{querySelector:()=>null}});
+ vm.runInContext(fs.readFileSync(new URL('../src/rainbow.js',import.meta.url),'utf8'),context);
+ context.tiles=vm.runInContext('createRainbowTiles(400,225)',context);
+ context.left=context.tiles.reduce((a,b)=>a.x<b.x?a:b);
+ assert.equal(vm.runInContext('rainbowInfluence(left.x-15,left.y,tiles,400,225)',context),1);
+ assert.ok(Math.abs(vm.runInContext('rainbowInfluence(left.x-64,left.y,tiles,400,225)',context)-.5)<1e-9);
+ assert.equal(vm.runInContext('rainbowInfluence(left.x-120,left.y,tiles,400,225)',context),0);
+});
+
+test('magnetic tile springs take the short axis rotation and settle without perpetual animation',()=>{
+ const context=vm.createContext({document:{querySelector:()=>null}});
+ vm.runInContext(fs.readFileSync(new URL('../src/rainbow.js',import.meta.url),'utf8'),context);
+ for(const [start,target] of [[Math.PI*.49,-Math.PI*.49],[0,Math.PI],[0,Math.PI/3]]){
+  context.piece={angle:start,velocity:0};context.target=target;
+  vm.runInContext('for(let n=0;n<180;n++)stepRainbowAngle(piece,target,1/120)',context);
+  assert.ok(Math.abs(vm.runInContext('rainbowAxisTurn(target-piece.angle)',context))<.001);
+  assert.ok(Math.abs(context.piece.velocity)<.003);
+  assert.ok(Math.abs(context.piece.angle-start)<=Math.PI/2+.01,'A tile took a long rotation across its equivalent line axis');
+ }
 });

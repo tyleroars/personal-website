@@ -15,7 +15,7 @@ export function pageRenderer(root){
   const end=source.indexOf('\nconst dialog=');
   if(end<0)throw new Error('Missing static-page rendering boundary');
   const template=source.slice(0,end);
-  const data=['projects.js','interviews.js','writing.js'].map(name=>fs.readFileSync(path.join(root,'src',name),'utf8')).join('\n');
+  const data=['projects.js','interviews.js','writing.js','token-usage-data.js','token-view.js'].map(name=>fs.readFileSync(path.join(root,'src',name),'utf8')).join('\n');
   return (html,page)=>{
     if(!/<body\b[^>]*data-design="combined"/.test(html))return html;
     const article=html.match(/<article\b[^>]*class="writing-article"[\s\S]*?<\/article>/)?.[0];
@@ -56,13 +56,37 @@ export async function productionMedia(root,dist){
     return 'assets/'+name;
   }
   for(const p of projects){
-    const images=p.id==='huddle'?[p.screenshots[1],p.screenshots[4],p.screenshots[6]]:(p.previewImages||[]).slice(0,3);
+    const images=p.id==='huddle'?[p.screenshots[1],p.screenshots[4],p.screenshots[6]]:(p.previewImages||[]).slice(0,1);
     for(const image of images)if(!previews.has('assets/'+image.src)){
       const {width}=await sharp(path.join(root,'src/assets',image.src)).metadata();
-      const smallWidth=Math.min(320,width),largeWidth=Math.min(640,width);
-      previews.set('assets/'+image.src,{small:await resized(image.src,smallWidth),large:await resized(image.src,largeWidth),smallWidth,largeWidth});
+      const smallWidth=Math.min(320,width),largeWidth=Math.min(640,width),retinaWidth=Math.min(960,width);
+      previews.set('assets/'+image.src,{small:await resized(image.src,smallWidth),large:await resized(image.src,largeWidth),smallWidth,largeWidth,retina:await resized(image.src,retinaWidth),retinaWidth});
     }
   }
+  // Readers and project rows have their own responsive media sizes;
+  // full gallery originals are not needed for list previews.
+  const galleryMedia=new Map();
+  for(const p of projects)for(const group of ['screenshots','previewImages','gallery'])for(const shot of p[group]||[]){
+    const key=shot.src+'|'+(shot.cropHeight||'');
+    if(!galleryMedia.has(key)){
+      const input=path.join(root,'src/assets',shot.src),meta=await sharp(input).metadata();
+      const photo=group==='gallery'||(p.id==='hackathon'&&/team|present|event/i.test(shot.alt||''));
+      const variants=[];
+      for(const width of [...new Set([480,960,1600].map(w=>Math.min(w,meta.width)))]){
+        let image=sharp(input);
+        if(shot.cropHeight)image=image.extract({left:0,top:0,width:meta.width,height:Math.min(shot.cropHeight,meta.height)});
+        const bytes=await image.resize({width,withoutEnlargement:true}).webp({quality:photo?76:86,effort:4}).toBuffer();
+        const src=`optimized/gallery-${digest(bytes)}-${width}.webp`;fs.writeFileSync(path.join(dist,'assets',src),bytes);variants.push({src,width});
+      }
+      const thumbInput=path.join(root,'src/assets',shot.thumb||shot.src);
+      const bytes=await sharp(thumbInput).resize({width:112,height:96,fit:'inside',withoutEnlargement:true}).webp({quality:72}).toBuffer();
+      const thumb=`optimized/gallery-thumb-${digest(bytes)}.webp`;fs.writeFileSync(path.join(dist,'assets',thumb),bytes);
+      galleryMedia.set(key,{variants,displaySrc:variants[Math.min(1,variants.length-1)].src,thumb});
+    }
+    Object.assign(shot,galleryMedia.get(key));
+  }
+  // Only the compiled public dataset changes; narrative source and originals stay intact.
+  fs.writeFileSync(path.join(dist,'projects.js'),'const projects='+JSON.stringify(projects)+';\n');
   const mascot={small:await resized('tyler-mascot-v1.webp',256,86),large:await resized('tyler-mascot-v1.webp',384,86)};
   const portrait={small:await resized('optimized/1372408ed4e1.webp',80,86),large:await resized('optimized/1372408ed4e1.webp',160,86)};
   const portraits=new Map();
@@ -88,7 +112,10 @@ export async function productionMedia(root,dist){
       let imageIndex=0;const currentStrip=stripIndex++;
       body=body.replace(/<img\b[^>]*>/g,tag=>{
         const src=tag.match(/\bsrc="([^"]+)"/)?.[1],image=previews.get(src);if(!image)return tag;
-        tag=tag.replace(`src="${src}"`,`src="${image.small}" srcset="${image.small} ${image.smallWidth}w, ${image.large} ${image.largeWidth}w" sizes="${open.includes('huddle-preview')?'(max-width:640px) 75px, 80px':'(max-width:640px) 140px, 170px'}"`);
+        const huddle=open.includes('huddle-preview');
+        const sizes=huddle?'(max-width:408px) calc((100vw - 64px) / 3), 115px':'(max-width:408px) calc(100vw - 48px), 360px';
+        const variants=[...new Map([[image.smallWidth,image.small],[image.largeWidth,image.large],[image.retinaWidth,image.retina]]).entries()].map(([w,url])=>`${url} ${w}w`).join(', ');
+        tag=tag.replace(`src="${src}"`,`src="${image.small}" srcset="${variants}" sizes="${sizes}"`);
         if(currentStrip===0)tag=tag.replace('loading="lazy"',`loading="eager"${imageIndex===0?' fetchpriority="high"':''}`);
         imageIndex++;return tag;
       });return open+body+close;

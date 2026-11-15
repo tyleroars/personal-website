@@ -26,7 +26,7 @@ const walk = dir => fs.readdirSync(dir, {withFileTypes:true}).flatMap(e => e.isD
 // Change internal HTML route references in HTML, JS, and public agent documents.
 // Keep Markdown and external project URLs intact.
 function links(text) {
-  return text.replace(/(?<=["'(`\s])(?:writing\/[a-z0-9-]+\.html|(?:home|index|projects|work|interviews|writing)\.html)(?=[#?"')`\s<])/g,
+  return text.replace(/(?<=["'(`\s])(?:writing\/[a-z0-9-]+\.html|(?:home|index|projects|work|interviews|writing|tokens)\.html)(?=[#?"')`\s<])/g,
     match => routes.get(match) || match).replace('writing/${E(p.slug)}.html','/writing/${E(p.slug)}');
 }
 for (const file of walk(dist)) {
@@ -90,8 +90,8 @@ fs.writeFileSync(path.join(dist,'_redirects'), [
   '/favicon.ico /assets/favicon.ico 301',
   '/home.html / 301','/index.html / 301','/about / 301','/about/ / 301',
   '/ai /projects 301','/ai/ /projects 301',
-  ...['projects','writing','work','interviews'].map(r=>`/${r}/ /${r} 301`),
-  ...['projects','writing','work','interviews'].map(r=>`/${r}.html /${r} 301`)
+  ...['projects','writing','work','interviews','tokens'].map(r=>`/${r}/ /${r} 301`),
+  ...['projects','writing','work','interviews','tokens'].map(r=>`/${r}.html /${r} 301`)
 ].join('\n')+'\n');
 fs.writeFileSync(path.join(dist,'_headers'), `/*\n  Cache-Control: public, max-age=0, must-revalidate\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n/assets/*\n  Cache-Control: public, max-age=86400\n/assets/optimized/*\n  Cache-Control: public, max-age=31536000, immutable\n/llms.txt\n  Content-Type: text/plain; charset=utf-8\n/llms-full.txt\n  Content-Type: text/plain; charset=utf-8\n/*.md\n  Content-Type: text/markdown; charset=utf-8\n/writing/*.md\n  Content-Type: text/markdown; charset=utf-8\n`);
 console.log(`Built ${unique.length} indexable routes; ${walk(dist).length} public files.`);
@@ -100,7 +100,7 @@ console.log(`Built ${unique.length} indexable routes; ${walk(dist).length} publi
 const documents={};
 for(const file of walk(dist)) {
   const relative=path.relative(dist,file).split(path.sep).join('/');
-  if((relative==='version.json'||/\.(html|js|css|txt|md|xml|svg)$/.test(file)) && !relative.startsWith('assets/')) {
+  if((relative==='version.json'||relative==='data/token-usage.json'||/\.(html|js|css|txt|md|xml|svg)$/.test(file)) && !relative.startsWith('assets/')) {
     documents['/'+relative]=fs.readFileSync(file,'utf8');
   }
 }

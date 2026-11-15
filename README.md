@@ -54,3 +54,7 @@ All personal pages include their metadata, lists and main copy before JavaScript
 This repository contains public portfolio material. It excludes private customer workflows, internal evidence archives, resumes and personal notebook data. The HuddleDex browser starter uses synthetic examples and keeps its data in the visitor's browser.
 
 Writing and photographs belong to their respective authors. Interview excerpts link to the published GradSimple stories. Third-party icon licenses and attribution are included in `src/assets/icons/`.
+
+## Token usage snapshot
+
+`npm run tokens:refresh` reads OpenAI’s documented `account/usage/read` endpoint through the existing authenticated Codex CLI. It starts no model turn and does not read credentials or local conversation files. The headline and all token charts use the same official daily buckets; a missing or mismatched total stops export before replacing the saved snapshot. Normal CI builds use the checked-in aggregate and never contact the account. See [source, coverage and gallery delivery](documentation/tokens-and-gallery.md). A local scheduled task runs daily at 9:00 a.m. America/Vancouver. Once this feature is released, it publishes validated data-only pull requests from production main. It never releases an unfinished feature branch. The Mac and desktop app must be running and the CLI signed in. See the [daily update runbook](documentation/token-usage-updates.md) for the publication gate, checks and recovery.

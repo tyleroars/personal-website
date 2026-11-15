@@ -10,6 +10,7 @@ const sections = [
   ['/writing', ['writing.html'], 'writing.md'],
   ['/work', ['work.html'], 'work.md'],
   ['/interviews', ['interviews.html'], 'interviews.md'],
+  ['/tokens', ['tokens.html'], 'tokens.md'],
   ['/huddledex-browser/', ['huddledex-browser/index.html'], null]
 ];
 export const pages = [

@@ -6,6 +6,16 @@ Named releases are saved at [GitHub Releases](https://github.com/tyleroars/perso
 
 No pending changes.
 
+## v1.3.0 · 2026-11-15
+
+- Added Token Usage with a daily calendar, monthly and weekday charts, and a running total. Every chart reconciles exactly with the Codex Tokens headline. The page supports pointer, touch and keyboard inspection, and includes its figures before JavaScript runs.
+- Connected the page to a public aggregate from the documented account-usage endpoint. Work activity is excluded. A local daily refresh validates data before preparing checked data-only pull requests; unavailable or inconsistent data preserves the previous snapshot. The Mac, desktop app and existing login must be available for refreshes.
+- Kept project titles first and grouped descriptions, outcomes and previews consistently. Values use the Work page's sage highlight, with labels beneath and separators between multiple figures. Web projects show one preview; HuddleDex's three phone screens share the same overall width. Full galleries remain in the readers.
+- Improved all 51 gallery images with responsive display files, lightweight placeholders, reserved layout space and adjacent-image preloading. Retained gallery endpoints, captions, keyboard navigation and touch gestures.
+- Refined About's arch with denser staggered tiles, a left-to-right gradient and independent cursor-responsive movement. The mascot stays fixed, the arch returns to rest when the cursor moves away, and animation respects reduced motion and pauses offscreen.
+- Added Token Usage to About and navigation, with a dedicated sharing card, search metadata, text summary and synchronized LLM documents.
+- Completed desktop, narrow-mobile and both-theme review. All 31 automated checks pass, including token reconciliation, gallery loading and arch clearance/reset behavior.
+
 ## v1.2.0 · 2026-11-11
 
 - Replaced the initials favicon with Tyler’s selected Solid join mark across browser icons and touch icons.

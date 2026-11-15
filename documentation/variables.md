@@ -11,6 +11,7 @@
 | Local Cloudflare OAuth login | Authorized manual operator | Wrangler's external login storage | Never copy into repo or release. Reauthenticate/revoke through Wrangler/Cloudflare as needed. |
 | `GH_TOKEN` | Release job only | Ephemeral `github.token` with repository contents write | Automatically expires after the job. Never echoed, written into the archive or sent to browser. |
 | `RELEASE_TAG` | Release packaging job | GitHub release event | Public input, must exactly equal `v` plus the package version. |
+| Existing Codex CLI login | Local usage exporter only | CLI-managed authentication outside the repository | Used only for the documented read-only account-usage request. Never read, copied, printed, or bundled by the exporter. Reauthenticate through the CLI if unavailable. |
 | `GITHUB_REPOSITORY` | Release upload job | GitHub Actions context | Public repository target; script does not accept a secret-based alternate endpoint. |
 | `tyler-theme` / `tyler-rainbow-seen` | Browser localStorage / sessionStorage | Visitor's browser | Theme preference and animation state only. Storage denial is tolerated. |
 
