@@ -56,7 +56,7 @@ test('touch gestures change images only for an intentional horizontal swipe',()=
 
 test('responsive galleries reserve space, retain a preview, and warm only adjacent images after loading',()=>{
  const app=setup(8,true);
- assert.equal(app.image.src,'assets/large-0.webp');assert.match(app.image.srcset,/small-0.webp 480w/);assert.match(app.image.sizes,/65vh/);
+ assert.equal(app.image.src,'assets/large-0.webp');assert.match(app.image.srcset,/small-0.webp 480w/);assert.match(app.image.sizes,/35rem, 600px, calc\(min\(29rem, 60dvh\) \* 0\.75\)/);
  assert.equal(app.placeholder.src,'assets/thumb-0.webp');assert.equal(app.placeholder.hidden,false);assert.equal(app.stage.style['--gallery-ratio'],.75);
  assert.equal(app.warmed.length,0);
  app.image.complete=true;app.image.naturalWidth=600;app.image.events.load();

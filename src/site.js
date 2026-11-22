@@ -65,7 +65,16 @@ function imageGallery(shots,label,heading='Project images'){
 }
 function initGalleries(){
  const warmed=new Map();
- function responsive(shot){const ratio=shot.width/(shot.cropHeight||shot.height);return {src:'assets/'+(shot.displaySrc||shot.src),srcset:(shot.variants||[]).map(v=>`assets/${v.src} ${v.width}w`).join(', '),sizes:`(max-width:640px) min(calc(100vw - 40px), calc(65vh * ${ratio})), min(800px, calc(70vh * ${ratio}))`};}
+ function responsive(shot){
+  const ratio=shot.width/(shot.cropHeight||shot.height);
+  // Match the reader column and the gallery stage's height cap.
+  const limits=`35rem, ${shot.width}px, calc(min(29rem, 60dvh) * ${ratio})`;
+  return {
+   src:'assets/'+(shot.displaySrc||shot.src),
+   srcset:(shot.variants||[]).map(v=>`assets/${v.src} ${v.width}w`).join(', '),
+   sizes:`(max-width:640px) min(calc(100vw - 48px), ${limits}), min(calc(100vw - 98px), ${limits})`
+  };
+ }
  function warm(shot){if(!shot||typeof Image==='undefined')return;const media=responsive(shot);if(warmed.has(media.src))return;const next=new Image();next.decoding='async';next.fetchPriority='low';next.sizes=media.sizes;next.srcset=media.srcset;next.src=media.src;warmed.set(media.src,next);}
  dialog.querySelectorAll('.image-gallery').forEach(gallery=>{
   const shots=JSON.parse(gallery.dataset.shots),image=gallery.querySelector('.gallery-image'),placeholder=gallery.querySelector('.gallery-placeholder'),stage=gallery.querySelector('.gallery-stage'),status=gallery.querySelector('.gallery-loading'),retry=gallery.querySelector('.gallery-retry');let index=0;

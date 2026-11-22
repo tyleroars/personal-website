@@ -207,25 +207,28 @@ My account was banned in August, which ended that experiment.
 
 [Project story on Tyler’s site](projects.html#gradsimple)
 
-### BVRobin
+### DevDay Exchange Community Hackathon: BVRobin
 
-A desktop coach for customer success calls that flags renewal risks, suggests a follow-up question, and keeps track of next steps.
+A desktop coach that helps customer success managers spot renewal risks and decide what to ask while the call is still happening.
 
-A renewal call can change halfway through a sentence. A customer says IT wants to consolidate tools, and suddenly you need to figure out whether the decision is made and what you can still influence. A transcript is useful later. In the moment, you need one good question.
+- $100,000 in potential renewal revenue from retaining 1 percentage point more of a $10M renewal portfolio
 
-I worked on BVRobin with Viswanath Priyatham Javvaji at the DevDay Exchange Community Hackathon in Vancouver. I simplified the coach interface and added the call timeline so you can see what prompted a suggestion and return to it after the call.
+Renewals are the most stressful part of my job. Imagine you’re halfway through a call about a $100,000 renewal and the customer tells you they might switch. You’ve got seconds to figure out what to ask before the conversation moves on. That’s the moment Vish and I built BVRobin for.
 
-In a live session, ElevenLabs Scribe streams the transcript and OpenAI can suggest a question based on the conversation and the account brief. The coach stays on top of the meeting, and the call workspace keeps key details and next steps together.
+We built and tested it with Codex at the Vancouver hackathon. I simplified the coach interface and added a timeline so you can go back to the moment that prompted a suggestion. During a call, the coach sits beside the meeting window. ElevenLabs transcribes the conversation, and OpenAI uses what’s been said and the account brief to suggest a next move.
 
-The guided demo uses a fictional renewal. When a sponsor brings up moving to one platform, the coach first asks whether IT has made the decision. When it learns there’s still room to evaluate, it suggests testing the workflow the customer said they can’t afford to lose.
+In our demo, the customer told me they were cutting 25 seats and Finance wanted a lower bill. I asked whether the price had to drop or whether Finance could approve last year’s price. Turns out last year’s price was the ceiling, and the team still needed to get through the same amount of work. That gave me a clear next step: price out a way to cover the workload with fewer seats and see if we could review it with Finance.
 
-[DevDay Exchange Community Hackathon: Vancouver](https://luma.com/v9di294l)
+Outcomes:
+
+- In two exchanges during the demo, we clarified what Finance could spend and what the customer still needed the software to do.
+- Illustrative ROI: If a team has $10M up for renewal, retaining 1 percentage point more would keep $100,000 in renewal revenue.
 
 [Download the desktop preview](https://github.com/jvissup/bvrobin/releases)
 
 [Public source code](https://github.com/jvissup/bvrobin)
 
-The Mac and Windows downloads are preview builds. The built-in guided demo runs without API keys or microphone access.
+Mac and Windows preview builds are available. The screenshots come from a separate fictional renewal in the app’s guided demo, which runs without API keys or microphone access.
 
 [Project story on Tyler’s site](projects.html#bvrobin)
 

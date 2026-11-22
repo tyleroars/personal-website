@@ -454,7 +454,7 @@ html[data-theme] body[data-design=combined] :is(.project-story p,.workflow-body 
 @media(max-width:640px){.about-hero{gap:9px;margin-bottom:18px}.about-hero .page-intro>p{font-size:14px}.about-rainbow{height:175px;width:min(300px,100%)}.rainbow-mascot{width:128px;height:128px;left:calc(50% - 64px);bottom:4px}}
 @media(prefers-reduced-motion:reduce){.rainbow-mascot{will-change:auto}}
 
-/* Project readers: a measured text column, wider evidence, and one scrolling surface. */
+/* Project readers: one text and image column within a single scrolling surface. */
 html:has(body[data-design=combined] dialog[open]){overflow:hidden;scrollbar-gutter:stable}
 body[data-design=combined] dialog::backdrop{background:rgb(6 11 17 / .72)}
 body[data-design=combined] .reader-header{padding:4px 16px}
@@ -478,10 +478,10 @@ html[data-theme] body[data-design=combined] #detail :is(.project-outcomes h3,.pr
 #detail .visibility-list{margin-block:0 12px;padding-left:20px;color:var(--color-body)}
 #detail .visibility-list li{padding-left:4px;margin-bottom:8px}
 #detail .project-section h3 small{display:block;margin:4px 0 0;font-size:.8125rem}
-#detail .image-gallery{width:100%;max-width:50rem;margin:28px auto 32px}
-#detail .gallery-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;max-width:var(--reader-text-width);margin:0 auto 16px}
+#detail .image-gallery{width:100%;max-width:var(--reader-text-width);margin:28px auto 32px}
+#detail .gallery-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 16px}
 html[data-theme] body[data-design=combined] #detail .gallery-heading h3{margin:0}
-#detail .gallery-footer{display:grid;grid-template-columns:minmax(0,1fr) 100px;align-items:center;gap:20px;width:100%;max-width:var(--reader-text-width);margin:12px auto 0}
+#detail .gallery-footer{display:grid;grid-template-columns:minmax(0,1fr) 100px;align-items:center;gap:20px;margin:12px 0 0}
 #detail .gallery-toolbar{display:grid;grid-template-columns:44px 44px;align-items:center;gap:12px;margin:0;padding:0;border:0;border-radius:0;background:transparent}
 html[data-theme] body[data-design=combined] #detail .gallery-toolbar button{display:grid;place-items:center;width:44px;min-width:44px;min-height:44px;height:44px;padding:0;border:1px solid var(--reader-control-edge);border-radius:50%;background:var(--reader-control);color:var(--color-text);box-shadow:inset 0 1px 0 var(--reader-glint),0 3px 10px rgb(0 0 0 / .08);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);transition:background-color .16s ease,border-color .16s ease,box-shadow .16s ease}
 #detail .gallery-toolbar [data-gallery-step="-1"]{grid-column:1;grid-row:1}
@@ -491,8 +491,6 @@ html[data-theme] body[data-design=combined] #detail .gallery-toolbar button:is(:
 #detail .gallery-toolbar svg{display:block;pointer-events:none}
 #detail .gallery-position{padding:0;font-size:.8125rem;line-height:1.5;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--color-secondary)}
 #detail .gallery-stage{touch-action:pan-y pinch-zoom}
-#detail .gallery-stage:not(.is-cropped-hero){display:flex;align-items:center;justify-content:center;min-height:0;max-height:none;overflow:hidden;scrollbar-gutter:auto;background:transparent;border:0}
-#detail .gallery-stage:not(.is-cropped-hero) .gallery-image{width:auto;height:auto;max-width:100%;max-height:min(36rem,70dvh);margin:0;border:1px solid var(--color-border);border-radius:4px;object-fit:contain}
 html[data-theme] body[data-design=combined] #detail .gallery-caption{font-size:.8125rem;line-height:1.65;margin-top:12px}
 #detail .gallery-thumbnails{min-width:0;margin:0;padding:5px 2px 7px;position:relative;scrollbar-width:thin}
 #detail .gallery-thumbnails button{flex-basis:56px;height:58px}
@@ -510,7 +508,6 @@ html[data-theme] body[data-design=combined] #detail .gallery-caption{font-size:.
  html[data-theme] body[data-design=combined] #detail{padding:24px 24px 32px}
  #detail .project-outcomes{margin-block:24px;padding-top:20px}
  #detail .gallery-heading{gap:8px}
- #detail .gallery-stage:not(.is-cropped-hero) .gallery-image{max-height:65dvh}
  #detail .project-tool-section>summary{padding-block:10px}
 }
 @media(max-width:380px){#detail .build-prompt-actions{grid-template-columns:minmax(0,1fr)}}
@@ -533,8 +530,6 @@ html[data-theme] body[data-design=combined] .reader-header{background:linear-gra
 #detail .project-overview>.project-summary:last-child{margin-bottom:0}
 #detail .project-overview>.project-outcomes{margin:26px 0 0;padding:0;border:0}
 html[data-theme] body[data-design=combined] #detail .project-outcomes strong{font:inherit;font-weight:600;letter-spacing:0;color:var(--color-accent);font-variant-numeric:tabular-nums}
-html[data-theme] body[data-design=combined] #detail .gallery-caption{max-width:var(--reader-text-width);margin-inline:auto}
-#detail .gallery-stage:not(.is-cropped-hero) .gallery-image{border-radius:8px}
 @media(max-width:640px){
  html[data-theme] body[data-design=combined] dialog:is(.huddle-dialog,.project-visual-dialog,.flagship-dialog){border:0;border-radius:0;box-shadow:none}
  #detail .gallery-footer{gap:14px}
@@ -574,13 +569,17 @@ html[data-theme] body[data-design=combined] :is(.article-header h1,.article-body
 
 /* Narrative outcomes retain the sage marker used on Work. */
 html[data-theme] body[data-design=combined] :is(.project-results,#detail .project-outcomes) strong.work-highlight{color:var(--color-text);background:var(--color-highlight);padding:.08em .18em;border-radius:2px;font-weight:550;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-/* Reserve the image's final footprint and show its tiny preview while decoding. */
-#detail .gallery-stage:not(.is-cropped-hero){--gallery-max-height:min(36rem,70dvh);display:block;width:min(100%,var(--gallery-native-width),calc(var(--gallery-max-height) * var(--gallery-ratio)));margin-inline:auto;border:1px solid var(--color-border);border-radius:8px}
+/* Reserve the image footprint and keep tall images at a comfortable scale. */
+#detail .gallery-stage{
+ --gallery-max-height:min(29rem,60dvh);
+ width:min(100%,var(--gallery-native-width),calc(var(--gallery-max-height) * var(--gallery-ratio)));
+ min-height:0;max-height:none;overflow:hidden;scrollbar-gutter:auto;
+ background:transparent;border:1px solid var(--color-border);border-radius:8px;
+}
 #detail .gallery-stage:not(.is-cropped-hero) :is(.gallery-image,.gallery-placeholder){position:absolute;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;border:0;border-radius:inherit;object-fit:contain}
 #detail .gallery-placeholder{display:block;position:absolute;inset:0;width:100%;height:100%;max-height:none;margin:0;object-fit:cover;filter:blur(4px);transform:scale(1.025);opacity:.65;pointer-events:none}
 #detail .gallery-placeholder[hidden]{display:none}
 #detail .gallery-loading{top:auto;bottom:14px;left:50%;right:auto;transform:translateX(-50%);width:max-content;max-width:calc(100% - 32px);margin:0;padding:6px 10px;border-radius:5px;background:var(--color-raised);color:var(--color-text);font-size:12px;line-height:1.5;box-shadow:0 2px 12px rgb(0 0 0 / .12)}
-@media(max-width:640px){#detail .gallery-stage:not(.is-cropped-hero){--gallery-max-height:65dvh}}
 @media(forced-colors:active){html[data-theme] body[data-design=combined] :is(.project-results,#detail .project-outcomes) strong.work-highlight{background:Mark;color:MarkText}}
 
 /* Personal stats: preserve the site palette. Variance 5, motion 2, density 4.
