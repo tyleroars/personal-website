@@ -188,9 +188,9 @@ My account was banned in August, which ended that experiment.
 A desktop coach that helps customer success managers navigate tough renewal calls in real time, from spotting risk to understanding objections and deciding how to move forward.
 
 - 1–2 seconds to a coaching recommendation in prototype testing
-- $100,000 in potential renewal revenue from retaining 1 percentage point more of a $10M renewal portfolio
+- 2 exchanges to clarify the customer’s budget and workload in the live demo
 
-Renewals are the most stressful part of my job. Imagine you’re halfway through a call about a $100,000 renewal and the customer tells you they might switch. You’ve got seconds to figure out what’s driving that, what’s still on the table, and where to take the conversation. That’s the moment Vish and I built BVRobin for.
+Renewals are the most stressful part of my job. Imagine you’re halfway through a renewal call you thought was going fine, and the customer tells you they might switch. You’ve got seconds to figure out what’s driving that, what’s still on the table, and where to take the conversation. That’s the moment Vish and I built BVRobin for.
 
 Vish and I built a working desktop prototype with Codex at the Vancouver hackathon. The coach sits beside the meeting window. ElevenLabs transcribes the call, and OpenAI uses the account brief and what’s been said so far to suggest how to move the conversation forward. I simplified the coach interface and added a timeline so you can see what prompted a recommendation.
 
@@ -198,13 +198,12 @@ We ran it live in front of the room. I played procurement and Vish was the custo
 
 Early versions took too long to help in the moment. By the time a recommendation showed up, the conversation could already be somewhere else. We gave the coach a running record of the call to build on, which saved it from piecing together the same context from scratch every time. That got us down to 1–2 seconds for a recommendation in prototype testing.
 
-I’m curious how much better the coach could get at anticipating where a call might go. That’s still an open question. Vish and I both plan to bring the idea to our teams at work and see if we can build it out for wider use.
+I’m curious how much better the coach could get at anticipating where a call might go. Vish and I plan to bring the idea to our teams at work. If we test it on real calls, I’d look at how often the coach helps us uncover what’s blocking a renewal and leave the call with a next step the customer agrees to.
 
 Outcomes:
 
 - Recommendations arrived in 1–2 seconds in prototype testing after we started carrying forward call context.
 - In the live simulation, Vish clarified Finance’s price ceiling and the customer’s workload in two exchanges.
-- Illustrative ROI: If a team has $10M up for renewal, retaining 1 percentage point more would keep $100,000 in renewal revenue.
 
 [Download the desktop preview](https://github.com/jvissup/bvrobin/releases)
 

@@ -4,7 +4,7 @@ Named releases are saved at [GitHub Releases](https://github.com/tyleroars/perso
 
 ## Unreleased
 
-- Added the DevDay Exchange Community Hackathon project, BVRobin, with event photos, guided demo screenshots, and the renewal revenue scenario from the pitch.
+- Added the DevDay Exchange Community Hackathon project, BVRobin, with event photos, guided demo screenshots, and results from prototype testing and the live demo.
 - Aligned gallery images with the story column in project readers.
 
 ## v1.3.0 · 2026-11-15
