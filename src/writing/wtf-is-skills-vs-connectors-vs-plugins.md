@@ -10,7 +10,7 @@ I'm not surprised that the US government shut down Fable 5. What did Anthropic e
 
 They spent months hyping up how dangerous Mythos was. They said it could find and chain together software vulnerabilities that no human researcher could catch. They built an entire initiative called Project Glasswing specifically because they knew what it was capable of. They were essentially humble bragging about how scary their own model was.
 
-> [![Screenshot of an Anthropic announcement about access to its models, discussed in the article.](../assets/writing/e5ca66275b323a126a3a.jpg)](https://twitter.com/AnthropicAI/status/2065597531644743999?s=20)
+> [![Anthropic’s X post about a U.S. directive suspending access to Fable 5 and Mythos 5 for foreign nationals.](../assets/writing/e5ca66275b323a126a3a.jpg)](https://twitter.com/AnthropicAI/status/2065597531644743999?s=20)
 
 Honestly, the US government's response makes complete sense. If even half of what Anthropic said about Mythos is true, shutting it down is the rational move. You can't spend months telling the world your model is uniquely dangerous and then act surprised when someone takes you seriously.
 

@@ -40,7 +40,7 @@ My biggest gripe with Claude is cost.
 
 I love Claude, but for the same price, you get way less usage compared to ChatGPT/Codex.
 
-![Graphic comparing the Claude Pro and ChatGPT Plus message allowances described in the article.](../assets/writing/149b2d9a1157e81a12f9.jpg)
+![The comparison estimates daily short-message allowances of 216 for Claude Pro and 1,280 for ChatGPT Plus at $20 a month each.](../assets/writing/149b2d9a1157e81a12f9.jpg)
 
 With Claude, I usually hit my limit multiple times a week. And that’s with me intentionally using Claude less, and avoiding the really token-heavy stuff.
 

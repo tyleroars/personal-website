@@ -24,13 +24,13 @@ I also hadn't heard of Together AI or Fireworks AI before this. Turns out they'r
 
 I wanted to dig deeper so I asked Claude to compare OpenAI and Claude directly on spend and adoption. And wow.
 
-![Comparison of OpenAI and Claude adoption, AI spending share, and new-customer preferences in the cited report.](../assets/writing/0a7d1f4236cbf36e14c8.png)
+![OpenAI led Claude in adoption (78% to 70%) and spending share (43% to 29%). Among new adopters, 71% chose Claude and 33% chose OpenAI.](../assets/writing/0a7d1f4236cbf36e14c8.png)
 
 Source: Ramp spend data, generative AI category. Adoption rate = share of Ramp customers with at least one transaction with this vendor.
 
 I knew Claude had been catching up to ChatGPT, but I didn't know it was happening this fast! Claude is still #2 on spending but is growing at a whopping 45.7% year over year and winning 71% of new customers.
 
-![Chart comparing the year-over-year change in adoption rates for Claude and OpenAI.](../assets/writing/60ed43e53fb9bff99a51.png)
+![Year over year, adoption rose 45.7% for Claude and fell 12.5% for OpenAI.](../assets/writing/60ed43e53fb9bff99a51.png)
 
 At this rate, I wouldn't be surprised if Claude flips ChatGPT within the next year or two.
 

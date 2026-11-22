@@ -249,6 +249,16 @@ test('HTML and CSS local resource references stay within the published package',
     }
   }
 });
+test('content images in the published HTML have alt text',()=>{
+  for(const page of pages)for(const file of page.files){
+    const html=read(file).replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,'');
+    for(const [image] of html.matchAll(/<img\b[^>]*>/gi)){
+      const alt=image.match(/\s+alt="([^"]*)"/i);
+      assert.ok(alt,file+' is missing alt text on '+image);
+      if(!/\bsrc="[^"]*\/icons\//.test(image))assert.ok(alt[1].trim(),file+' has empty alt text on '+image);
+    }
+  }
+});
 test('every project gallery and interview portrait is included; hidden projects are absent',()=>{
   for(const icon of ['chatgpt','claude','gemini','copy-prompt','menu','close'])assert.ok(exists(path.join(root,'assets/icons',icon+'.svg')),icon);
   assert.equal(data.projects.length,16);
@@ -258,7 +268,11 @@ test('every project gallery and interview portrait is included; hidden projects 
     assert.ok(['Independent','Experiments','Earlier'].includes(p.kind));
     for(const key of ['previewImages','screenshots','gallery'])for(const image of p[key]||[]){
       for(const attr of ['src','thumb'])if(image[attr])assert.ok(exists(path.join(root,'assets',image[attr])),image[attr]);
-      assert.ok(image.alt?.trim());
+      assert.ok(image.alt?.trim(),image.src);
+    }
+    for(const {image} of p.workflows||[])if(image){
+      assert.ok(exists(path.join(root,'assets',image.src)),image.src);
+      assert.ok(image.alt?.trim(),image.src);
     }
   }
   for(const i of data.interviewArchive)assert.ok(exists(path.join(root,'assets',i.image)),i.image);
