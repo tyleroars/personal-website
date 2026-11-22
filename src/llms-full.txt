@@ -185,11 +185,11 @@ My account was banned in August, which ended that experiment.
 
 ### DevDay Exchange Community Hackathon: BVRobin
 
-A desktop coach that helps customer success managers spot renewal risks and decide what to ask while the call is still happening.
+A desktop coach that helps customer success managers navigate tough renewal calls in real time, from spotting risk to understanding objections and deciding how to move forward.
 
 - $100,000 in potential renewal revenue from retaining 1 percentage point more of a $10M renewal portfolio
 
-Renewals are the most stressful part of my job. Imagine you’re halfway through a call about a $100,000 renewal and the customer tells you they might switch. You’ve got seconds to figure out what to ask before the conversation moves on. That’s the moment Vish and I built BVRobin for.
+Renewals are the most stressful part of my job. Imagine you’re halfway through a call about a $100,000 renewal and the customer tells you they might switch. You’ve got seconds to figure out what’s driving that, what’s still on the table, and where to take the conversation. That’s the moment Vish and I built BVRobin for.
 
 We built and tested it with Codex at the Vancouver hackathon. I simplified the coach interface and added a timeline so you can go back to the moment that prompted a suggestion. During a call, the coach sits beside the meeting window. ElevenLabs transcribes the conversation, and OpenAI uses what’s been said and the account brief to suggest a next move.
 
