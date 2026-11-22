@@ -80,6 +80,22 @@ test('production HTML contains the collections and no-script project stories wit
     assert.ok(html.includes(`id="${new URL(item.url).hash.slice(1)}"`));
   }
 });
+test('project outcome highlights include complete durations and preserve other metrics',()=>{
+  const source=fs.readFileSync(new URL('../src/site.js',import.meta.url),'utf8');
+  const escape=source.slice(source.indexOf('const escapeHTML='),source.indexOf('const socialContacts='));
+  const formatter=source.slice(source.indexOf('function outcomeMarkup('),source.indexOf('function projectOutcomes('));
+  const markup=vm.runInNewContext(escape+formatter+';outcomeMarkup');
+  for(const [metric,rest] of [
+    ['1–2 seconds',' from live speech to a recommendation'],
+    ['60%',' less time resizing an image'],
+    ['About C$192 per year',' in avoided subscription cost'],
+    ['43,860',' annual active website users']
+  ]){
+    assert.equal(markup(metric+rest),'<strong class="work-highlight">'+metric+'</strong>'+rest);
+  }
+  assert.equal(markup('In a hypothetical $1 million portfolio'),'In a hypothetical $1 million portfolio');
+});
+
 test('responsive previews are generated separately from full-size galleries',()=>{
   const html=read('projects.html'),strips=[...html.matchAll(/<div class="(?:project-preview-strip|huddle-preview)">([\s\S]*?)<\/div>/g)];
   assert.equal(strips.length,16);

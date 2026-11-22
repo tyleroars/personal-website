@@ -111,8 +111,9 @@ function buildPromptPanel(p){
  return `<section class="build-prompt-panel" aria-label="Build your own browser version"><div class="build-prompt-heading"><strong>Build your own browser version</strong><a href="${E(p.buildPrompt.download)}" download="huddledex-browser-build-prompt.txt">Save .txt</a></div><p>Take the working starter and make it your own.</p><div class="starter-links"><a href="build-prompts/huddledex-browser-starter.zip" download>Download starter code</a></div><div class="build-prompt-actions"><button type="button" class="copy-build-prompt"><img src="assets/icons/copy-prompt.svg" alt="" width="16" height="16"><span>Copy prompt</span></button>${tools.map(([name,url])=>`<a class="prompt-launch" data-prompt-tool="${name}" href="${url}" target="_blank" rel="noopener" aria-label="Copy prompt and open ${name}"><img src="assets/icons/${name.toLowerCase()}.svg" alt="" width="19" height="19"><span>Open in ${name}</span></a>`).join('')}</div><div class="prompt-preview"><p>Includes the working browser starter’s full source, adapted from my iPhone app. No personal notebook data.</p><details class="build-prompt-details"><summary>View full prompt</summary><label class="sr-only" for="build-prompt-text">HuddleDex browser build prompt</label><textarea id="build-prompt-text" readonly rows="10" spellcheck="false">${E(p.buildPrompt.text)}</textarea></details></div><p class="build-prompt-feedback" role="status">Tool buttons copy the prompt, then open a new tab. Paste it there to start.</p></section>`;
 }
 function outcomeMarkup(result){
- const text=E(result),lead=text.match(/^((?:(?:About|Around|Over|Nearly)\s+)?(?:C?\$)?\d[\d,.]*(?:%|\+)?(?:\s+per\s+(?:year|month))?)/);
- return lead?`<strong class="work-highlight">${lead[1]}</strong>${text.slice(lead[1].length)}`:text;
+ const text=E(result);
+ const lead=text.match(/^(?:(?:About|Around|Over|Nearly)\s+)?(?:C?\$)?\d[\d,.]*(?:[–-]\d[\d,.]*)?(?:%|\+)?(?:\s+(?:seconds?|minutes?|hours?|per\s+(?:year|month))\b)?/)?.[0];
+ return lead?`<strong class="work-highlight">${lead}</strong>${text.slice(lead.length)}`:text;
 }
 function projectOutcomes(p){
  if(!p.outcomes?.length)return '';

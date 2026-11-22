@@ -202,7 +202,7 @@ I’m curious how much better the coach could get at anticipating where a call m
 Outcomes:
 
 - 1–2 seconds from live speech to an on-screen coaching recommendation, including ElevenLabs transcription and the ChatGPT API call.
-- In a hypothetical $1 million renewal portfolio, retaining 1 percentage point more would keep $10,000 in revenue. I’d use a pilot to see whether the coach actually improves retention.
+- Say 10 customer success managers each have $1 million up for renewal. Raising revenue retention from 90% to 92% would keep $200,000 more in the first year. If that lift holds, more revenue carries into each renewal cycle.
 
 [Download the desktop preview](https://github.com/jvissup/bvrobin/releases)
 
