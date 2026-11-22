@@ -337,7 +337,7 @@ test('project readers use real responsive assets and lightweight thumbnails thro
   }
   assert.ok(fs.statSync(path.join(root,'client/assets',shot.thumb)).size<8000,'Oversized gallery thumbnail');
  }
- assert.equal(count,56);
+ assert.equal(count,57);
 });
 
 test('the token page has static figures, a served aggregate dataset, and no extra scripts on other pages',async()=>{
