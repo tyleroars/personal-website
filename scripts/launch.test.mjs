@@ -82,7 +82,7 @@ test('production HTML contains the collections and no-script project stories wit
 });
 test('responsive previews are generated separately from full-size galleries',()=>{
   const html=read('projects.html'),strips=[...html.matchAll(/<div class="(?:project-preview-strip|huddle-preview)">([\s\S]*?)<\/div>/g)];
-  assert.equal(strips.length,15);
+  assert.equal(strips.length,16);
   for(const strip of strips)for(const img of strip[1].matchAll(/<img\b[^>]*>/g)){
     assert.match(img[0],/srcset="[^"]+ \d+w, [^"]+ \d+w"/);
     for(const src of img[0].matchAll(/(?:src="|, )([^" ]+\.webp)/g))assert.ok(localFile(new URL(src[1],origin+'/')));
@@ -235,7 +235,7 @@ test('HTML and CSS local resource references stay within the published package',
 });
 test('every project gallery and interview portrait is included; hidden projects are absent',()=>{
   for(const icon of ['chatgpt','claude','gemini','copy-prompt','menu','close'])assert.ok(exists(path.join(root,'assets/icons',icon+'.svg')),icon);
-  assert.equal(data.projects.length,15);
+  assert.equal(data.projects.length,16);
   assert.equal(data.interviewArchive.length,85);
   assert.equal(data.writingArchive.length,21);
   for(const p of data.projects){
@@ -337,7 +337,7 @@ test('project readers use real responsive assets and lightweight thumbnails thro
   }
   assert.ok(fs.statSync(path.join(root,'client/assets',shot.thumb)).size<8000,'Oversized gallery thumbnail');
  }
- assert.equal(count,51);
+ assert.equal(count,56);
 });
 
 test('the token page has static figures, a served aggregate dataset, and no extra scripts on other pages',async()=>{

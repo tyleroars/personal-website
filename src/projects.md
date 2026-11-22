@@ -61,6 +61,28 @@ My account was banned in August, which ended that experiment.
 
 [Project story on Tyler’s site](projects.html#gradsimple)
 
+### BVRobin
+
+A desktop coach for customer success calls that flags renewal risks, suggests a follow-up question, and keeps track of next steps.
+
+A renewal call can change halfway through a sentence. A customer says IT wants to consolidate tools, and suddenly you need to figure out whether the decision is made and what you can still influence. A transcript is useful later. In the moment, you need one good question.
+
+I worked on BVRobin with Viswanath Priyatham Javvaji at the DevDay Exchange Community Hackathon in Vancouver. I simplified the coach interface and added the call timeline so you can see what prompted a suggestion and return to it after the call.
+
+In a live session, ElevenLabs Scribe streams the transcript and OpenAI can suggest a question based on the conversation and the account brief. The coach stays on top of the meeting, and the call workspace keeps key details and next steps together.
+
+The guided demo uses a fictional renewal. When a sponsor brings up moving to one platform, the coach first asks whether IT has made the decision. When it learns there’s still room to evaluate, it suggests testing the workflow the customer said they can’t afford to lose.
+
+[DevDay Exchange Community Hackathon: Vancouver](https://luma.com/v9di294l)
+
+[Download the desktop preview](https://github.com/jvissup/bvrobin/releases)
+
+[Public source code](https://github.com/jvissup/bvrobin)
+
+The Mac and Windows downloads are preview builds. The built-in guided demo runs without API keys or microphone access.
+
+[Project story on Tyler’s site](projects.html#bvrobin)
+
 ### HuddleDex
 
 An iPhone event notebook for badge scans, voice notes, and follow-ups, used at Knak’s Agentic Marketing Forum.

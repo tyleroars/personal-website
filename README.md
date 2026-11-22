@@ -2,7 +2,7 @@
 
 My personal website at [itstyleryip.com](https://itstyleryip.com). A home for the things I've built, written and worked on, including the experiments that didn't work out.
 
-The site brings together 15 projects, 21 articles and 85 GradSimple interviews. Built with HTML, CSS and vanilla JavaScript, with a small Cloudflare Worker for routes, redirects and response headers.
+The site brings together 16 projects, 21 articles and 85 GradSimple interviews. Built with HTML, CSS and vanilla JavaScript, with a small Cloudflare Worker for routes, redirects and response headers.
 
 ## Run locally
 

@@ -4,7 +4,7 @@ Named releases are saved at [GitHub Releases](https://github.com/tyleroars/perso
 
 ## Unreleased
 
-No pending changes.
+- Added BVRobin to Projects with screenshots from its guided demo, photos from the Vancouver DevDay Exchange Community Hackathon, and links to the desktop preview and source code.
 
 ## v1.3.0 · 2026-11-15
 
