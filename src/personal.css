@@ -387,15 +387,94 @@ html[data-theme=light] body[data-design=combined] .interview-record:active .inte
 .project-sequence .site-project:first-of-type{padding-top:26px}
 @media(max-width:640px){.project-sequence .site-project:first-of-type{padding-top:23px}}
 
-/* A small illustrated scene, framing Tyler's mascot with a cursor-responsive rainbow. */
-.about-rainbow{position:relative;height:225px;width:min(400px,100%);margin:0;isolation:isolate;justify-self:center}
-.about-rainbow canvas{display:block;width:100%;height:100%}
-.rainbow-mascot{position:absolute;left:calc(50% - 78px);bottom:5px;width:156px;height:156px;pointer-events:none;transform:none;will-change:auto}
-.rainbow-mascot img{display:block;width:100%;height:100%;object-fit:contain}
 .about-hero{display:grid;grid-template-columns:1fr;gap:8px;max-width:600px;margin:0 0 25px}
 .about-hero .page-intro{padding:0}
 .about-hero .page-intro>p{font-size:15px;line-height:1.95}
 .about-hero .page-intro a{color:inherit}
+
+/* Offset ink follows the pointer behind the still pixel portrait. */
+.about-portrait {
+  justify-self: center;
+  margin: 10px 0 11px;
+  text-align: center;
+}
+.offset-portrait {
+  --sage-ink: #8bc3a9;
+  --clay-ink: #d99277;
+  display: inline-block;
+  position: relative;
+  isolation: isolate;
+  width: min(178px, 54vw);
+  vertical-align: top;
+}
+:root[data-theme="light"] .offset-portrait {
+  --sage-ink: #2b7759;
+  --clay-ink: #a95c45;
+}
+.offset-portrait img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+}
+.offset-portrait[data-ready] {
+  touch-action: pan-y pinch-zoom;
+  user-select: none;
+}
+.offset-portrait[data-ready] img {
+  pointer-events: none;
+}
+.offset-portrait[data-dragging] {
+  cursor: grabbing;
+}
+.offset-ink {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mask: url("assets/optimized/tyler-pixel-portrait-f069073e2e88.webp") center / 100% 100% no-repeat;
+  opacity: 0;
+  transform: translate(0, 0);
+  transition: transform 280ms cubic-bezier(.23, .71, .25, 1), opacity 230ms ease-out;
+}
+.offset-clay { background: var(--clay-ink); }
+.offset-sage { background: var(--sage-ink); }
+.offset-portrait[data-printing] .offset-ink {
+  transition: transform 105ms ease-out, opacity 150ms ease-out;
+}
+.offset-portrait[data-printing] .offset-clay {
+  opacity: .7;
+  transform: translate(var(--clay-x), var(--clay-y));
+}
+.offset-portrait[data-printing] .offset-sage {
+  opacity: .75;
+  transform: translate(var(--sage-x), var(--sage-y));
+}
+.about-portrait figcaption {
+  display: none;
+  margin: 9px 0 0;
+  color: var(--color-secondary);
+  font-size: 12px;
+  line-height: 1.3;
+}
+@media (any-hover: hover) and (prefers-reduced-motion: no-preference) {
+  .offset-portrait[data-ready]:not([data-dragging]) {
+    cursor: grab;
+  }
+}
+@media (hover: none) and (prefers-reduced-motion: no-preference) {
+  .offset-portrait[data-ready] + figcaption {
+    display: block;
+  }
+}
+@media (max-width: 640px) {
+  .about-portrait { margin-block: 11px 7px; }
+  .offset-portrait { width: min(151px, 52vw); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .offset-portrait[data-ready] { cursor: auto; touch-action: auto; }
+  .offset-ink { display: none; }
+}
 /* Title-first portfolio entries: DESIGN_VARIANCE 5, MOTION_INTENSITY 3,
    VISUAL_DENSITY 4. Values use the Work marker, with rules only between stats. */
 .project-sequence>article.site-project{--project-preview-width:360px;display:block;padding-block:32px}
@@ -450,9 +529,8 @@ html[data-theme] body[data-design=combined] :is(.project-story p,.workflow-body 
 .project-tool-section[open]>.project-tools{padding-top:16px}
 @media(max-width:640px){.legacy-project-anchor{scroll-margin-top:110px}}
 @media(prefers-reduced-motion:reduce){html[data-theme] body[data-design=combined] .site-project .project-title-action>.project-title-arrow{transition:none;transform:none}}
-@media(max-width:900px){.about-hero{grid-template-columns:1fr;gap:8px;margin-bottom:20px}.about-rainbow{width:min(340px,100%);height:200px;justify-self:center}.rainbow-mascot{width:144px;height:144px;left:calc(50% - 72px)}}
-@media(max-width:640px){.about-hero{gap:9px;margin-bottom:18px}.about-hero .page-intro>p{font-size:14px}.about-rainbow{height:175px;width:min(300px,100%)}.rainbow-mascot{width:128px;height:128px;left:calc(50% - 64px);bottom:4px}}
-@media(prefers-reduced-motion:reduce){.rainbow-mascot{will-change:auto}}
+@media(max-width:900px){.about-hero{margin-bottom:20px}}
+@media(max-width:640px){.about-hero{gap:9px;margin-bottom:18px}.about-hero .page-intro>p{font-size:14px}}
 
 /* Project readers: one text and image column within a single scrolling surface. */
 html:has(body[data-design=combined] dialog[open]){overflow:hidden;scrollbar-gutter:stable}

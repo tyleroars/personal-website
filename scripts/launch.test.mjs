@@ -106,7 +106,6 @@ test('responsive previews are generated separately from full-size galleries',()=
   }
   assert.match(strips[0][1],/loading="eager" fetchpriority="high"/);
   assert.doesNotMatch(strips[0][1],/loading="lazy"/);
-  assert.match(read('index.html'),/srcset="[^"]+ 256w, [^"]+ 384w, assets\/tyler-mascot-v1.webp 585w"/);
   for(const project of data.projects)for(const shot of [...(project.previewImages||[]),...(project.screenshots||[])])assert.doesNotMatch(shot.src,/preview-[a-f0-9]{12}-(?:320|640)\.webp/);
 });
 test('all responsive image candidates exist at their declared widths',async()=>{
@@ -379,50 +378,76 @@ test('the token page has static figures, a served aggregate dataset, and no extr
  for(const file of ['index.html','projects.html','writing.html','work.html','interviews.html'])assert.doesNotMatch(read(file),/<script\b[^>]*src="[^"\n]*(?:token-view|token-usage-data|tokens)\.js/);
 });
 
-test('dense rainbow tiles retain clearance at every rotation and stay within the scene',()=>{
- const context=vm.createContext({document:{querySelector:()=>null}});
- vm.runInContext(fs.readFileSync(new URL('../src/rainbow.js',import.meta.url),'utf8'),context);
- for(const [width,height] of [[400,225],[340,200],[300,175],[271,175]]){
-  context.width=width;context.height=height;
-  const tiles=vm.runInContext('createRainbowTiles(width,height)',context);
-  assert.equal(tiles.length,115);
-  for(const a of tiles){
-   const radius=(a.length+a.stroke)/2;
-   assert.ok(a.x-radius>=0&&a.x+radius<=width&&a.y-radius>=0&&a.y+radius<=height,'A rotating tile would clip at the scene edge');
-   context.piece=a;
-   for(let n=0;n<180;n++){
-    const angle=n*Math.PI/180;context.angle=angle;
-    const half=vm.runInContext('rainbowHalfLength(piece,angle)',context);
-    assert.ok(half>=0&&half<=a.length/2);
-    // Each complete capsule stays on its side of every shared cell boundary.
-    // Both adjacent capsules leave half the gap, even at different rotations.
-    for(const edge of a.neighbors){
-     const reach=half*Math.abs(Math.cos(angle)*edge.nx+Math.sin(angle)*edge.ny)+a.stroke/2;
-     assert.ok(reach<=(edge.distance-a.gap)/2+1e-9,'Rotating capsules can cross their clearance boundary');
-    }
-   }
-  }
+test('the pixel portrait is a static image with optional About-only ink layers',async()=>{
+ const portraitPattern=/<img src="([^"]+tyler-pixel-portrait-[a-f0-9]{12}\.webp)" alt="Pixel-art portrait of Tyler holding up a small camera" width="397" height="400"/;
+ for(const file of ['index.html','home.html']){
+  const html=read(file);
+  assert.match(html,/class="offset-portrait" data-offset-print/);
+  assert.match(html,/<span class="offset-ink offset-clay" aria-hidden="true"><\/span><span class="offset-ink offset-sage" aria-hidden="true"><\/span>/);
+  assert.match(html,/<script defer src="\/offset-print\.js\?v=[a-f0-9]{12}"/);
+  assert.doesNotMatch(html,/about-rainbow|rainbow\.js/);
+  const portrait=html.match(portraitPattern)?.[1];
+  assert.ok(portrait);
+  const filePath=path.join(root,'client',portrait);
+  assert.ok(fs.existsSync(filePath));
+  const image=await sharp(filePath).metadata();
+  assert.deepEqual([image.width,image.height,image.hasAlpha],[397,400,true]);
+  assert.ok(read('site.css').includes(portrait));
  }
+ for(const page of pages.filter(page=>page.route!=='/'))for(const file of page.files)assert.doesNotMatch(read(file),/offset-print\.js/);
+ assert.match(read('site.css'),/prefers-reduced-motion:reduce[^@]*\.offset-ink\{display:none\}/);
 });
 
-test('cursor influence fades continuously and returns to zero away from the tile field',()=>{
- const context=vm.createContext({document:{querySelector:()=>null}});
- vm.runInContext(fs.readFileSync(new URL('../src/rainbow.js',import.meta.url),'utf8'),context);
- context.tiles=vm.runInContext('createRainbowTiles(400,225)',context);
- context.left=context.tiles.reduce((a,b)=>a.x<b.x?a:b);
- assert.equal(vm.runInContext('rainbowInfluence(left.x-15,left.y,tiles,400,225)',context),1);
- assert.ok(Math.abs(vm.runInContext('rainbowInfluence(left.x-64,left.y,tiles,400,225)',context)-.5)<1e-9);
- assert.equal(vm.runInContext('rainbowInfluence(left.x-120,left.y,tiles,400,225)',context),0);
+function offsetPrintHarness(){
+ const listeners=new Map(),offsets=new Map();
+ const motion={matches:false,addEventListener(type,listener){listeners.set('motion-'+type,listener);}};
+ let capture;
+ const art={
+  dataset:{},
+  style:{setProperty(name,value){offsets.set(name,value);}},
+  getBoundingClientRect:()=>({left:100,top:100,right:278,bottom:279,width:178,height:179}),
+  addEventListener(type,listener){listeners.set(type,listener);},
+  setPointerCapture(id){capture=id;},
+  hasPointerCapture(id){return capture===id;},
+  releasePointerCapture(){capture=undefined;}
+ };
+ vm.runInNewContext(read('offset-print.js'),{document:{querySelector:()=>art},CSS:{supports:()=>true},matchMedia:()=>motion});
+ const fire=(type,changes={})=>listeners.get(type)({type,pointerType:'mouse',pointerId:1,isPrimary:true,button:0,buttons:0,clientX:250,clientY:189,...changes});
+ return {art,fire,offsets,motion};
+}
+
+test('Offset Print follows the mouse in opposite directions and clears on exit',()=>{
+ const {art,fire,offsets}=offsetPrintHarness();
+ assert.equal(art.dataset.ready,'');
+ fire('pointermove');
+ assert.equal(art.dataset.printing,'');
+ assert.ok(parseInt(offsets.get('--clay-x'))>0);
+ assert.ok(parseInt(offsets.get('--sage-x'))<0);
+ fire('pointermove',{clientX:120});
+ assert.ok(parseInt(offsets.get('--clay-x'))<0);
+ assert.ok(parseInt(offsets.get('--sage-x'))>0);
+ fire('pointerleave');
+ assert.equal(art.dataset.printing,undefined);
 });
 
-test('magnetic tile springs take the short axis rotation and settle without perpetual animation',()=>{
- const context=vm.createContext({document:{querySelector:()=>null}});
- vm.runInContext(fs.readFileSync(new URL('../src/rainbow.js',import.meta.url),'utf8'),context);
- for(const [start,target] of [[Math.PI*.49,-Math.PI*.49],[0,Math.PI],[0,Math.PI/3]]){
-  context.piece={angle:start,velocity:0};context.target=target;
-  vm.runInContext('for(let n=0;n<180;n++)stepRainbowAngle(piece,target,1/120)',context);
-  assert.ok(Math.abs(vm.runInContext('rainbowAxisTurn(target-piece.angle)',context))<.001);
-  assert.ok(Math.abs(context.piece.velocity)<.003);
-  assert.ok(Math.abs(context.piece.angle-start)<=Math.PI/2+.01,'A tile took a long rotation across its equivalent line axis');
- }
+test('Offset Print avoids accidental touch activation and respects reduced motion',()=>{
+ const {art,fire,motion}=offsetPrintHarness();
+ const touch={pointerType:'touch',pointerId:2};
+ fire('pointerdown',touch);
+ fire('pointermove',{...touch,clientX:253,clientY:195});
+ assert.equal(art.dataset.printing,undefined);
+ fire('pointermove',{...touch,clientX:222});
+ assert.equal(art.dataset.dragging,'');
+ assert.equal(art.dataset.printing,'');
+ fire('pointercancel',touch);
+ assert.equal(art.dataset.dragging,undefined);
+ assert.equal(art.dataset.printing,undefined);
+ fire('pointerdown');
+ assert.equal(art.dataset.printing,'');
+ motion.matches=true;
+ fire('motion-change');
+ fire('pointermove');
+ assert.equal(art.dataset.dragging,undefined);
+ assert.equal(art.dataset.printing,undefined);
+ assert.ok(!art.hasPointerCapture(1));
 });
