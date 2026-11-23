@@ -1,10 +1,10 @@
-# Daily Token Usage updates
+# Scheduled Token Usage updates
 
 ## Schedule and scope
 
-Tyler authorized automatic daily token updates on November 12, 2026. The local scheduled task runs at 9:00 a.m. America/Vancouver and returns to the existing website chat. The Mac and desktop app must be running, with the existing Codex CLI and GitHub sessions signed in. No account credentials are placed in GitHub or Cloudflare. Manage the schedule in the app's Scheduled view. Its automation ID is `refresh-token-usage`; active status and the daily 9:00 a.m. rule were read back after creation.
+Tyler moved the refresh from daily to weekly on November 23, 2026. The task runs Mondays at 9 a.m. America/Vancouver and returns to the website chat. The Mac and desktop app must be running, with the existing Codex CLI and GitHub sessions signed in. No account credentials are placed in GitHub or Cloudflare. Manage the schedule in the app's Scheduled view. Its automation ID is `refresh-token-usage`; the active weekly schedule was verified in the app.
 
-The schedule refreshes Token Usage data only. It does not redesign the site or release this feature branch. Before the first feature release, production `/tokens` returns 404. A local refresh is not evidence of a public update. After the feature is released, daily aggregate updates follow the process below. The normal semantic version and tag represent the design/code release; the daily data commit and snapshot `generatedAt` identify a data update. Do not create a release tag or bump the site version for each daily snapshot.
+The schedule refreshes Token Usage data only. It does not redesign the site or release this feature branch. Before the first feature release, production `/tokens` returns 404. A local refresh is not evidence of a public update. After the feature is released, scheduled aggregate updates follow the process below. The normal semantic version and tag represent the design/code release; the data commit and snapshot `generatedAt` identify a data update. Do not create a release tag or bump the site version for each scheduled snapshot.
 
 ## Each scheduled run
 
@@ -19,7 +19,7 @@ The schedule refreshes Token Usage data only. It does not redesign the site or r
 
 ## Failure and availability limits
 
-This is a local schedule, not an always-on cloud account exporter. A sleeping/offline Mac, closed desktop app, expired login, failed CI or failed deployment can delay a refresh. The last valid public snapshot remains available. Scheduled shows failures; rerun the task after resolving the cause. Do not invent a successful update or claim an unconditional daily freshness guarantee.
+This is a local schedule, not an always-on cloud account exporter. A sleeping/offline Mac, closed desktop app, expired login, failed CI or failed deployment can delay a refresh. The last valid public snapshot remains available. Scheduled shows failures; rerun the task after resolving the cause. Do not invent a successful update or claim an unconditional freshness guarantee.
 
 The normal site build has no account access and renders saved data to HTML. Visitors do not wait for an account request. No additional browser requests or runtime dependencies are introduced by scheduling.
 

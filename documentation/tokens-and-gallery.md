@@ -4,7 +4,7 @@ Prepared November 11, 2026, on `feat/token-usage-and-gallery-performance`. This 
 
 ## Token page
 
-`/tokens` now uses the documented OpenAI `account/usage/read` endpoint through the installed, already authenticated Codex CLI. The client initializes a new stdio app-server connection, reads account usage, and exits. It never proxies the running desktop app, starts or resumes a thread, starts a model turn, reads credentials, or copies chat contents. The refresh runs locally, outside the normal build. A daily 9:00 a.m. Vancouver scheduled task is configured separately; see [daily updates](token-usage-updates.md). It cannot publish this feature branch. CI uses the checked-in aggregate and never accesses the account.
+`/tokens` now uses the documented OpenAI `account/usage/read` endpoint through the installed, already authenticated Codex CLI. The client initializes a new stdio app-server connection, reads account usage, and exits. It never proxies the running desktop app, starts or resumes a thread, starts a model turn, reads credentials, or copies chat contents. The refresh runs locally, outside the normal build. A local task refreshes the data on Mondays at 9 a.m. America/Vancouver. See [scheduled updates](token-usage-updates.md). CI uses the checked-in aggregate and never accesses the account.
 
 The reviewed service response reports **30,496,989,481** lifetime tokens. Its 190 daily buckets sum to **exactly 30,496,989,481**, March 20–November 11, 2026. The returned peak is 1,226,305,080 on August 11; longest streak is 146 days; longest running turn is 41,123 seconds. These are profile/account statistics, not personal productivity measurements.
 
