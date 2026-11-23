@@ -1,11 +1,11 @@
 # Tyler Yip: Token Usage
 
-The personal account token activity returned by OpenAI’s documented account/usage/read endpoint. Updated 2026-11-22T15:58:26.438Z.
+The personal account token activity returned by OpenAI’s documented account/usage/read endpoint. Updated 2026-11-23T15:59:43.063Z.
 
-- Account total: 32,625,707,234 tokens.
-- Daily total: 32,625,707,234 tokens.
-- Returned date range: 2026-03-20 to 2026-11-21.
-- Days with activity: 200.
+- Account total: 32,777,667,858 tokens.
+- Daily total: 32,777,667,858 tokens.
+- Returned date range: 2026-03-20 to 2026-11-22.
+- Days with activity: 201.
 
 ## One source for every total
 
