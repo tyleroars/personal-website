@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {createHash} from 'node:crypto';
 import path from 'node:path';
 import vm from 'node:vm';
 import sharp from 'sharp';
@@ -179,11 +180,11 @@ test('every page has accurate metadata, structured data and its own valid sharin
     assert.ok(html.includes(`<meta property="og:image:width" content="${shareImage.width}">`));
     assert.ok(html.includes(`<meta property="og:image:height" content="${shareImage.height}">`));
     assert.match(html,/<meta property="og:image:type" content="image\/png">/);
-    assert.match(html,/<meta property="og:image:alt" content="[^"]+">/);
+    assert.ok(html.includes(`<meta property="og:image:alt" content="${escaped(shareImage.alt)}">`));
     assert.equal((html.match(/name="twitter:card"/g)||[]).length,1);
     assert.match(html,/<meta name="twitter:card" content="summary_large_image">/);
     assert.ok(html.includes(`<meta name="twitter:image" content="${config.origin}/${shareImage.file}">`));
-    assert.match(html,/<meta name="twitter:image:alt" content="[^"]+">/);
+    assert.ok(html.includes(`<meta name="twitter:image:alt" content="${escaped(shareImage.alt)}">`));
     if(!page.noindex)assert.equal((html.match(/<h1\b/g)||[]).length,1);
     const graph=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]+?)<\/script>/)[1])['@graph'];
     assert.equal(new Set(graph.map(node=>node['@id'])).size,graph.length);
@@ -205,6 +206,7 @@ test('every page has accurate metadata, structured data and its own valid sharin
     for(const img of html.matchAll(/<img\b[^>]*>/g))assert.match(img[0],/\balt="[^"]*"/);
     }
     const image=fs.readFileSync(path.join(root,'client',shareImage.file));
+    assert.ok(shareImage.file.endsWith('-'+createHash('sha256').update(image).digest('hex').slice(0,12)+'.png'), page.route+' share image URL is content-fingerprinted');
     assert.equal(image.subarray(0,8).toString('hex'),'89504e470d0a1a0a');
     assert.equal(image.readUInt32BE(16),shareImage.width);
     assert.equal(image.readUInt32BE(20),shareImage.height);
@@ -388,6 +390,7 @@ test('the pixel portrait is a static image with optional About-only ink layers',
   assert.doesNotMatch(html,/about-rainbow|rainbow\.js/);
   const portrait=html.match(portraitPattern)?.[1];
   assert.ok(portrait);
+  assert.equal(shareImages['/'].portrait, portrait.replace(/^\//, ''), 'Regenerate sharing images after changing the About portrait');
   const filePath=path.join(root,'client',portrait);
   assert.ok(fs.existsSync(filePath));
   const image=await sharp(filePath).metadata();

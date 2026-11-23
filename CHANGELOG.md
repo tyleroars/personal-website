@@ -2,6 +2,10 @@
 
 Named releases are saved at [GitHub Releases](https://github.com/tyleroars/personal-website/releases). A release groups visitor-facing changes; small editing sessions do not each need a release.
 
+## v1.4.1 · 2026-11-23
+
+- Updated the sharing cards for the homepage, sections, and articles to use the current pixel portrait with sage and clay ink layers. Each card has a new image URL and updated alt text.
+
 ## v1.4.0 · 2026-11-23
 
 - About has a new pixel-art portrait. Move across it or drag to pull sage and clay ink layers apart. They settle back into place when you move away, and the portrait stays still with reduced motion enabled.
