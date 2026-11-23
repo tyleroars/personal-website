@@ -2,9 +2,12 @@
 
 Named releases are saved at [GitHub Releases](https://github.com/tyleroars/personal-website/releases). A release groups visitor-facing changes; small editing sessions do not each need a release.
 
-## Unreleased
+## v1.4.0 · 2026-11-23
 
-No pending changes.
+- About has a new pixel-art portrait. Move across it or drag to pull sage and clay ink layers apart. They settle back into place when you move away, and the portrait stays still with reduced motion enabled.
+- Projects now includes BVRobin, a live coach for customer renewal calls built with Vish at Vancouver’s DevDay Exchange Community Hackathon. The case study includes event photos, demo screens, the 1–2 second response time, and an illustrative model of what a small retention improvement could mean across a team.
+- Project galleries align with the story text. Using the arrow keys clears the previous thumbnail’s focus outline, and selected project and article images have more descriptive alt text.
+- Token Usage now refreshes every Monday at 9 a.m. Pacific. The charts still show daily activity.
 
 ## v1.3.0 · 2026-11-15
 

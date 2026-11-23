@@ -13,7 +13,7 @@ function setup(count=3,responsive=false){
  const document={activeElement:null};
  const button=step=>({...node(),dataset:{galleryStep:String(step)},focus(){document.activeElement=this;}});
  const previous=button(-1),following=button(1);
- const thumbs=Array.from({length:count},(_,i)=>({dataset:{galleryIndex:String(i)},parentElement:rail,offsetLeft:i*64,offsetWidth:56,setAttribute(k,v){this[k]=v;}}));
+ const thumbs=Array.from({length:count},(_,i)=>({dataset:{galleryIndex:String(i)},parentElement:rail,offsetLeft:i*64,offsetWidth:56,focus(){document.activeElement=this;},setAttribute(k,v){this[k]=v;}}));
  const shots=Array.from({length:count},(_,i)=>({src:`image-${i}.webp`,alt:`Screen ${i+1}`,caption:`Caption ${i+1}`,width:600,height:800,...(responsive?{thumb:`thumb-${i}.webp`,displaySrc:`large-${i}.webp`,variants:[{src:`small-${i}.webp`,width:480},{src:`large-${i}.webp`,width:960}]}:{})}));
  const gallery={...node(),dataset:{shots:JSON.stringify(shots)},querySelector(selector){
   const elements={'.gallery-image':image,'.gallery-placeholder':placeholder,'.gallery-stage':stage,'.gallery-loading':status,'.gallery-retry':retry,'.gallery-position':position,'.gallery-caption':caption,'[data-gallery-step="-1"]':previous,'[data-gallery-step="1"]':following,'.gallery-heading':{scrollIntoView(){}}};
@@ -45,6 +45,30 @@ test('thumbnail selection updates image, caption, current state, and rail visibi
  assert.ok(app.rail.scrollLeft>300);
 });
 
+test('arrow keys move thumbnail focus and selection together in both directions',()=>{
+ const app=setup();
+ const [first,second,third]=app.thumbs;
+ first.focus();
+ app.key('ArrowLeft');
+ assert.equal(app.document.activeElement,first);
+
+ app.key('ArrowRight');
+ assert.equal(app.document.activeElement,second);
+ assert.equal(first['aria-pressed'],'false');
+ assert.equal(second['aria-pressed'],'true');
+ assert.equal(app.position.textContent,'2 of 3');
+
+ app.key('ArrowRight');
+ app.key('ArrowRight');
+ assert.equal(app.document.activeElement,third);
+ assert.equal(third['aria-pressed'],'true');
+
+ app.key('ArrowLeft');
+ assert.equal(app.document.activeElement,second);
+ assert.equal(third['aria-pressed'],'false');
+ assert.equal(second['aria-pressed'],'true');
+});
+
 test('touch gestures change images only for an intentional horizontal swipe',()=>{
  const app=setup();
  app.touch(-25,0);app.touch(-80,100);app.touch(-80,0,false);assert.equal(app.position.textContent,'1 of 3');
@@ -56,7 +80,7 @@ test('touch gestures change images only for an intentional horizontal swipe',()=
 
 test('responsive galleries reserve space, retain a preview, and warm only adjacent images after loading',()=>{
  const app=setup(8,true);
- assert.equal(app.image.src,'assets/large-0.webp');assert.match(app.image.srcset,/small-0.webp 480w/);assert.match(app.image.sizes,/65vh/);
+ assert.equal(app.image.src,'assets/large-0.webp');assert.match(app.image.srcset,/small-0.webp 480w/);assert.match(app.image.sizes,/35rem, 600px, calc\(min\(29rem, 60dvh\) \* 0\.75\)/);
  assert.equal(app.placeholder.src,'assets/thumb-0.webp');assert.equal(app.placeholder.hidden,false);assert.equal(app.stage.style['--gallery-ratio'],.75);
  assert.equal(app.warmed.length,0);
  app.image.complete=true;app.image.naturalWidth=600;app.image.events.load();

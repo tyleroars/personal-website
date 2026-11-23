@@ -28,6 +28,6 @@ From what I'm seeing in the comments, you'll need to update both the mobile and 
 
 I'm playing with this over the weekend. Will report back!
 
-> [![Codex mobile interface showing a list of projects on a phone.](../assets/writing/9103dafa94b60908f023.jpg)](https://twitter.com/OpenAI/status/2055016850849993072?s=20)
+> [![OpenAI’s announcement of Codex in the ChatGPT mobile app, with a video preview of the project list.](../assets/writing/9103dafa94b60908f023.jpg)](https://twitter.com/OpenAI/status/2055016850849993072?s=20)
 
 [Read on Tyler’s site](you-can-now-babysit-ai-from-anywhere.html)

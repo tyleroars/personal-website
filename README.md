@@ -2,7 +2,7 @@
 
 My personal website at [itstyleryip.com](https://itstyleryip.com). A home for the things I've built, written and worked on, including the experiments that didn't work out.
 
-The site brings together 15 projects, 21 articles and 85 GradSimple interviews. Built with HTML, CSS and vanilla JavaScript, with a small Cloudflare Worker for routes, redirects and response headers.
+The site brings together 16 projects, 21 articles and 85 GradSimple interviews. Built with HTML, CSS and vanilla JavaScript, with a small Cloudflare Worker for routes, redirects and response headers.
 
 ## Run locally
 
@@ -57,4 +57,4 @@ Writing and photographs belong to their respective authors. Interview excerpts l
 
 ## Token usage snapshot
 
-`npm run tokens:refresh` reads OpenAI’s documented `account/usage/read` endpoint through the existing authenticated Codex CLI. It starts no model turn and does not read credentials or local conversation files. The headline and all token charts use the same official daily buckets; a missing or mismatched total stops export before replacing the saved snapshot. Normal CI builds use the checked-in aggregate and never contact the account. See [source, coverage and gallery delivery](documentation/tokens-and-gallery.md). A local scheduled task runs daily at 9:00 a.m. America/Vancouver. Once this feature is released, it publishes validated data-only pull requests from production main. It never releases an unfinished feature branch. The Mac and desktop app must be running and the CLI signed in. See the [daily update runbook](documentation/token-usage-updates.md) for the publication gate, checks and recovery.
+`npm run tokens:refresh` reads OpenAI’s documented `account/usage/read` endpoint through the existing authenticated Codex CLI. It starts no model turn and does not read credentials or local conversation files. The headline and all token charts use the same official daily buckets; a missing or mismatched total stops export before replacing the saved snapshot. Normal CI builds use the checked-in aggregate and never contact the account. See [source, coverage and gallery delivery](documentation/tokens-and-gallery.md). A local scheduled task runs Mondays at 9 a.m. America/Vancouver. It publishes validated data-only pull requests from production main. The Mac and desktop app must be running and the CLI signed in. See the [Token Usage update runbook](documentation/token-usage-updates.md) for the publication gate, checks and recovery.

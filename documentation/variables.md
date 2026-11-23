@@ -13,7 +13,7 @@
 | `RELEASE_TAG` | Release packaging job | GitHub release event | Public input, must exactly equal `v` plus the package version. |
 | Existing Codex CLI login | Local usage exporter only | CLI-managed authentication outside the repository | Used only for the documented read-only account-usage request. Never read, copied, printed, or bundled by the exporter. Reauthenticate through the CLI if unavailable. |
 | `GITHUB_REPOSITORY` | Release upload job | GitHub Actions context | Public repository target; script does not accept a secret-based alternate endpoint. |
-| `tyler-theme` / `tyler-rainbow-seen` | Browser localStorage / sessionStorage | Visitor's browser | Theme preference and animation state only. Storage denial is tolerated. |
+| `tyler-theme` | Browser localStorage | Visitor's browser | Theme preference. Storage denial is tolerated. |
 
 There are no secret runtime values bundled client-side. `src/` includes public contact details and portfolio evidence deliberately approved for publication. `.env*`, local review output, dependencies, compiled output and Wrangler login state are ignored by Git. Review newly staged files before every release; ignored status alone does not make a file safe if it is copied into `src/`.
 

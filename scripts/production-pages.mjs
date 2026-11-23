@@ -87,7 +87,6 @@ export async function productionMedia(root,dist){
   }
   // Only the compiled public dataset changes; narrative source and originals stay intact.
   fs.writeFileSync(path.join(dist,'projects.js'),'const projects='+JSON.stringify(projects)+';\n');
-  const mascot={small:await resized('tyler-mascot-v1.webp',256,86),large:await resized('tyler-mascot-v1.webp',384,86)};
   const portrait={small:await resized('optimized/1372408ed4e1.webp',80,86),large:await resized('optimized/1372408ed4e1.webp',160,86)};
   const portraits=new Map();
   vm.runInContext(fs.readFileSync(path.join(root,'src/interviews.js'),'utf8'),context);
@@ -120,7 +119,6 @@ export async function productionMedia(root,dist){
         imageIndex++;return tag;
       });return open+body+close;
     });
-    html=html.replace(/<img\b[^>]*src="assets\/tyler-mascot-v1.webp"[^>]*>/g,tag=>tag.replace('src="assets/tyler-mascot-v1.webp"',`src="${mascot.large}" srcset="${mascot.small} 256w, ${mascot.large} 384w, assets/tyler-mascot-v1.webp 585w" sizes="(max-width:640px) 128px, (max-width:900px) 144px, 156px"`));
     html=html.replace(/<img\b[^>]*src="assets\/optimized\/1372408ed4e1.webp"[^>]*>/g,tag=>tag.replace('src="assets/optimized/1372408ed4e1.webp"',`src="${portrait.large}" srcset="${portrait.small} 80w, ${portrait.large} 160w" sizes="(max-width:640px) 37px, 56px"`));
     return html.replace(/<img\b[^>]*src="([^"]+)"[^>]*>/g,(tag,src)=>{
       const image=portraits.get(src);

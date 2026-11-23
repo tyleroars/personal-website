@@ -26,7 +26,7 @@ for(const page of pages){
  const image=html.match(/<meta property="og:image" content="([^"]+)"/)?.[1];
  assert.ok(image,page.route+' sharing image');images.add(image);
 }
-for(const file of ['site.css','site.js','projects.js','theme-init.js','rainbow.js','llms.txt','llms-full.txt']){
+for(const file of ['site.css','site.js','projects.js','theme-init.js','offset-print.js','llms.txt','llms-full.txt']){
  const docs=JSON.parse(fs.readFileSync(path.join(root,'generated-documents.json')));
  assert.equal(await (await get('/'+file)).text(),docs['/'+file],file+' matches release');
 }

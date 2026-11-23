@@ -61,6 +61,33 @@ My account was banned in August, which ended that experiment.
 
 [Project story on Tyler’s site](projects.html#gradsimple)
 
+### DevDay Exchange Community Hackathon: BVRobin
+
+A desktop coach that helps customer success managers navigate tough renewal calls in real time, from spotting risk to understanding objections and deciding how to move forward.
+
+- 1–2 seconds from live speech to a coaching recommendation
+
+Renewals are the most stressful part of my job. Imagine you’re halfway through a renewal call you thought was going fine, and the customer tells you they might switch. You’ve got seconds to figure out what’s driving that, what’s still on the table, and where to take the conversation. That’s the moment Vish and I built BVRobin for.
+
+Vish and I built a working desktop prototype with Codex at the Vancouver hackathon. The coach sits beside the meeting window. ElevenLabs transcribes the call live, then the coach sends that text and the account context to ChatGPT through the OpenAI API. The next move shows up beside the call. I simplified the coach interface and added a timeline so you can see what prompted each recommendation.
+
+We ran it live in front of the room. I played procurement and Vish was the customer success manager. I told him we were cutting 25 seats and would look at other tools if the bill didn’t come down. With the coach running, Vish worked out that Finance could approve up to last year’s price, and that my team still had the same workload. He left the conversation with a clear next step. Could we cover that work with fewer seats, stay within budget, and bring an option back to Finance?
+
+Early versions took too long to help in the moment. By the time a recommendation showed up, the conversation could already be somewhere else. We gave the coach a running record of the call to build on, which saved it from piecing together the same context from scratch every time. That brought the time from live speech to an on-screen recommendation down to 1–2 seconds.
+
+I’m curious how much better the coach could get at anticipating where a call might go. Vish and I plan to bring the idea to our teams at work. If we test it on real calls, I’d look at how often the coach helps us uncover what’s blocking a renewal and leave the call with a next step the customer agrees to.
+
+Outcomes:
+
+- 1–2 seconds from live speech to an on-screen coaching recommendation, including ElevenLabs transcription and the ChatGPT API call.
+- Say 10 customer success managers each have $1 million up for renewal. Raising revenue retention from 90% to 92% would keep $200,000 more in the first year. If that lift holds, more revenue carries into each renewal cycle.
+
+[Download the desktop preview](https://github.com/jvissup/bvrobin/releases)
+
+[Public source code](https://github.com/jvissup/bvrobin)
+
+[Project story on Tyler’s site](projects.html#bvrobin)
+
 ### HuddleDex
 
 An iPhone event notebook for badge scans, voice notes, and follow-ups, used at Knak’s Agentic Marketing Forum.

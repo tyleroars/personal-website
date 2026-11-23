@@ -21,7 +21,7 @@ const intro=(title,text)=>`<header class="page-intro"><h1>${title}</h1>${text?`<
 let content='';
 if(!document.body.hasAttribute('data-prerendered')){
 if(page==='about'){
- content=`<section class="about-hero" aria-labelledby="about-title"><header class="page-intro"><h1 id="about-title">Hi, I’m Tyler.</h1><p>I’m from Singapore, now in Vancouver. I work with customers at <a href="https://knak.com/">Knak</a> and run <a href="projects.html#gradsimple">GradSimple</a>, where I get to be a little nosy about people’s careers.</p></header><div class="about-rainbow"><div class="rainbow-mascot"><img src="assets/tyler-mascot-v1.webp" alt="An illustrated Tyler wearing round glasses and holding a camera" width="585" height="640" decoding="async" fetchpriority="high"></div></div></section><div class="about-prose"><p>I love hearing the story behind a job title. How someone found their way there, what the work is actually like, and what they’re figuring out next. With AI changing so much of that, I’ve been doing a lot of experimenting myself.</p><p>I used to <em>wish</em> I could code. Now I’m building tools for our team and GradSimple, and sharing marketing prompts and workflows through <a href="projects.html#aiwt">AI Worth Trying</a>. That still feels a little ridiculous. In a good way!</p></div><section class="about-links" aria-label="Explore the site"><a href="projects.html"><strong>Projects</strong><span>Apps, newsletters, and things I’m building.</span></a><a href="writing.html"><strong>Writing</strong><span>Experiments, practical guides, and what I’m learning about AI.</span></a><a href="work.html"><strong>Work</strong><span>My experience, skills, and education.</span></a><a href="interviews.html"><strong>Interviews</strong><span>Career conversations from GradSimple.</span></a><a href="tokens.html"><strong>Token Usage</strong><span>How much I use Codex, in numbers.</span></a></section>`;
+ content=`<section class="about-hero" aria-labelledby="about-title"><header class="page-intro"><h1 id="about-title">Hi, I’m Tyler.</h1><p>I’m from Singapore, now in Vancouver. I work with customers at <a href="https://knak.com/">Knak</a> and run <a href="projects.html#gradsimple">GradSimple</a>, where I get to be a little nosy about people’s careers.</p></header><figure class="about-portrait"><div class="offset-portrait" data-offset-print><span class="offset-ink offset-clay" aria-hidden="true"></span><span class="offset-ink offset-sage" aria-hidden="true"></span><img src="assets/optimized/tyler-pixel-portrait-f069073e2e88.webp" alt="Pixel-art portrait of Tyler holding up a small camera" width="397" height="400" decoding="async" fetchpriority="high" draggable="false"></div><figcaption>Drag the portrait</figcaption></figure></section><div class="about-prose"><p>I love hearing the story behind a job title. How someone found their way there, what the work is actually like, and what they’re figuring out next. With AI changing so much of that, I’ve been doing a lot of experimenting myself.</p><p>I used to <em>wish</em> I could code. Now I’m building tools for our team and GradSimple, and sharing marketing prompts and workflows through <a href="projects.html#aiwt">AI Worth Trying</a>. That still feels a little ridiculous. In a good way!</p></div><section class="about-links" aria-label="Explore the site"><a href="projects.html"><strong>Projects</strong><span>Apps, newsletters, and things I’m building.</span></a><a href="writing.html"><strong>Writing</strong><span>Experiments, practical guides, and what I’m learning about AI.</span></a><a href="work.html"><strong>Work</strong><span>My experience, skills, and education.</span></a><a href="interviews.html"><strong>Interviews</strong><span>Career conversations from GradSimple.</span></a><a href="tokens.html"><strong>Token Usage</strong><span>How much I use Codex, in numbers.</span></a></section>`;
 }else if(page==='projects'){
  content=intro('Projects','Apps, newsletters, and other things I’ve built and run.')+`<section class="project-sequence" aria-label="All projects">${projects.filter(p=>['Independent','Experiments','Earlier'].includes(p.kind)).map(projectRow).join('')}</section>`;
 }else if(page==='tokens'){
@@ -65,20 +65,29 @@ function imageGallery(shots,label,heading='Project images'){
 }
 function initGalleries(){
  const warmed=new Map();
- function responsive(shot){const ratio=shot.width/(shot.cropHeight||shot.height);return {src:'assets/'+(shot.displaySrc||shot.src),srcset:(shot.variants||[]).map(v=>`assets/${v.src} ${v.width}w`).join(', '),sizes:`(max-width:640px) min(calc(100vw - 40px), calc(65vh * ${ratio})), min(800px, calc(70vh * ${ratio}))`};}
+ function responsive(shot){
+  const ratio=shot.width/(shot.cropHeight||shot.height);
+  // Match the reader column and the gallery stage's height cap.
+  const limits=`35rem, ${shot.width}px, calc(min(29rem, 60dvh) * ${ratio})`;
+  return {
+   src:'assets/'+(shot.displaySrc||shot.src),
+   srcset:(shot.variants||[]).map(v=>`assets/${v.src} ${v.width}w`).join(', '),
+   sizes:`(max-width:640px) min(calc(100vw - 48px), ${limits}), min(calc(100vw - 98px), ${limits})`
+  };
+ }
  function warm(shot){if(!shot||typeof Image==='undefined')return;const media=responsive(shot);if(warmed.has(media.src))return;const next=new Image();next.decoding='async';next.fetchPriority='low';next.sizes=media.sizes;next.srcset=media.srcset;next.src=media.src;warmed.set(media.src,next);}
  dialog.querySelectorAll('.image-gallery').forEach(gallery=>{
   const shots=JSON.parse(gallery.dataset.shots),image=gallery.querySelector('.gallery-image'),placeholder=gallery.querySelector('.gallery-placeholder'),stage=gallery.querySelector('.gallery-stage'),status=gallery.querySelector('.gallery-loading'),retry=gallery.querySelector('.gallery-retry');let index=0;
   function loaded(){if(!image.complete||!image.naturalWidth)return;status.hidden=true;retry.hidden=true;if(placeholder)placeholder.hidden=true;image.classList.remove('is-loading');warm(shots[index+1]);warm(shots[index-1]);}
   image.addEventListener('load',loaded);image.addEventListener('error',()=>{status.hidden=false;status.textContent='This image couldn’t load.';retry.hidden=false;image.classList.add('is-loading');});
-  function show(next){if(next<0||next>=shots.length)return;index=next;const shot=shots[index],media=responsive(shot),ratio=shot.width/(shot.cropHeight||shot.height);stage.scrollTop=0;stage.scrollLeft=0;image.classList.add('is-loading');status.textContent='Loading image…';status.hidden=false;retry.hidden=true;image.alt=shot.alt||shot.title||'';image.width=shot.width;image.height=shot.cropHeight||shot.height;stage.classList.toggle('is-cropped-hero',!!shot.cropHeight);stage.style.aspectRatio=String(ratio);stage.style.setProperty('--gallery-ratio',ratio);stage.style.setProperty('--gallery-native-width',shot.width+'px');if(placeholder){placeholder.hidden=false;placeholder.src='assets/'+(shot.thumb||shot.src);}image.sizes=media.sizes;image.srcset=media.srcset;image.src=media.src;
+  function show(next,moveThumbnailFocus=false){if(next<0||next>=shots.length)return;index=next;const shot=shots[index],media=responsive(shot),ratio=shot.width/(shot.cropHeight||shot.height);stage.scrollTop=0;stage.scrollLeft=0;image.classList.add('is-loading');status.textContent='Loading image…';status.hidden=false;retry.hidden=true;image.alt=shot.alt||shot.title||'';image.width=shot.width;image.height=shot.cropHeight||shot.height;stage.classList.toggle('is-cropped-hero',!!shot.cropHeight);stage.style.aspectRatio=String(ratio);stage.style.setProperty('--gallery-ratio',ratio);stage.style.setProperty('--gallery-native-width',shot.width+'px');if(placeholder){placeholder.hidden=false;placeholder.src='assets/'+(shot.thumb||shot.src);}image.sizes=media.sizes;image.srcset=media.srcset;image.src=media.src;
    const position=gallery.querySelector('.gallery-position');if(position)position.textContent=`${index+1} of ${shots.length}`;gallery.querySelector('.gallery-caption').textContent=shot.caption||shot.title||'';
    const previous=gallery.querySelector('[data-gallery-step="-1"]'),following=gallery.querySelector('[data-gallery-step="1"]'),focused=document.activeElement;
    if(previous)previous.hidden=index===0;if(following)following.hidden=index===shots.length-1;
    if(focused===previous&&previous?.hidden)following?.focus({preventScroll:true});
    if(focused===following&&following?.hidden)previous?.focus({preventScroll:true});
    gallery.querySelectorAll('[data-gallery-index]').forEach((button,i)=>button.setAttribute('aria-pressed',String(i===index)));
-   const selected=gallery.querySelector('[data-gallery-index="'+index+'"]');if(selected){const rail=selected.parentElement;rail.scrollLeft=Math.max(0,selected.offsetLeft-(rail.clientWidth-selected.offsetWidth)/2);}
+   const selected=gallery.querySelector('[data-gallery-index="'+index+'"]');if(selected){if(moveThumbnailFocus)selected.focus({preventScroll:true});const rail=selected.parentElement;rail.scrollLeft=Math.max(0,selected.offsetLeft-(rail.clientWidth-selected.offsetWidth)/2);}
    if(image.complete&&image.naturalWidth)loaded();
   }
   gallery.addEventListener('click',event=>{const thumb=event.target.closest('[data-gallery-index]'),step=event.target.closest('[data-gallery-step]');if(thumb){show(Number(thumb.dataset.galleryIndex));gallery.querySelector('.gallery-heading').scrollIntoView({block:'start'});}if(step)show(index+Number(step.dataset.galleryStep));});
@@ -87,7 +96,12 @@ function initGalleries(){
   stage.addEventListener('pointerdown',event=>{if(event.pointerType==='touch'&&event.isPrimary&&!event.target.closest('button'))touchStart={id:event.pointerId,x:event.clientX,y:event.clientY};});
   stage.addEventListener('pointercancel',()=>{touchStart=null;});
   stage.addEventListener('pointerup',event=>{if(!touchStart||event.pointerId!==touchStart.id)return;const dx=event.clientX-touchStart.x,dy=event.clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>48&&Math.abs(dx)>Math.abs(dy)*1.5)show(index+(dx<0?1:-1));});
-  gallery.addEventListener('keydown',event=>{if(shots.length<2)return;if(event.key==='ArrowRight'||event.key==='ArrowLeft'){event.preventDefault();show(index+(event.key==='ArrowRight'?1:-1));}});
+  gallery.addEventListener('keydown',event=>{
+   if(shots.length<2||(event.key!=='ArrowRight'&&event.key!=='ArrowLeft'))return;
+   event.preventDefault();
+   const fromThumbnail=document.activeElement?.dataset?.galleryIndex!==undefined;
+   show(index+(event.key==='ArrowRight'?1:-1),fromThumbnail);
+  });
   show(0);
  });
 }
@@ -97,8 +111,9 @@ function buildPromptPanel(p){
  return `<section class="build-prompt-panel" aria-label="Build your own browser version"><div class="build-prompt-heading"><strong>Build your own browser version</strong><a href="${E(p.buildPrompt.download)}" download="huddledex-browser-build-prompt.txt">Save .txt</a></div><p>Take the working starter and make it your own.</p><div class="starter-links"><a href="build-prompts/huddledex-browser-starter.zip" download>Download starter code</a></div><div class="build-prompt-actions"><button type="button" class="copy-build-prompt"><img src="assets/icons/copy-prompt.svg" alt="" width="16" height="16"><span>Copy prompt</span></button>${tools.map(([name,url])=>`<a class="prompt-launch" data-prompt-tool="${name}" href="${url}" target="_blank" rel="noopener" aria-label="Copy prompt and open ${name}"><img src="assets/icons/${name.toLowerCase()}.svg" alt="" width="19" height="19"><span>Open in ${name}</span></a>`).join('')}</div><div class="prompt-preview"><p>Includes the working browser starter’s full source, adapted from my iPhone app. No personal notebook data.</p><details class="build-prompt-details"><summary>View full prompt</summary><label class="sr-only" for="build-prompt-text">HuddleDex browser build prompt</label><textarea id="build-prompt-text" readonly rows="10" spellcheck="false">${E(p.buildPrompt.text)}</textarea></details></div><p class="build-prompt-feedback" role="status">Tool buttons copy the prompt, then open a new tab. Paste it there to start.</p></section>`;
 }
 function outcomeMarkup(result){
- const text=E(result),lead=text.match(/^((?:(?:About|Around|Over|Nearly)\s+)?(?:C?\$)?\d[\d,.]*(?:%|\+)?(?:\s+per\s+(?:year|month))?)/);
- return lead?`<strong class="work-highlight">${lead[1]}</strong>${text.slice(lead[1].length)}`:text;
+ const text=E(result);
+ const lead=text.match(/^(?:(?:About|Around|Over|Nearly)\s+)?(?:C?\$)?\d[\d,.]*(?:[–-]\d[\d,.]*)?(?:%|\+)?(?:\s+(?:seconds?|minutes?|hours?|per\s+(?:year|month))\b)?/)?.[0];
+ return lead?`<strong class="work-highlight">${lead}</strong>${text.slice(lead.length)}`:text;
 }
 function projectOutcomes(p){
  if(!p.outcomes?.length)return '';
