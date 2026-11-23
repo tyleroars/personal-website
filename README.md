@@ -23,7 +23,7 @@ npx wrangler dev
 - `page-metadata.json`: clear search titles and descriptions for every section, article and the demo.
 - `scripts/sync-metadata.mjs`: `npm run metadata` syncs that copy into the source pages and the article indexes in the agent documents.
 - `scripts/sync-project-text.mjs`: `npm run project-text` syncs project descriptions, stories, outcomes, workflows and public links from `projects.js` into `projects.md`, `llms.txt` and `llms-full.txt`.
-- `scripts/create-share-image.mjs`: `npm run share-image` regenerates 2400 × 1260 cards for every page. The checked-in PNGs and `share-images.json` let ordinary builds use them without rendering images. Arial is used for optional regeneration.
+- `scripts/create-share-image.mjs`: `npm run share-image` regenerates 2400 × 1260 cards for every page. The checked-in PNGs and `share-images.json` let ordinary builds use them without rendering images. Arial is used for optional regeneration. Regenerate the cards when the About portrait or its ink colors change.
 - `scripts/launch.test.mjs`: checks routes, metadata, public resources, galleries, portraits, agent links and response headers.
 - `scripts/project-navigation.test.mjs` and `scripts/gallery-controls.test.mjs`: check project history, gallery boundaries, focus, thumbnail visibility and touch-gesture intent.
 - `launch-data.json`: canonical domain and article metadata.
